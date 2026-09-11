@@ -1,5 +1,4 @@
-"use client";
-
+import { getSiteData } from "@/lib/site-data";
 import Preloader from "@/components/digiman/preloader";
 import ScrollProgress from "@/components/digiman/scroll-progress";
 import CursorGlow from "@/components/digiman/cursor-glow";
@@ -18,30 +17,52 @@ import CtaSection from "@/components/digiman/cta";
 import Footer from "@/components/digiman/footer";
 import FloatingWidgets from "@/components/digiman/floating-widgets";
 
-export default function Home() {
+// Konten dikelola via Panel Admin — selalu ambil data terbaru
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const data = await getSiteData();
+  const s = data.settings;
+
   return (
     <div className="relative flex min-h-screen flex-col bg-[#050d0a]">
-      <Preloader />
+      <Preloader logoUrl={s.logoUrl} />
       <ScrollProgress />
       <CursorGlow />
-      <Navbar />
+      <Navbar logoUrl={s.logoUrl} />
 
       <main className="flex-1">
-        <Hero />
+        <Hero waNumber={s.waNumber} />
         <Marquee />
-        <Stats />
+        <Stats
+          clients={s.statClients}
+          experts={s.statExperts}
+          layers={s.statLayers}
+          success={s.statSuccess}
+        />
         <SevenHeavens />
-        <Services />
+        <Services items={data.services} />
         <WhyUs />
-        <TeamStructure />
+        <TeamStructure members={data.team} />
         <Process />
-        <Testimonials />
-        <Faq />
-        <CtaSection />
+        <Testimonials items={data.testimonials} />
+        <Faq faqs={data.faqs} />
+        <CtaSection
+          waNumber={s.waNumber}
+          waDisplay={s.waDisplay}
+          email={s.email}
+          address={s.addressShort}
+        />
       </main>
 
-      <Footer />
-      <FloatingWidgets />
+      <Footer
+        logoUrl={s.logoUrl}
+        waNumber={s.waNumber}
+        waDisplay={s.waDisplay}
+        email={s.email}
+        addressFull={s.addressFull}
+      />
+      <FloatingWidgets waNumber={s.waNumber} />
     </div>
   );
 }

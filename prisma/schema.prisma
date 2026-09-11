@@ -42,3 +42,69 @@ model TeamMember {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// Pengaturan situs (baris tunggal, id = 1)
+model SiteSetting {
+  id           Int      @id @default(1)
+  companyName  String   @default("PT Digital Bisnis Manajemen")
+  waNumber     String   @default("6281333397223") // format internasional tanpa +, untuk link wa.me
+  waDisplay    String   @default("+62 813-3339-7223")
+  email        String   @default("halo@digiman.id")
+  addressShort String   @default("Jl. Muararajeun Lama No.26, Bandung")
+  addressFull  String   @default("Jl. Muararajeun Lama No.26, Kel. Cihaur Geulis, Kec. Cibeunying Kaler, Kota Bandung, Jawa Barat 40122")
+  logoUrl      String? // data URL logo hasil upload (kosong = pakai /logo-emblem.png bawaan)
+  statClients  Int      @default(2500)
+  statExperts  Int      @default(46)
+  statLayers   Int      @default(7)
+  statSuccess  Int      @default(98)
+  updatedAt    DateTime @updatedAt
+}
+
+// Kartu layanan di section #layanan
+model Service {
+  id        String   @id @default(cuid())
+  title     String
+  desc      String
+  price     String   @default("Konsultasi custom")
+  features  String // JSON array of string (SQLite tidak mendukung list)
+  icon      String   @default("Building2") // nama ikon lucide-react
+  featured  Boolean  @default(false)
+  order     Int      @default(0)
+  visible   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Testimoni klien (marquee 2 baris)
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  text      String
+  rating    Int      @default(5)
+  order     Int      @default(0)
+  visible   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Pertanyaan yang sering diajukan
+model Faq {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  order     Int      @default(0)
+  visible   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Akun admin panel (/admin)
+model AdminUser {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String // scrypt: salt:hash (hex)
+  name         String   @default("Administrator")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

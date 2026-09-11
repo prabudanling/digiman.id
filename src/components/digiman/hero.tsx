@@ -18,7 +18,7 @@ const badges = [
 
 const headline = ["Naikkan", "Bisnis", "Anda", "ke", "7", "Lapis", "Langit", "Legalitas."];
 
-export default function Hero() {
+export default function Hero({ waNumber }: { waNumber?: string }) {
   const [wordIndex, setWordIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
 
@@ -181,7 +181,7 @@ export default function Hero() {
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
           </a>
           <a
-            href="https://wa.me/6281333397223?text=Halo%20DIGIMAN.ID,%20saya%20ingin%20konsultasi%20legalitas%20bisnis"
+            href={`https://wa.me/${waNumber || "6281333397223"}?text=Halo%20DIGIMAN.ID,%20saya%20ingin%20konsultasi%20legalitas%20bisnis`}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 rounded-2xl border border-emerald-400/30 bg-emerald-950/40 px-8 py-4 text-base font-semibold text-emerald-100 backdrop-blur-md transition-all hover:border-gold/60 hover:bg-emerald-900/40 hover:text-gold-light"

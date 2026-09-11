@@ -1,0 +1,16 @@
+import { NextRequest, NextResponse } from "next/server";
+import { db } from "@/lib/db";
+import { requireAdmin } from "@/lib/admin-guard";
+
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const session = await requireAdmin(req);
+  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
+
+  const { id } = await params;
+  try {
+    await db.faq.delete({ where: { id } });
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json({ error: "FAQ tidak ditemukan." }, { status: 404 });
+  }
+}

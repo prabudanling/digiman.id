@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const letters = "DIGIMAN.ID".split("");
 
-export default function Preloader() {
+export default function Preloader({ logoUrl }: { logoUrl?: string | null }) {
   const [progress, setProgress] = useState(0);
   const [done, setDone] = useState(false);
 
@@ -49,7 +49,7 @@ export default function Preloader() {
           >
             { }
             <img
-              src="/logo-emblem.png"
+              src={logoUrl || "/logo-emblem.png"}
               alt="Logo PT Digital Bisnis Manajemen"
               className="animate-floaty h-24 w-24 object-contain drop-shadow-[0_0_30px_rgba(242,193,78,0.55)]"
             />

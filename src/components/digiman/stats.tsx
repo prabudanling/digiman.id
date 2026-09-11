@@ -32,14 +32,29 @@ function Counter({ target, suffix }: { target: number; suffix?: string }) {
   );
 }
 
-const stats = [
+const DEFAULT_STATS = [
   { icon: Building2, value: 2500, suffix: "+", label: "Perusahaan Didasarkan", note: "PT, CV, PMA & lainnya" },
   { icon: Users, value: 46, suffix: "", label: "Dewan Pakar Lintas Bidang", note: "Hukum, pajak, digital" },
   { icon: Layers, value: 7, suffix: "", label: "Lapis Layanan Terpadu", note: "Dari akta sampai digital" },
   { icon: HeartHandshake, value: 98, suffix: "%", label: "Klien Merekomendasikan", note: "Rating 4.9 / 5.0" },
 ];
 
-export default function Stats() {
+export default function Stats({
+  clients,
+  experts,
+  layers,
+  success,
+}: {
+  clients?: number;
+  experts?: number;
+  layers?: number;
+  success?: number;
+}) {
+  const values = [clients, experts, layers, success];
+  const stats = DEFAULT_STATS.map((s, i) => ({
+    ...s,
+    value: typeof values[i] === "number" && values[i]! >= 0 ? values[i]! : s.value,
+  }));
   return (
     <section className="section-padding relative py-20 sm:py-24">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">

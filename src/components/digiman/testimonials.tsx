@@ -3,14 +3,17 @@
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 
-interface T {
+export interface TestimonialItem {
   name: string;
   role: string;
   text: string;
+}
+
+interface T extends TestimonialItem {
   initials: string;
 }
 
-const rowA: T[] = [
+const DEFAULT_ROW_A: T[] = [
   {
     name: "Rendra Wijaya",
     role: "Founder, Kopi Nusantara Rasa",
@@ -43,7 +46,7 @@ const rowA: T[] = [
   },
 ];
 
-const rowB: T[] = [
+const DEFAULT_ROW_B: T[] = [
   {
     name: "Lestari Ningsih",
     role: "Owner, Batik Larasati",
@@ -99,7 +102,23 @@ function Card({ t }: { t: T }) {
   );
 }
 
-export default function Testimonials() {
+export default function Testimonials({ items }: { items?: TestimonialItem[] }) {
+  const source = items && items.length > 0 ? items : [...DEFAULT_ROW_A, ...DEFAULT_ROW_B];
+  const half = Math.ceil(source.length / 2);
+  const withInitials: T[] = source.map((t) => ({
+    ...t,
+    initials: t.name
+      .replace(/^dr\.\s*/i, "")
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((w) => w[0]?.toUpperCase())
+      .join(""),
+  }));
+  const rowA = withInitials.slice(0, half);
+  const rowB = withInitials.slice(half);
+  const finalRowB = rowB.length > 0 ? rowB : rowA;
+
   return (
     <section id="testimoni" className="relative overflow-hidden py-24 sm:py-32">
       <div className="section-padding mx-auto mb-14 max-w-3xl text-center">
@@ -124,7 +143,7 @@ export default function Testimonials() {
           ))}
         </div>
         <div className="flex w-max animate-marquee-reverse gap-6 pr-6">
-          {[...rowB, ...rowB].map((t, i) => (
+          {[...finalRowB, ...finalRowB].map((t, i) => (
             <Card key={`b-${i}`} t={t} />
           ))}
         </div>

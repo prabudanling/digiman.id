@@ -1,6 +1,14 @@
 "use client";
 
-import { MapPin, Phone, Mail, FileBadge, Landmark } from "lucide-react";
+import { MapPin, Phone, Mail, FileBadge, Landmark, Lock } from "lucide-react";
+
+interface FooterProps {
+  logoUrl?: string | null;
+  waNumber?: string;
+  waDisplay?: string;
+  email?: string;
+  addressFull?: string;
+}
 
 const serviceLinks = [
   "Pendirian PT & CV",
@@ -20,7 +28,13 @@ const companyLinks = [
   { label: "Kontak", href: "#kontak" },
 ];
 
-export default function Footer() {
+export default function Footer({
+  logoUrl,
+  waNumber = "6281333397223",
+  waDisplay = "+62 813-3339-7223",
+  email = "halo@digiman.id",
+  addressFull = "Jl. Muararajeun Lama No.26, Kel. Cihaur Geulis, Kec. Cibeunying Kaler, Kota Bandung, Jawa Barat 40122",
+}: FooterProps) {
   return (
     <footer className="relative mt-auto border-t border-emerald-400/12 bg-[#040a08]">
       <div className="section-padding mx-auto max-w-7xl py-16">
@@ -30,7 +44,11 @@ export default function Footer() {
             <a href="#beranda" className="flex items-center gap-2.5">
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#071410]/70 ring-1 ring-gold/45">
                 { }
-                <img src="/logo-emblem.png" alt="Logo PT Digital Bisnis Manajemen" className="h-9 w-9 object-contain" />
+                <img
+                  src={logoUrl || "/logo-emblem.png"}
+                  alt="Logo PT Digital Bisnis Manajemen"
+                  className="h-9 w-9 object-contain"
+                />
               </span>
               <span className="font-display text-xl font-bold text-white">
                 DIGIMAN<span className="text-gold">.ID</span>
@@ -98,28 +116,27 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
                 <span>
-                  Jl. Muararajeun Lama No.26, Kel. Cihaur Geulis, Kec. Cibeunying Kaler,
-                  Kota Bandung, Jawa Barat 40122
+                  {addressFull}
                 </span>
               </li>
               <li>
                 <a
-                  href="https://wa.me/6281333397223"
+                  href={`https://wa.me/${waNumber}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 transition-colors hover:text-emerald-200"
                 >
                   <Phone className="h-4 w-4 shrink-0 text-emerald-400" />
-                  +62 813-3339-7223 (WhatsApp)
+                  {waDisplay} (WhatsApp)
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:halo@digiman.id"
+                  href={`mailto:${email}`}
                   className="flex items-center gap-3 transition-colors hover:text-emerald-200"
                 >
                   <Mail className="h-4 w-4 shrink-0 text-emerald-400" />
-                  halo@digiman.id
+                  {email}
                 </a>
               </li>
             </ul>
@@ -130,9 +147,19 @@ export default function Footer() {
           <p className="text-xs text-emerald-50/40">
             © {new Date().getFullYear()} PT Digital Bisnis Manajemen — DIGIMAN.ID. Seluruh hak cipta dilindungi.
           </p>
-          <p className="text-xs text-emerald-50/40">
-            Dibangun dengan presisi di Indonesia, untuk pendakian bisnis Indonesia.
-          </p>
+          <div className="flex items-center gap-5">
+            <p className="text-xs text-emerald-50/40">
+              Dibangun dengan presisi di Indonesia, untuk pendakian bisnis Indonesia.
+            </p>
+            <a
+              href="/admin"
+              className="flex items-center gap-1.5 text-xs font-semibold text-emerald-50/30 transition-colors hover:text-gold-light"
+              aria-label="Masuk panel admin"
+            >
+              <Lock className="h-3 w-3" />
+              Admin
+            </a>
+          </div>
         </div>
       </div>
     </footer>

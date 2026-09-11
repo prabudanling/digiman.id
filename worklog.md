@@ -41,3 +41,28 @@ Stage Summary:
 - Identitas resmi perusahaan terpasang penuh: logo emas asli, kontak asli, nomor legal di footer
 - Fitur kelola struktur organisasi berfungsi end-to-end: tambah/edit/hapus anggota + upload foto tersimpan di SQLite (base64)
 - Data sensitif (KTP, NPWP pribadi) TIDAK ditampilkan publik — hanya NIB & nomor SK AHU yang standar untuk situs korporat
+
+---
+Task ID: 3
+Agent: Super Z (main agent)
+Task: Membangun Admin Panel terpisah dari frontend (ala WordPress) — login, dashboard, dan CRUD konten lengkap.
+
+Work Log:
+- Schema Prisma baru + db push: SiteSetting (kontak/logo/statistik), Service, Testimonial, Faq, AdminUser (TeamMember sudah ada)
+- Seed scripts/seed-admin.ts: 6 layanan, 10 testimoni, 6 FAQ, settings resmi (WA 6281333397223), akun admin default (admin/digiman2025, scrypt)
+- Auth: jose JWT HS256 cookie httpOnly 7 hari; pemisahan auth-edge.ts (edge-safe utk middleware/proxy) vs auth.ts (scrypt node:crypto) — fix error "node:crypto not supported in Edge Runtime"
+- Middleware src/middleware.ts: proteksi /admin/* (redirect login) & /api/admin/* (401); Next 16 menjalankannya sebagai proxy.ts
+- API: /api/auth/{login,logout,me}, /api/admin/{settings,stats,account,team,services,testimonials,faqs} + [id] (urut naik/turun tim, toggle visible, validasi dataURL & whitelist ikon)
+- Komponen admin: shell.tsx (sidebar wp-admin-style emerald+gold, mobile overlay), image-upload.tsx (resize canvas klien, PNG utk transparansi), admin-ui.tsx (PageHeader/Card/FieldLabel)
+- Halaman admin: /admin/login, (dashboard)/{page,pengaturan,struktur,layanan,testimoni,faq,akun} dengan layout guard server-side
+- Refactor frontend data-driven: page.tsx jadi server component (force-dynamic) + lib/site-data.ts (getSiteData dgn fallback default); navbar/preloader (logo), hero/floating-widgets (WA), stats (4 angka), services (icon-name mapping), testimonials (split 2 baris otomatis), faq, cta, footer (alamat/logo + link Admin ala wp-login), team-structure (display murni — dialog edit publik DIHAPUS, pindah ke admin)
+- Fix kritis: Prisma client stale di dev server (model baru undefined) → deteksi client lama di db.ts + trigger restart via next.config.ts
+- Fix: import FileCheck2 dkk di services.tsx (ReferenceError)
+- Verifikasi Agent Browser end-to-end: login salah → alert error; login benar → dashboard (1/6/10/6 dari DB); tambah anggota "Rina Kartika" + upload foto (DataTransfer E2E) → tayang di publik → dihapus; ubah WA display → tayang di publik → dikembalikan; toggle visible layanan (sembunyi 4 vs tampil 8 kemunculan); logout → /admin redirect login?from; mobile 390px sidebar overlay OK; lint bersih; tanpa error console/dev.log
+
+Stage Summary:
+- Arsitektur dua dunia: frontend publik / (server-rendered dari SQLite) + panel admin /admin (login-protected, CRUD penuh)
+- Kredensial default: admin / digiman2025 (wajib diganti di menu Akun Admin)
+- Semua konten dinamis dikelola admin: kontak (WA tampilan + wa.me), email, alamat, logo, 4 angka statistik, layanan, struktur+foto, testimoni, FAQ
+- Link "Admin" diskret di footer (ala WordPress meta login)
+

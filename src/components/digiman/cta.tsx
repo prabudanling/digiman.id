@@ -3,7 +3,19 @@
 import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle, Mail, MapPin, Phone } from "lucide-react";
 
-export default function CtaSection() {
+interface CtaProps {
+  waNumber?: string;
+  waDisplay?: string;
+  email?: string;
+  address?: string;
+}
+
+export default function CtaSection({
+  waNumber = "6281333397223",
+  waDisplay = "+62 813-3339-7223",
+  email = "halo@digiman.id",
+  address = "Jl. Muararajeun Lama No.26, Bandung",
+}: CtaProps) {
   return (
     <section id="kontak" className="section-padding relative pb-24 pt-8 sm:pb-32">
       <motion.div
@@ -50,7 +62,7 @@ export default function CtaSection() {
 
           <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
-              href="https://wa.me/6281333397223?text=Halo%20DIGIMAN.ID,%20saya%20siap%20mendaki%20ke%207%20Lapis%20Langit%20Legalitas!"
+              href={`https://wa.me/${waNumber}?text=Halo%20DIGIMAN.ID,%20saya%20siap%20mendaki%20ke%207%20Lapis%20Langit%20Legalitas!`}
               target="_blank"
               rel="noopener noreferrer"
               className="shimmer-btn group flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-500 px-8 py-4 text-base font-bold text-emerald-950 shadow-[0_14px_44px_-10px_rgba(52,211,153,0.65)] transition-all hover:scale-[1.04]"
@@ -60,20 +72,20 @@ export default function CtaSection() {
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href="mailto:halo@digiman.id?subject=Konsultasi%20Legalitas%20Bisnis"
+              href={`mailto:${email}?subject=Konsultasi%20Legalitas%20Bisnis`}
               className="flex items-center gap-2.5 rounded-2xl border border-gold/40 bg-yellow-300/5 px-8 py-4 text-base font-semibold text-gold-light transition-all hover:bg-yellow-300/15"
             >
               <Mail className="h-5 w-5" />
-              halo@digiman.id
+              {email}
             </a>
           </div>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-emerald-50/55">
             <span className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-emerald-400" /> +62 813-3339-7223
+              <Phone className="h-4 w-4 text-emerald-400" /> {waDisplay}
             </span>
             <span className="flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-emerald-400" /> Jl. Muararajeun Lama No.26, Bandung
+              <MapPin className="h-4 w-4 text-emerald-400" /> {address}
             </span>
             <span className="flex items-center gap-2">
               <MessageCircle className="h-4 w-4 text-emerald-400" /> Respons &lt; 1×24 jam

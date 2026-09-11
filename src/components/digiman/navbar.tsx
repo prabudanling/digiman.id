@@ -14,7 +14,7 @@ const links = [
   { href: "#faq", label: "FAQ" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ logoUrl }: { logoUrl?: string | null }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
@@ -40,7 +40,11 @@ export default function Navbar() {
           <a href="#beranda" className="group flex items-center gap-2.5" aria-label="Digiman.id beranda">
             <span className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-[#071410]/70 ring-1 ring-gold/45 shadow-[0_0_26px_rgba(242,193,78,0.35)] transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105">
               { }
-              <img src="/logo-emblem.png" alt="Logo PT Digital Bisnis Manajemen" className="h-9 w-9 object-contain" />
+              <img
+                src={logoUrl || "/logo-emblem.png"}
+                alt="Logo PT Digital Bisnis Manajemen"
+                className="h-9 w-9 object-contain"
+              />
             </span>
             <span className="font-display text-xl font-bold tracking-tight text-white">
               DIGIMAN<span className="text-gold">.ID</span>

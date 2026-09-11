@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { MessageCircle, ArrowUp } from "lucide-react";
 
-export default function FloatingWidgets() {
+export default function FloatingWidgets({ waNumber }: { waNumber?: string }) {
   const [showTop, setShowTop] = useState(false);
   const [showTip, setShowTip] = useState(false);
   const { scrollY } = useScroll();
@@ -61,7 +61,7 @@ export default function FloatingWidgets() {
         </AnimatePresence>
 
         <a
-          href="https://wa.me/6281333397223?text=Halo%20DIGIMAN.ID,%20saya%20ingin%20konsultasi%20gratis"
+          href={`https://wa.me/${waNumber || "6281333397223"}?text=Halo%20DIGIMAN.ID,%20saya%20ingin%20konsultasi%20gratis`}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat WhatsApp Digiman.id"

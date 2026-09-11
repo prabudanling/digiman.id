@@ -8,7 +8,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const faqs = [
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+const DEFAULT_FAQS: FaqItem[] = [
   {
     q: "Berapa lama proses pendirian PT sampai resmi beroperasi?",
     a: "Rata-rata 3–7 hari kerja sejak dokumen lengkap dan akta ditandatangani. Proses mencakup akta notaris, pengesahan SK Kemenkumham (biasanya real-time atau 1 hari), penerbitan NPWP badan, dan NIB via OSS. Untuk izin sektor tertentu (kesehatan, logistik, makanan) dapat memakan waktu tambahan — estimasi detail selalu kami berikan di awal, gratis.",
@@ -35,7 +40,8 @@ const faqs = [
   },
 ];
 
-export default function Faq() {
+export default function Faq({ faqs: propFaqs }: { faqs?: FaqItem[] }) {
+  const faqs = propFaqs && propFaqs.length > 0 ? propFaqs : DEFAULT_FAQS;
   return (
     <section id="faq" className="section-padding relative py-24 sm:py-32">
       <div className="mx-auto max-w-3xl">

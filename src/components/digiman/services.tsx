@@ -8,14 +8,52 @@ import {
   Stamp,
   Lightbulb,
   Rocket,
+  FileCheck2,
+  ScrollText,
+  BadgeCheck,
+  Landmark,
+  Briefcase,
+  ShieldCheck,
+  Scale,
+  HeartHandshake,
+  Cpu,
+  BarChart3,
   ArrowUpRight,
   CheckCircle2,
 } from "lucide-react";
 import TiltCard from "./tilt-card";
 
-const services = [
+export interface ServiceItem {
+  title: string;
+  desc: string;
+  price: string;
+  items: string[];
+  icon: string; // nama ikon lucide
+  featured: boolean;
+}
+
+const ICONS: Record<string, typeof Building2> = {
+  Building2,
+  Users,
+  Globe2,
+  Stamp,
+  Lightbulb,
+  Rocket,
+  FileCheck2,
+  ScrollText,
+  BadgeCheck,
+  Landmark,
+  Briefcase,
+  ShieldCheck,
+  Scale,
+  HeartHandshake,
+  Cpu,
+  BarChart3,
+};
+
+const DEFAULT_SERVICES: ServiceItem[] = [
   {
-    icon: Building2,
+    icon: "Building2",
     title: "Pendirian PT",
     desc: "Akta notaris, SK Kemenkumham, NPWP, NIB — paket lengkap PT resmi berdiri dalam hitungan hari.",
     items: ["Akta Notaris + SK Kemenkumham", "NPWP & NIB otomatis", "Domisili usaha", "Gratis konsultasi KBLI"],
@@ -23,35 +61,35 @@ const services = [
     featured: true,
   },
   {
-    icon: Users,
+    icon: "Users",
     title: "Pendirian CV",
     desc: "Pilihan ideal usaha keluarga & kemitraan. Cepat, murah, dan sah di mata hukum.",
     items: ["Akta notaris CV", "Pengesahan kehakiman", "NPWP & NIB", "Konsultasi struktur modal"],
     price: "Mulai Rp 1,8 jt",
   },
   {
-    icon: Globe2,
+    icon: "Globe2",
     title: "PT PMA (Modal Asing)",
     desc: "Berinvestasi di Indonesia? Kami pegang seluruh regulasi BKPM & OSS untuk Anda.",
     items: ["Struktur saham asing", "Laporan BKPM/OSS", "Izin investasi", "Pendampingan DGT & Bank"],
     price: "Mulai Rp 15 jt",
   },
   {
-    icon: Stamp,
+    icon: "Stamp",
     title: "NIB, OSS & Izin Sektor",
     desc: "Pemetaan KBLI presisi + pengurusan izin usaha di sistem OSS-RBA sampai terbit.",
     items: ["OSS-RBA & perizinan berusaha", "Izin sektor spesifik", "SIUP, SLO, izin edar", "Rekomendasi KBLI terbaik"],
     price: "Mulai Rp 750 rb",
   },
   {
-    icon: Lightbulb,
+    icon: "Lightbulb",
     title: "Merek, Hak Cipta & Paten",
     desc: "Amankan brand Anda sebelum orang lain. Cek ketersediaan + pengajuan ke DJKI.",
     items: ["Pencarian & analisis merek", "Pengajuan kelas Nice", "Hak cipta & paten", "Monitoring status pendaftaran"],
     price: "Mulai Rp 1,5 jt",
   },
   {
-    icon: Rocket,
+    icon: "Rocket",
     title: "Digitalisasi Bisnis",
     desc: "Website, aplikasi, sistem manajemen & otomasi AI — langit ke-7 menuju bisnis yang skala.",
     items: ["Website & e-commerce", "Aplikasi & sistem internal", "Otomasi berbasis AI", "Digital marketing 360°"],
@@ -59,7 +97,8 @@ const services = [
   },
 ];
 
-export default function Services() {
+export default function Services({ items }: { items?: ServiceItem[] }) {
+  const services = items && items.length > 0 ? items : DEFAULT_SERVICES;
   return (
     <section id="layanan" className="section-padding relative py-24 sm:py-32">
       <div
@@ -116,7 +155,10 @@ export default function Services() {
                         : "bg-gradient-to-br from-emerald-400/25 to-teal-600/10 ring-1 ring-emerald-400/35"
                     }`}
                   >
-                    <s.icon className={`h-7 w-7 ${s.featured ? "text-emerald-950" : "text-emerald-200"}`} />
+                    {(() => {
+                      const Ikon = ICONS[s.icon] ?? Building2;
+                      return <Ikon className={`h-7 w-7 ${s.featured ? "text-emerald-950" : "text-emerald-200"}`} />;
+                    })()}
                   </div>
                   <h3 className="font-display text-xl font-bold text-white">{s.title}</h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-emerald-50/60">{s.desc}</p>
