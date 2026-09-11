@@ -41,6 +41,20 @@ export default function Preloader() {
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
 
+          <motion.div
+            className="relative mb-6"
+            initial={{ opacity: 0, scale: 0.6, rotate: -12 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          >
+            { }
+            <img
+              src="/logo-emblem.png"
+              alt="Logo PT Digital Bisnis Manajemen"
+              className="animate-floaty h-24 w-24 object-contain drop-shadow-[0_0_30px_rgba(242,193,78,0.55)]"
+            />
+          </motion.div>
+
           <div className="relative flex items-end overflow-hidden">
             {letters.map((l, i) => (
               <motion.span

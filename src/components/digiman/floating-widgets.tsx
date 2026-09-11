@@ -61,7 +61,7 @@ export default function FloatingWidgets() {
         </AnimatePresence>
 
         <a
-          href="https://wa.me/6281112345678?text=Halo%20DIGIMAN.ID,%20saya%20ingin%20konsultasi%20gratis"
+          href="https://wa.me/6281333397223?text=Halo%20DIGIMAN.ID,%20saya%20ingin%20konsultasi%20gratis"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat WhatsApp Digiman.id"

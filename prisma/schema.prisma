@@ -30,3 +30,15 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// Struktur organisasi PT Digital Bisnis Manajemen
+model TeamMember {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  division  String?
+  photo     String? // data URL (base64) foto hasil upload
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

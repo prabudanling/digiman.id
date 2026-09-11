@@ -10,6 +10,7 @@ import Stats from "@/components/digiman/stats";
 import SevenHeavens from "@/components/digiman/seven-heavens";
 import Services from "@/components/digiman/services";
 import WhyUs from "@/components/digiman/why-us";
+import TeamStructure from "@/components/digiman/team-structure";
 import Process from "@/components/digiman/process";
 import Testimonials from "@/components/digiman/testimonials";
 import Faq from "@/components/digiman/faq";
@@ -32,6 +33,7 @@ export default function Home() {
         <SevenHeavens />
         <Services />
         <WhyUs />
+        <TeamStructure />
         <Process />
         <Testimonials />
         <Faq />

@@ -19,6 +19,14 @@ export default function CtaSection() {
       >
         <div className="absolute inset-0 starfield opacity-50" aria-hidden />
         <div className="absolute -top-24 left-1/2 h-48 w-[560px] -translate-x-1/2 rounded-full bg-yellow-300/10 blur-[90px]" aria-hidden />
+        {/* Watermark logo resmi */}
+        { }
+        <img
+          src="/logo-watermark.png"
+          alt=""
+          aria-hidden
+          className="animate-floaty-slow pointer-events-none absolute -right-10 -top-8 w-64 opacity-[0.07] sm:w-80 lg:w-96"
+        />
 
         <div className="relative">
           <motion.span
@@ -42,7 +50,7 @@ export default function CtaSection() {
 
           <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
-              href="https://wa.me/6281112345678?text=Halo%20DIGIMAN.ID,%20saya%20siap%20mendaki%20ke%207%20Lapis%20Langit%20Legalitas!"
+              href="https://wa.me/6281333397223?text=Halo%20DIGIMAN.ID,%20saya%20siap%20mendaki%20ke%207%20Lapis%20Langit%20Legalitas!"
               target="_blank"
               rel="noopener noreferrer"
               className="shimmer-btn group flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-500 px-8 py-4 text-base font-bold text-emerald-950 shadow-[0_14px_44px_-10px_rgba(52,211,153,0.65)] transition-all hover:scale-[1.04]"
@@ -62,10 +70,10 @@ export default function CtaSection() {
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-emerald-50/55">
             <span className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-emerald-400" /> +62 811-1234-5678
+              <Phone className="h-4 w-4 text-emerald-400" /> +62 813-3339-7223
             </span>
             <span className="flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-emerald-400" /> Jakarta Selatan, Indonesia
+              <MapPin className="h-4 w-4 text-emerald-400" /> Jl. Muararajeun Lama No.26, Bandung
             </span>
             <span className="flex items-center gap-2">
               <MessageCircle className="h-4 w-4 text-emerald-400" /> Respons &lt; 1×24 jam

@@ -33,6 +33,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "PT Digital Bisnis Manajemen" }],
   metadataBase: new URL("https://digiman.id"),
+  icons: {
+    icon: "/favicon-digiman.png",
+  },
   openGraph: {
     title: "DIGIMAN.ID — 7 Lapis Langit Legalitas Bisnis Indonesia",
     description:

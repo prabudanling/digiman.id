@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
-import { Menu, X, ArrowUpRight, Rocket } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const links = [
   { href: "#beranda", label: "Beranda" },
   { href: "#tujuh-langit", label: "7 Langit" },
   { href: "#layanan", label: "Layanan" },
+  { href: "#struktur", label: "Struktur" },
   { href: "#proses", label: "Proses" },
   { href: "#testimoni", label: "Testimoni" },
   { href: "#faq", label: "FAQ" },
@@ -37,9 +38,9 @@ export default function Navbar() {
         >
           {/* Logo */}
           <a href="#beranda" className="group flex items-center gap-2.5" aria-label="Digiman.id beranda">
-            <span className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 shadow-[0_0_24px_rgba(52,211,153,0.45)]">
-              <Rocket className="h-5 w-5 text-emerald-950" strokeWidth={2.4} />
-              <span className="absolute inset-0 rounded-xl border border-emerald-200/40" />
+            <span className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-[#071410]/70 ring-1 ring-gold/45 shadow-[0_0_26px_rgba(242,193,78,0.35)] transition-transform duration-500 group-hover:rotate-6 group-hover:scale-105">
+              { }
+              <img src="/logo-emblem.png" alt="Logo PT Digital Bisnis Manajemen" className="h-9 w-9 object-contain" />
             </span>
             <span className="font-display text-xl font-bold tracking-tight text-white">
               DIGIMAN<span className="text-gold">.ID</span>
