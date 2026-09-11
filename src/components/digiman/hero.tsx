@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform, useScroll } from "fram
 import { ArrowRight, MessageCircle, ShieldCheck, ChevronDown, Sparkles, Star } from "lucide-react";
 import ParticleField from "./particle-field";
 
-const rotating = ["Pendirian PT", "Pendirian CV", "PT PMA", "NIB & OSS", "Pendaftaran Merek", "Sertifikasi Halal", "Digitalisasi Bisnis"];
+const DEFAULT_ROTATING = ["Pendirian PT", "Pendirian CV", "PT PMA", "NIB & OSS", "Pendaftaran Merek", "Sertifikasi Halal", "Digitalisasi Bisnis"];
 
 const badges = [
   { label: "PT", x: "8%", y: "22%", delay: 0 },
@@ -16,9 +16,23 @@ const badges = [
   { label: "HALAL", x: "20%", y: "84%", delay: 4 },
 ];
 
-const headline = ["Naikkan", "Bisnis", "Anda", "ke", "7", "Lapis", "Langit", "Legalitas."];
+const FALLBACK_HEADLINE = "Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas.";
 
-export default function Hero({ waNumber }: { waNumber?: string }) {
+export default function Hero({
+  waNumber,
+  headline,
+  sub,
+  rotatingWords,
+}: {
+  waNumber?: string;
+  headline?: string;
+  sub?: string;
+  rotatingWords?: string[];
+}) {
+  const rotating = rotatingWords && rotatingWords.length >= 2 ? rotatingWords : DEFAULT_ROTATING;
+  const headlineWords = (headline?.trim() || FALLBACK_HEADLINE).split(/\s+/).filter(Boolean);
+  const subText = sub?.trim() ||
+    "Satu pintu untuk seluruh legalitas perusahaan di Indonesia — dari akta pendirian, perizinan OSS, kekayaan intelektual, hingga transformasi digital. Didampingi 46 dewan pakar lintas bidang, proses transparan, garansi di tangan.";
   const [wordIndex, setWordIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
 
@@ -113,19 +127,23 @@ export default function Hero({ waNumber }: { waNumber?: string }) {
         </motion.div>
 
         <h1 className="mx-auto max-w-5xl text-center text-[2.6rem] font-extrabold leading-[1.06] tracking-tight text-white sm:text-6xl lg:text-7xl">
-          {headline.map((w, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 44, rotateX: -60 }}
-              animate={mounted ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-              transition={{ delay: 2.4 + i * 0.09, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className={`mr-[0.28em] inline-block ${
-                w === "7" ? "gradient-text-gold font-display" : ""
-              } ${w === "Legalitas." ? "gradient-text-emerald" : ""}`}
-            >
-              {w}
-            </motion.span>
-          ))}
+          {headlineWords.map((w, i) => {
+            const hasDigit = /\d/.test(w);
+            const isLast = i === headlineWords.length - 1 && /\.$/.test(w);
+            return (
+              <motion.span
+                key={`${i}-${w}`}
+                initial={{ opacity: 0, y: 44, rotateX: -60 }}
+                animate={mounted ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                transition={{ delay: 2.4 + i * 0.09, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className={`mr-[0.28em] inline-block ${
+                  hasDigit ? "gradient-text-gold font-display" : ""
+                } ${isLast ? "gradient-text-emerald" : ""}`}
+              >
+                {w}
+              </motion.span>
+            );
+          })}
         </h1>
 
         {/* Rotating service word */}
@@ -161,9 +179,7 @@ export default function Hero({ waNumber }: { waNumber?: string }) {
           transition={{ delay: 3.45, duration: 0.7 }}
           className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-emerald-50/65 sm:text-lg"
         >
-          Satu pintu untuk <strong className="font-semibold text-emerald-200">seluruh legalitas perusahaan di Indonesia</strong> —
-          dari akta pendirian, perizinan OSS, kekayaan intelektual, hingga transformasi digital. Didampingi{" "}
-          <strong className="font-semibold text-gold-light">46 dewan pakar lintas bidang</strong>, proses transparan, garansi di tangan.
+          {subText}
         </motion.p>
 
         {/* CTAs */}

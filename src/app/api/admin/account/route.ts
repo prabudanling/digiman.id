@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { verifyPassword, hashPassword } from "@/lib/auth";
-import { requireAdmin, cleanStr } from "@/lib/admin-guard";
+import { requireAdmin, cleanStr, logActivity } from "@/lib/admin-guard";
 
 /** Ganti profil & password akun admin yang sedang login. */
 export async function POST(req: NextRequest) {
@@ -41,6 +41,12 @@ export async function POST(req: NextRequest) {
         ...(newPassword ? { passwordHash: hashPassword(newPassword) } : {}),
       },
     });
+
+    await logActivity(
+      session.username,
+      "SETTINGS",
+      `Memperbarui akun admin (${[newUsername && "username", newName && "nama", newPassword && "password"].filter(Boolean).join(", ") || "tanpa perubahan"})`
+    );
 
     return NextResponse.json({ ok: true, user: { username: updated.username, name: updated.name } });
   } catch (e) {

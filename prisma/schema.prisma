@@ -57,7 +57,31 @@ model SiteSetting {
   statExperts  Int      @default(46)
   statLayers   Int      @default(7)
   statSuccess  Int      @default(98)
-  updatedAt    DateTime @updatedAt
+
+  // --- Hero Editor (section paling atas / beranda) ---
+  heroHeadline String   @default("Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas.")
+  heroSub      String   @default("Satu pintu untuk seluruh legalitas perusahaan di Indonesia — dari akta pendirian, perizinan OSS, kekayaan intelektual, hingga transformasi digital. Didampingi 46 dewan pakar lintas bidang, proses transparan, garansi di tangan.")
+  heroWords    String   @default("[\"Pendirian PT\",\"Pendirian CV\",\"PT PMA\",\"NIB & OSS\",\"Pendaftaran Merek\",\"Sertifikasi Halal\",\"Digitalisasi Bisnis\"]") // JSON array
+
+  // --- SEO ---
+  metaTitle       String @default("DIGIMAN.ID — Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas & Digitalisasi")
+  metaDescription String @default("PT Digital Bisnis Manajemen (DIGIMAN.ID) — Jasa pembuatan akta pendirian perusahaan (PT, CV, PT PMA) dan seluruh legalitas usaha di Indonesia: NIB, OSS, NPWP, Merek, Halal, hingga konsultan digitalisasi bisnis.")
+
+  // --- Info tambahan & sosial media ---
+  hours     String @default("Senin–Jumat 09.00–17.00 WIB")
+  instagram String @default("")
+  linkedin  String @default("")
+  tiktok    String @default("")
+  updatedAt DateTime @updatedAt
+}
+
+// Jejak aktivitas admin (audit trail ala WordPress)
+model ActivityLog {
+  id        String   @id @default(cuid())
+  action    String // LOGIN | LOGOUT | CREATE | UPDATE | DELETE | SETTINGS
+  detail    String // deskripsi manusiawi, mis. "Menambah anggota struktur 'Rina Kartika'"
+  username  String
+  createdAt DateTime @default(now())
 }
 
 // Kartu layanan di section #layanan

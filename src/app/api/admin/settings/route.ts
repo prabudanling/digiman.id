@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, cleanStr, isValidDataUrl, toInt } from "@/lib/admin-guard";
+import { requireAdmin, cleanStr, isValidDataUrl, toInt, logActivity } from "@/lib/admin-guard";
 
 const MAX_LOGO_LEN = 2_600_000; // ~2 MB setelah kompresi klien
 
@@ -47,10 +47,17 @@ export async function PUT(req: NextRequest) {
       statExperts: Math.min(1_000, Math.max(0, toInt(body.statExperts, 46))),
       statLayers: Math.min(100, Math.max(0, toInt(body.statLayers, 7))),
       statSuccess: Math.min(100, Math.max(0, toInt(body.statSuccess, 98))),
+      metaTitle: cleanStr(body.metaTitle, 200),
+      metaDescription: cleanStr(body.metaDescription, 400),
+      hours: cleanStr(body.hours, 120),
+      instagram: cleanStr(body.instagram, 300),
+      linkedin: cleanStr(body.linkedin, 300),
+      tiktok: cleanStr(body.tiktok, 300),
       ...(body.logoClear === true ? { logoUrl: null } : logoUrl ? { logoUrl } : {}),
     };
 
     const settings = await db.siteSetting.upsert({ where: { id: 1 }, update: data, create: { id: 1, ...data } });
+    await logActivity(session.username, "SETTINGS", "Memperbarui pengaturan situs (kontak, logo, statistik, SEO, sosial media)");
     return NextResponse.json({ settings });
   } catch (e) {
     console.error("PUT /api/admin/settings error:", e);

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, cleanStr, toInt } from "@/lib/admin-guard";
+import { requireAdmin, cleanStr, toInt, logActivity } from "@/lib/admin-guard";
 
 export async function GET(req: NextRequest) {
   const session = await requireAdmin(req);
@@ -32,11 +32,13 @@ export async function POST(req: NextRequest) {
 
     if (body.id) {
       const updated = await db.testimonial.update({ where: { id: String(body.id) }, data: payload });
+      await logActivity(session.username, "UPDATE", `Mengubah testimoni “${name}”`);
       return NextResponse.json({ testimonial: updated });
     }
 
     const last = await db.testimonial.findFirst({ orderBy: { order: "desc" } });
     const created = await db.testimonial.create({ data: { ...payload, order: (last?.order ?? -1) + 1 } });
+    await logActivity(session.username, "CREATE", `Menambah testimoni “${name}”`);
     return NextResponse.json({ testimonial: created }, { status: 201 });
   } catch (e) {
     console.error("POST /api/admin/testimonials error:", e);

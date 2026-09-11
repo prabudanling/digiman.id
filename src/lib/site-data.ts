@@ -17,6 +17,15 @@ export interface SiteSettingsData {
   statExperts: number;
   statLayers: number;
   statSuccess: number;
+  heroHeadline: string;
+  heroSub: string;
+  heroWords: string[];
+  metaTitle: string;
+  metaDescription: string;
+  hours: string;
+  instagram: string;
+  linkedin: string;
+  tiktok: string;
 }
 
 export interface ServiceItem {
@@ -70,6 +79,25 @@ const DEFAULT_SETTINGS: SiteSettingsData = {
   statExperts: 46,
   statLayers: 7,
   statSuccess: 98,
+  heroHeadline: "Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas.",
+  heroSub:
+    "Satu pintu untuk seluruh legalitas perusahaan di Indonesia — dari akta pendirian, perizinan OSS, kekayaan intelektual, hingga transformasi digital. Didampingi 46 dewan pakar lintas bidang, proses transparan, garansi di tangan.",
+  heroWords: [
+    "Pendirian PT",
+    "Pendirian CV",
+    "PT PMA",
+    "NIB & OSS",
+    "Pendaftaran Merek",
+    "Sertifikasi Halal",
+    "Digitalisasi Bisnis",
+  ],
+  metaTitle: "DIGIMAN.ID — Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas & Digitalisasi",
+  metaDescription:
+    "PT Digital Bisnis Manajemen (DIGIMAN.ID) — Jasa pembuatan akta pendirian perusahaan (PT, CV, PT PMA) dan seluruh legalitas usaha di Indonesia: NIB, OSS, NPWP, Merek, Halal, hingga konsultan digitalisasi bisnis.",
+  hours: "Senin–Jumat 09.00–17.00 WIB",
+  instagram: "",
+  linkedin: "",
+  tiktok: "",
 };
 
 const DEFAULT_SERVICES: ServiceItem[] = [
@@ -190,22 +218,45 @@ export async function getSiteData(): Promise<SiteData> {
       };
     });
 
+    let heroWords: string[] = DEFAULT_SETTINGS.heroWords;
+    if (settingsRow?.heroWords) {
+      try {
+        const parsed = JSON.parse(settingsRow.heroWords);
+        if (Array.isArray(parsed) && parsed.length >= 2) {
+          heroWords = parsed.map((w) => String(w));
+        }
+      } catch {
+        heroWords = DEFAULT_SETTINGS.heroWords;
+      }
+    }
+
+    const settings: SiteSettingsData = settingsRow
+      ? {
+          companyName: settingsRow.companyName,
+          waNumber: settingsRow.waNumber,
+          waDisplay: settingsRow.waDisplay,
+          email: settingsRow.email,
+          addressShort: settingsRow.addressShort,
+          addressFull: settingsRow.addressFull,
+          logoUrl: settingsRow.logoUrl,
+          statClients: settingsRow.statClients,
+          statExperts: settingsRow.statExperts,
+          statLayers: settingsRow.statLayers,
+          statSuccess: settingsRow.statSuccess,
+          heroHeadline: settingsRow.heroHeadline || DEFAULT_SETTINGS.heroHeadline,
+          heroSub: settingsRow.heroSub || DEFAULT_SETTINGS.heroSub,
+          heroWords,
+          metaTitle: settingsRow.metaTitle || DEFAULT_SETTINGS.metaTitle,
+          metaDescription: settingsRow.metaDescription || DEFAULT_SETTINGS.metaDescription,
+          hours: settingsRow.hours || DEFAULT_SETTINGS.hours,
+          instagram: settingsRow.instagram,
+          linkedin: settingsRow.linkedin,
+          tiktok: settingsRow.tiktok,
+        }
+      : DEFAULT_SETTINGS;
+
     return {
-      settings: settingsRow
-        ? {
-            companyName: settingsRow.companyName,
-            waNumber: settingsRow.waNumber,
-            waDisplay: settingsRow.waDisplay,
-            email: settingsRow.email,
-            addressShort: settingsRow.addressShort,
-            addressFull: settingsRow.addressFull,
-            logoUrl: settingsRow.logoUrl,
-            statClients: settingsRow.statClients,
-            statExperts: settingsRow.statExperts,
-            statLayers: settingsRow.statLayers,
-            statSuccess: settingsRow.statSuccess,
-          }
-        : DEFAULT_SETTINGS,
+      settings,
       services: services.length > 0 ? services : DEFAULT_SERVICES,
       testimonials:
         testimonialRows.length > 0

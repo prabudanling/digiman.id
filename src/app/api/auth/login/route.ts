@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { verifyPassword, signSession, sessionCookieOptions, SESSION_COOKIE } from "@/lib/auth";
+import { logActivity } from "@/lib/admin-guard";
 
 export async function POST(req: NextRequest) {
   try {
@@ -26,6 +27,7 @@ export async function POST(req: NextRequest) {
       user: { username: user.username, name: user.name },
     });
     res.cookies.set(SESSION_COOKIE, token, sessionCookieOptions);
+    await logActivity(user.username, "LOGIN", "Masuk ke panel admin");
     return res;
   } catch (e) {
     console.error("POST /api/auth/login error:", e);

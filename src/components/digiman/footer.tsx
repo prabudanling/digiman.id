@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Phone, Mail, FileBadge, Landmark, Lock } from "lucide-react";
+import { MapPin, Phone, Mail, FileBadge, Landmark, Lock, Clock, Instagram, Linkedin } from "lucide-react";
 
 interface FooterProps {
   logoUrl?: string | null;
@@ -8,6 +8,19 @@ interface FooterProps {
   waDisplay?: string;
   email?: string;
   addressFull?: string;
+  hours?: string;
+  instagram?: string;
+  linkedin?: string;
+  tiktok?: string;
+}
+
+/** Ikon TikTok inline (lucide tidak menyediakan). */
+function TikTokIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+    </svg>
+  );
 }
 
 const serviceLinks = [
@@ -34,7 +47,16 @@ export default function Footer({
   waDisplay = "+62 813-3339-7223",
   email = "halo@digiman.id",
   addressFull = "Jl. Muararajeun Lama No.26, Kel. Cihaur Geulis, Kec. Cibeunying Kaler, Kota Bandung, Jawa Barat 40122",
+  hours = "Senin–Jumat 09.00–17.00 WIB",
+  instagram = "",
+  linkedin = "",
+  tiktok = "",
 }: FooterProps) {
+  const socials = [
+    { name: "Instagram", url: instagram, Icon: Instagram },
+    { name: "LinkedIn", url: linkedin, Icon: Linkedin },
+    { name: "TikTok", url: tiktok, Icon: TikTokIcon },
+  ].filter((s) => s.url);
   return (
     <footer className="relative mt-auto border-t border-emerald-400/12 bg-[#040a08]">
       <div className="section-padding mx-auto max-w-7xl py-16">
@@ -139,7 +161,28 @@ export default function Footer({
                   {email}
                 </a>
               </li>
+              <li className="flex items-start gap-3">
+                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
+                <span>{hours}</span>
+              </li>
             </ul>
+            {socials.length > 0 && (
+              <div className="mt-6 flex items-center gap-3">
+                {socials.map(({ name, url, Icon }) => (
+                  <a
+                    key={name}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={name}
+                    title={name}
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-400/20 bg-emerald-950/40 text-emerald-100/70 transition-all hover:-translate-y-0.5 hover:border-gold/50 hover:text-gold-light"
+                  >
+                    <Icon className="h-4.5 w-4.5" />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, cleanStr, isValidDataUrl } from "@/lib/admin-guard";
+import { requireAdmin, cleanStr, isValidDataUrl, logActivity } from "@/lib/admin-guard";
 
 const MAX_PHOTO_LEN = 2_100_000;
 
@@ -37,6 +37,7 @@ export async function POST(req: NextRequest) {
         where: { id: String(body.id) },
         data: { name, role, division, ...(photo !== null ? { photo } : {}) },
       });
+      await logActivity(session.username, "UPDATE", `Mengubah anggota struktur “${name}”`);
       return NextResponse.json({ member: updated });
     }
 
@@ -44,6 +45,7 @@ export async function POST(req: NextRequest) {
     const created = await db.teamMember.create({
       data: { name, role, division, photo, order: (last?.order ?? -1) + 1 },
     });
+    await logActivity(session.username, "CREATE", `Menambah anggota struktur “${name}” — ${role}${photo ? " (dengan foto)" : ""}`);
     return NextResponse.json({ member: created }, { status: 201 });
   } catch (e) {
     console.error("POST /api/admin/team error:", e);

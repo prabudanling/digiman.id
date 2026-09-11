@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, toInt } from "@/lib/admin-guard";
+import { requireAdmin, toInt, logActivity } from "@/lib/admin-guard";
 
 /** Pindahkan urutan anggota (naik/turun) atau hapus. */
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -23,6 +23,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
         db.teamMember.update({ where: { id: a.id }, data: { order: b.order } }),
         db.teamMember.update({ where: { id: b.id }, data: { order: a.order } }),
       ]);
+      await logActivity(session.username, "UPDATE", `Menggeser urutan anggota “${a.name}” ${body.direction === "up" ? "ke atas" : "ke bawah"}`);
       return NextResponse.json({ ok: true });
     }
 
@@ -44,7 +45,8 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
 
   const { id } = await params;
   try {
-    await db.teamMember.delete({ where: { id } });
+    const member = await db.teamMember.delete({ where: { id } });
+    await logActivity(session.username, "DELETE", `Menghapus anggota struktur “${member.name}”`);
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json({ error: "Anggota tidak ditemukan." }, { status: 404 });

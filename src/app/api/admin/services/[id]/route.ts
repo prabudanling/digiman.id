@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin } from "@/lib/admin-guard";
+import { requireAdmin, logActivity } from "@/lib/admin-guard";
 
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await requireAdmin(req);
@@ -8,7 +8,8 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
 
   const { id } = await params;
   try {
-    await db.service.delete({ where: { id } });
+    const service = await db.service.delete({ where: { id } });
+    await logActivity(session.username, "DELETE", `Menghapus layanan “${service.title}”`);
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json({ error: "Layanan tidak ditemukan." }, { status: 404 });

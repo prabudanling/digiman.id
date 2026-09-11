@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, cleanStr } from "@/lib/admin-guard";
+import { requireAdmin, cleanStr, logActivity } from "@/lib/admin-guard";
 
 export async function GET(req: NextRequest) {
   const session = await requireAdmin(req);
@@ -30,11 +30,13 @@ export async function POST(req: NextRequest) {
 
     if (body.id) {
       const updated = await db.faq.update({ where: { id: String(body.id) }, data: payload });
+      await logActivity(session.username, "UPDATE", `Mengubah FAQ “${question.slice(0, 60)}”`);
       return NextResponse.json({ faq: updated });
     }
 
     const last = await db.faq.findFirst({ orderBy: { order: "desc" } });
     const created = await db.faq.create({ data: { ...payload, order: (last?.order ?? -1) + 1 } });
+    await logActivity(session.username, "CREATE", `Menambah FAQ “${question.slice(0, 60)}”`);
     return NextResponse.json({ faq: created }, { status: 201 });
   } catch (e) {
     console.error("POST /api/admin/faqs error:", e);

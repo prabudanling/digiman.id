@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, cleanStr, toInt } from "@/lib/admin-guard";
+import { requireAdmin, cleanStr, toInt, logActivity } from "@/lib/admin-guard";
 
 /** Ikon lucide yang diizinkan untuk kartu layanan */
 export const ALLOWED_ICONS = [
@@ -45,11 +45,13 @@ export async function POST(req: NextRequest) {
 
     if (body.id) {
       const updated = await db.service.update({ where: { id: String(body.id) }, data: payload });
+      await logActivity(session.username, "UPDATE", `Mengubah layanan “${title}”`);
       return NextResponse.json({ service: updated });
     }
 
     const last = await db.service.findFirst({ orderBy: { order: "desc" } });
     const created = await db.service.create({ data: { ...payload, order: (last?.order ?? -1) + 1 } });
+    await logActivity(session.username, "CREATE", `Menambah layanan “${title}”`);
     return NextResponse.json({ service: created }, { status: 201 });
   } catch (e) {
     console.error("POST /api/admin/services error:", e);

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getSiteData } from "@/lib/site-data";
 import Preloader from "@/components/digiman/preloader";
 import ScrollProgress from "@/components/digiman/scroll-progress";
@@ -20,6 +21,28 @@ import FloatingWidgets from "@/components/digiman/floating-widgets";
 // Konten dikelola via Panel Admin — selalu ambil data terbaru
 export const dynamic = "force-dynamic";
 
+// SEO dinamis: meta title & description dikelola dari Panel Admin > Pengaturan
+export async function generateMetadata(): Promise<Metadata> {
+  const { settings } = await getSiteData();
+  return {
+    title: settings.metaTitle,
+    description: settings.metaDescription,
+    openGraph: {
+      title: settings.metaTitle,
+      description: settings.metaDescription,
+      url: "https://digiman.id",
+      siteName: "DIGIMAN.ID",
+      type: "website",
+      locale: "id_ID",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: settings.metaTitle,
+      description: settings.metaDescription,
+    },
+  };
+}
+
 export default async function Home() {
   const data = await getSiteData();
   const s = data.settings;
@@ -32,7 +55,7 @@ export default async function Home() {
       <Navbar logoUrl={s.logoUrl} />
 
       <main className="flex-1">
-        <Hero waNumber={s.waNumber} />
+        <Hero waNumber={s.waNumber} headline={s.heroHeadline} sub={s.heroSub} rotatingWords={s.heroWords} />
         <Marquee />
         <Stats
           clients={s.statClients}
@@ -61,6 +84,10 @@ export default async function Home() {
         waDisplay={s.waDisplay}
         email={s.email}
         addressFull={s.addressFull}
+        hours={s.hours}
+        instagram={s.instagram}
+        linkedin={s.linkedin}
+        tiktok={s.tiktok}
       />
       <FloatingWidgets waNumber={s.waNumber} />
     </div>
