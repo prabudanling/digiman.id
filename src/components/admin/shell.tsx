@@ -16,10 +16,12 @@ import {
   Menu,
   X,
   ShieldCheck,
+  Type,
 } from "lucide-react";
 
 const NAV = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
+  { href: "/admin/beranda", label: "Beranda (Hero)", icon: Type },
   { href: "/admin/pengaturan", label: "Pengaturan Situs", icon: Settings },
   { href: "/admin/struktur", label: "Struktur Perusahaan", icon: Network },
   { href: "/admin/layanan", label: "Layanan", icon: Briefcase },

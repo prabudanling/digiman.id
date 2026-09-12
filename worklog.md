@@ -66,3 +66,21 @@ Stage Summary:
 - Semua konten dinamis dikelola admin: kontak (WA tampilan + wa.me), email, alamat, logo, 4 angka statistik, layanan, struktur+foto, testimoni, FAQ
 - Link "Admin" diskret di footer (ala WordPress meta login)
 
+
+---
+Task ID: 4
+Agent: Super Z (main agent)
+Task: Upgrade dashboard admin ke level WordPress penuh — sidebar Beranda, Site Health, audit trail aktivitas; perbaikan kritis Prisma client basi.
+
+Work Log:
+- Sidebar shell.tsx: tambah nav "Beranda (Hero)" (ikon Type) — halaman hero editor sebelumnya yatim tanpa link
+- Dashboard (admin/(dashboard)/page.tsx) ditulis ulang: banner sambutan waktu-nyata (pagi/siang/sore/malam + nama admin dari /api/auth/me, aman hydration), 4 kartu statistik, widget "Kesehatan Situs" ala WordPress Site Health (ring SVG animasi gradient emas-emerald + badge Baik/Perlu Perhatian/Kritis + 8 checklist), widget "Aktivitas" (feed ActivityLog + badge jumlah hari ini + waktu relatif id-ID), 3 aksi cepat (Beranda/Kontak/Struktur), kartu kontak aktif
+- BUG KRITIS 1 ditemukan & diperbaiki: dev server memakai Prisma client basi hasil hot-reload — db.activityLog undefined (log aktivitas gagal senyap) + kolom heroHeadline/metaTitle tidak terbaca (health salah merah). Akar: deteksi stale client di db.ts hanya cek siteSetting. Fix: REQUIRED_MODELS ['siteSetting','activityLog'] di src/lib/db.ts
+- BUG KRITIS 2: cache bundler menyimpan @prisma/client lama → wajib restart server + rm -rf .next. Restart dev server (setsid, bun run dev) — server stabil lintas sesi bash, HTTP 200
+- Verifikasi curl: login 200, /api/admin/activity mengisi logs (LOGIN tercatat, todayCount benar), health score 75/8-check akurat (hero & SEO kini OK)
+- Verifikasi Agent Browser: login → dashboard (greeting "Selamat pagi, Administrator", ring 75 "Baik", feed aktivitas "2 hari ini", 3 aksi cepat) ✓; /admin/beranda editor terisi dari DB + Pratinjau Langsung LIVE ✓; situs publik hero dari DB ✓; mobile 390px dashboard rapi ✓; tanpa error console; lint bersih
+
+Stage Summary:
+- Dashboard admin kini command center penuh ala WordPress: overview statistik, Site Health ber skor, audit trail aktivitas, aksi cepat, editor hero dengan live preview
+- Prisma client freshness kini terjaga otomatis (daftar model wajib di db.ts — tambahkan model baru ke daftar saat evolusi skema)
+- Kredensial: admin / digiman2025 — sesi JWT valid lintas restart (secret fallback konstanta)

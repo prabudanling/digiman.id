@@ -18,3 +18,5 @@ export async function GET(req: NextRequest) {
 
   return NextResponse.json({ logs, todayCount });
 }
+
+// force rebuild: prisma client freshness

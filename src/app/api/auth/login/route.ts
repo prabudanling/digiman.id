@@ -34,3 +34,5 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Terjadi kesalahan server." }, { status: 500 });
   }
 }
+
+// force rebuild: prisma client freshness
