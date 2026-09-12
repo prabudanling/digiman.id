@@ -15,8 +15,10 @@ import Process from "@/components/digiman/process";
 import Testimonials from "@/components/digiman/testimonials";
 import Faq from "@/components/digiman/faq";
 import CtaSection from "@/components/digiman/cta";
+import Offices from "@/components/digiman/offices";
 import Footer from "@/components/digiman/footer";
 import FloatingWidgets from "@/components/digiman/floating-widgets";
+import { LocaleProvider } from "@/components/i18n/locale-provider";
 
 // Konten dikelola via Panel Admin — selalu ambil data terbaru
 export const dynamic = "force-dynamic";
@@ -48,48 +50,57 @@ export default async function Home() {
   const s = data.settings;
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-[#050d0a]">
-      <Preloader logoUrl={s.logoUrl} />
-      <ScrollProgress />
-      <CursorGlow />
-      <Navbar logoUrl={s.logoUrl} />
+    <LocaleProvider>
+      <div className="relative flex min-h-screen flex-col bg-[#050d0a]">
+        <Preloader logoUrl={s.logoUrl} />
+        <ScrollProgress />
+        <CursorGlow />
+        <Navbar logoUrl={s.logoUrl} />
 
-      <main className="flex-1">
-        <Hero waNumber={s.waNumber} headline={s.heroHeadline} sub={s.heroSub} rotatingWords={s.heroWords} />
-        <Marquee />
-        <Stats
-          clients={s.statClients}
-          experts={s.statExperts}
-          layers={s.statLayers}
-          success={s.statSuccess}
-        />
-        <SevenHeavens />
-        <Services items={data.services} />
-        <WhyUs />
-        <TeamStructure members={data.team} />
-        <Process />
-        <Testimonials items={data.testimonials} />
-        <Faq faqs={data.faqs} />
-        <CtaSection
+        <main className="flex-1">
+          <Hero waNumber={s.waNumber} headline={s.heroHeadline} sub={s.heroSub} rotatingWords={s.heroWords} />
+          <Marquee />
+          <Stats
+            clients={s.statClients}
+            experts={s.statExperts}
+            layers={s.statLayers}
+            success={s.statSuccess}
+          />
+          <SevenHeavens />
+          <Services items={data.services} waNumber={s.waNumber} />
+          <WhyUs />
+          <TeamStructure members={data.team} />
+          <Offices
+            offices={data.offices}
+            waDisplay={s.waDisplay}
+            hours={s.hours}
+            waNumber={s.waNumber}
+          />
+          <Process />
+          <Testimonials items={data.testimonials} />
+          <Faq faqs={data.faqs} />
+          <CtaSection
+            waNumber={s.waNumber}
+            waDisplay={s.waDisplay}
+            email={s.email}
+            address={s.addressShort}
+          />
+        </main>
+
+        <Footer
+          logoUrl={s.logoUrl}
           waNumber={s.waNumber}
           waDisplay={s.waDisplay}
           email={s.email}
-          address={s.addressShort}
+          addressFull={s.addressFull}
+          hours={s.hours}
+          instagram={s.instagram}
+          linkedin={s.linkedin}
+          tiktok={s.tiktok}
+          offices={data.offices}
         />
-      </main>
-
-      <Footer
-        logoUrl={s.logoUrl}
-        waNumber={s.waNumber}
-        waDisplay={s.waDisplay}
-        email={s.email}
-        addressFull={s.addressFull}
-        hours={s.hours}
-        instagram={s.instagram}
-        linkedin={s.linkedin}
-        tiktok={s.tiktok}
-      />
-      <FloatingWidgets waNumber={s.waNumber} />
-    </div>
+        <FloatingWidgets waNumber={s.waNumber} />
+      </div>
+    </LocaleProvider>
   );
 }

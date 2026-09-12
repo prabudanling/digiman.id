@@ -7,6 +7,14 @@ export const ALLOWED_ICONS = [
   "Building2", "Users", "Globe2", "Stamp", "Lightbulb", "Rocket",
   "FileCheck2", "ScrollText", "BadgeCheck", "Landmark", "Briefcase",
   "ShieldCheck", "Scale", "HeartHandshake", "Cpu", "BarChart3",
+  "FileBadge", "Store", "Handshake", "Network", "MapPin", "FileSignature",
+  "Copyright", "Award", "Medal", "Receipt", "Calculator", "HeartPulse",
+  "Plane", "FileText", "Archive", "MonitorSmartphone", "Sparkles",
+];
+
+export const ALLOWED_CATEGORIES = [
+  "pendirian", "perizinan", "ki", "sertifikasi",
+  "pajak", "ketenagakerjaan", "korporasi", "digital",
 ];
 
 export async function GET(req: NextRequest) {
@@ -27,7 +35,12 @@ export async function POST(req: NextRequest) {
     const desc = cleanStr(body.desc, 400);
     const price = cleanStr(body.price, 60) || "Konsultasi custom";
     const icon = ALLOWED_ICONS.includes(body.icon) ? body.icon : "Building2";
+    const category = ALLOWED_CATEGORIES.includes(body.category) ? body.category : "pendirian";
     const featured = Boolean(body.featured);
+    const slug =
+      typeof body.slug === "string" && /^[a-z0-9-]{2,60}$/.test(body.slug.trim())
+        ? body.slug.trim()
+        : null;
 
     const features: string[] = Array.isArray(body.features)
       ? body.features.map((f: unknown) => String(f).trim().slice(0, 120)).filter(Boolean).slice(0, 8)
@@ -37,7 +50,7 @@ export async function POST(req: NextRequest) {
     }
 
     const payload = {
-      title, desc, price, icon, featured,
+      title, desc, price, icon, category, featured, slug,
       features: JSON.stringify(features),
       order: toInt(body.order, 0),
       visible: body.visible === undefined ? true : Boolean(body.visible),

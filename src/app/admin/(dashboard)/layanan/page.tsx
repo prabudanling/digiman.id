@@ -37,11 +37,13 @@ import { PageHeader, AdminCard, FieldLabel, inputCls, btnEmerald, EmptyState } f
 
 interface Service {
   id: string;
+  slug: string | null;
   title: string;
   desc: string;
   price: string;
   features: string; // JSON
   icon: string;
+  category: string;
   featured: boolean;
   order: number;
   visible: boolean;
@@ -51,7 +53,21 @@ const ICONS: Record<string, typeof Building2> = {
   Building2, Users, Globe2, Stamp, Lightbulb, Rocket,
   FileCheck2, ScrollText, BadgeCheck, Landmark, Briefcase,
   ShieldCheck, Scale, HeartHandshake, Cpu, BarChart3,
+  FileBadge, Store, Handshake, Network, MapPin, FileSignature,
+  Copyright, Award, Medal, Receipt, Calculator, HeartPulse,
+  Plane, FileText, Archive, MonitorSmartphone, Sparkles,
 };
+
+const CATEGORIES: { value: string; label: string }[] = [
+  { value: "pendirian", label: "Pendirian Badan Usaha" },
+  { value: "perizinan", label: "Perizinan & Legalitas" },
+  { value: "ki", label: "Kekayaan Intelektual" },
+  { value: "sertifikasi", label: "Sertifikasi & Standar" },
+  { value: "pajak", label: "Perpajakan" },
+  { value: "ketenagakerjaan", label: "Ketenagakerjaan" },
+  { value: "korporasi", label: "Korporasi & Legal" },
+  { value: "digital", label: "Digitalisasi" },
+];
 
 const emptyForm = {
   id: null as string | null,
@@ -60,6 +76,7 @@ const emptyForm = {
   price: "",
   featuresText: "",
   icon: "Building2",
+  category: "pendirian",
   featured: false,
   visible: true,
 };
@@ -100,6 +117,7 @@ export default function LayananPage() {
       price: s.price,
       featuresText: feats.join("\n"),
       icon: s.icon,
+      category: s.category || "pendirian",
       featured: s.featured,
       visible: s.visible,
     });
@@ -126,6 +144,7 @@ export default function LayananPage() {
           price: form.price || "Konsultasi custom",
           features,
           icon: form.icon,
+          category: form.category,
           featured: form.featured,
           visible: form.visible,
         }),
@@ -164,7 +183,7 @@ export default function LayananPage() {
       body: JSON.stringify({
         id: s.id, title: s.title, desc: s.desc, price: s.price,
         features: JSON.parse(s.features || "[]"),
-        icon: s.icon, featured: s.featured, visible: !s.visible,
+        icon: s.icon, category: s.category, featured: s.featured, visible: !s.visible,
       }),
     });
     await load();
@@ -206,6 +225,26 @@ export default function LayananPage() {
               <div>
                 <FieldLabel hint="Kosongkan untuk “Konsultasi custom”">Harga</FieldLabel>
                 <Input value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} placeholder="Mulai Rp 2 jt" className={inputCls} />
+              </div>
+            </div>
+            <div>
+              <FieldLabel hint="Menentukan tab/filter kategori di halaman publik">Kategori</FieldLabel>
+              <div className="flex flex-wrap gap-2">
+                {CATEGORIES.map((c) => (
+                  <button
+                    key={c.value}
+                    type="button"
+                    onClick={() => setForm({ ...form, category: c.value })}
+                    aria-pressed={form.category === c.value}
+                    className={`rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all ${
+                      form.category === c.value
+                        ? "border-gold/50 bg-yellow-300/10 text-gold-light"
+                        : "border-emerald-400/20 bg-emerald-950/40 text-emerald-50/60 hover:text-white"
+                    }`}
+                  >
+                    {c.label}
+                  </button>
+                ))}
               </div>
             </div>
             <div>

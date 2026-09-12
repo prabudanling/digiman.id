@@ -1,6 +1,8 @@
 "use client";
 
-import { MapPin, Phone, Mail, FileBadge, Landmark, Lock, Clock, Instagram, Linkedin } from "lucide-react";
+import { MapPin, Phone, Mail, FileBadge, Landmark, Lock, Clock, Instagram, Linkedin, Building } from "lucide-react";
+import { useI18n } from "@/components/i18n/locale-provider";
+import type { OfficeItem } from "@/lib/site-data";
 
 interface FooterProps {
   logoUrl?: string | null;
@@ -12,6 +14,7 @@ interface FooterProps {
   instagram?: string;
   linkedin?: string;
   tiktok?: string;
+  offices?: OfficeItem[];
 }
 
 /** Ikon TikTok inline (lucide tidak menyediakan). */
@@ -23,49 +26,48 @@ function TikTokIcon({ className = "" }: { className?: string }) {
   );
 }
 
-const serviceLinks = [
-  "Pendirian PT & CV",
-  "PT PMA (Modal Asing)",
-  "NIB, OSS & Izin Sektor",
-  "Pendaftaran Merek & HKI",
-  "Sertifikasi Halal & SNI",
-  "Digitalisasi Bisnis",
-];
-
-const companyLinks = [
-  { label: "7 Langit Legalitas", href: "#tujuh-langit" },
-  { label: "Layanan", href: "#layanan" },
-  { label: "Alur Kerja", href: "#proses" },
-  { label: "Testimoni", href: "#testimoni" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Kontak", href: "#kontak" },
-];
-
 export default function Footer({
   logoUrl,
   waNumber = "6281333397223",
   waDisplay = "+62 813-3339-7223",
   email = "halo@digiman.id",
-  addressFull = "Jl. Muararajeun Lama No.26, Kel. Cihaur Geulis, Kec. Cibeunying Kaler, Kota Bandung, Jawa Barat 40122",
+  addressFull = "Andalusia Garden Cluster Granada No.11, Mangkubumi, Tasikmalaya, 46181, Jawa Barat",
   hours = "Senin–Jumat 09.00–17.00 WIB",
   instagram = "",
   linkedin = "",
   tiktok = "",
+  offices = [],
 }: FooterProps) {
+  const { dict } = useI18n();
+
   const socials = [
     { name: "Instagram", url: instagram, Icon: Instagram },
     { name: "LinkedIn", url: linkedin, Icon: Linkedin },
     { name: "TikTok", url: tiktok, Icon: TikTokIcon },
   ].filter((s) => s.url);
+
+  const companyLinks = [
+    { label: dict.nav.seven, href: "#tujuh-langit" },
+    { label: dict.nav.services, href: "#layanan" },
+    { label: dict.nav.process, href: "#proses" },
+    { label: dict.nav.testimonials, href: "#testimoni" },
+    { label: dict.nav.faq, href: "#faq" },
+    { label: dict.footer.contactTitle, href: "#kontak" },
+  ];
+
+  const officeList =
+    offices.length > 0
+      ? offices.slice().sort((a, b) => a.order - b.order)
+      : [{ type: "HEAD", label: dict.offices.hq, address: addressFull, order: 1 }];
+
   return (
     <footer className="relative mt-auto border-t border-emerald-400/12 bg-[#040a08]">
       <div className="section-padding mx-auto max-w-7xl py-16">
-        <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-[minmax(0,4.5fr)_minmax(0,2.5fr)_minmax(0,2.5fr)_minmax(0,3.5fr)]">
+        <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-[minmax(0,4fr)_minmax(0,2.4fr)_minmax(0,2.2fr)_minmax(0,3fr)_minmax(0,3.4fr)]">
           {/* Brand */}
           <div>
             <a href="#beranda" className="flex items-center gap-2.5">
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#071410]/70 ring-1 ring-gold/45">
-                { }
                 <img
                   src={logoUrl || "/logo-emblem.png"}
                   alt="Logo PT Digital Bisnis Manajemen"
@@ -76,11 +78,7 @@ export default function Footer({
                 DIGIMAN<span className="text-gold">.ID</span>
               </span>
             </a>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-emerald-50/55">
-              <strong className="text-emerald-100/85">PT Digital Bisnis Manajemen</strong> — jasa konsultan
-              pembuatan akta pendirian perusahaan, pengurusan seluruh legalitas usaha di Indonesia, dan
-              konsultan manajemen digitalisasi. Dari akta di lantai dasar, sampai otomasi di langit ketujuh.
-            </p>
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-emerald-50/55">{dict.footer.about}</p>
             <div className="mt-5 space-y-2 text-xs text-emerald-50/50">
               <p className="flex items-center gap-2">
                 <Landmark className="h-3.5 w-3.5 shrink-0 text-gold/80" />
@@ -97,16 +95,15 @@ export default function Footer({
             </div>
           </div>
 
-          {/* Services */}
-          <nav aria-label="Layanan">
-            <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-gold-light">Layanan</h3>
+          {/* Layanan */}
+          <nav aria-label={dict.footer.serviceTitle}>
+            <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-gold-light">
+              {dict.footer.serviceTitle}
+            </h3>
             <ul className="space-y-3">
-              {serviceLinks.map((s) => (
+              {dict.footer.links.map((s) => (
                 <li key={s}>
-                  <a
-                    href="#layanan"
-                    className="text-sm text-emerald-50/55 transition-colors hover:text-emerald-200"
-                  >
+                  <a href="#layanan" className="text-sm text-emerald-50/55 transition-colors hover:text-emerald-200">
                     {s}
                   </a>
                 </li>
@@ -114,16 +111,15 @@ export default function Footer({
             </ul>
           </nav>
 
-          {/* Perusahaan */}
-          <nav aria-label="Perusahaan">
-            <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-gold-light">Perusahaan</h3>
+          {/* Navigasi */}
+          <nav aria-label={dict.footer.quickTitle}>
+            <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-gold-light">
+              {dict.footer.quickTitle}
+            </h3>
             <ul className="space-y-3">
               {companyLinks.map((l) => (
-                <li key={l.label}>
-                  <a
-                    href={l.href}
-                    className="text-sm text-emerald-50/55 transition-colors hover:text-emerald-200"
-                  >
+                <li key={l.href}>
+                  <a href={l.href} className="text-sm text-emerald-50/55 transition-colors hover:text-emerald-200">
                     {l.label}
                   </a>
                 </li>
@@ -131,16 +127,36 @@ export default function Footer({
             </ul>
           </nav>
 
+          {/* Kantor */}
+          <div>
+            <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-gold-light">
+              {dict.footer.officeTitle}
+            </h3>
+            <ul className="space-y-4 text-sm text-emerald-50/55">
+              {officeList.map((o) => (
+                <li key={o.label} className="flex items-start gap-3">
+                  {o.type === "HEAD" ? (
+                    <Building className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                  ) : (
+                    <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
+                  )}
+                  <span>
+                    <span className={`block text-xs font-bold ${o.type === "HEAD" ? "text-gold-light" : "text-emerald-100/80"}`}>
+                      {o.label}
+                    </span>
+                    {o.address}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Kontak */}
           <div>
-            <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-gold-light">Kantor & Kontak</h3>
+            <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-gold-light">
+              {dict.footer.contactTitle}
+            </h3>
             <ul className="space-y-4 text-sm text-emerald-50/55">
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                <span>
-                  {addressFull}
-                </span>
-              </li>
               <li>
                 <a
                   href={`https://wa.me/${waNumber}`}
@@ -153,17 +169,17 @@ export default function Footer({
                 </a>
               </li>
               <li>
-                <a
-                  href={`mailto:${email}`}
-                  className="flex items-center gap-3 transition-colors hover:text-emerald-200"
-                >
+                <a href={`mailto:${email}`} className="flex items-center gap-3 transition-colors hover:text-emerald-200">
                   <Mail className="h-4 w-4 shrink-0 text-emerald-400" />
                   {email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                <span>{hours}</span>
+                <span>
+                  <span className="block text-xs font-bold text-emerald-100/80">{dict.offices.hoursLabel}</span>
+                  {hours}
+                </span>
               </li>
             </ul>
             {socials.length > 0 && (
@@ -187,20 +203,16 @@ export default function Footer({
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-emerald-400/10 pt-8 sm:flex-row">
-          <p className="text-xs text-emerald-50/40">
-            © {new Date().getFullYear()} PT Digital Bisnis Manajemen — DIGIMAN.ID. Seluruh hak cipta dilindungi.
-          </p>
+          <p className="text-xs text-emerald-50/40">{dict.footer.rights.replace("2026", String(new Date().getFullYear()))}</p>
           <div className="flex items-center gap-5">
-            <p className="text-xs text-emerald-50/40">
-              Dibangun dengan presisi di Indonesia, untuk pendakian bisnis Indonesia.
-            </p>
+            <p className="text-xs text-emerald-50/40">Made with precision in Tasikmalaya & Bandung, Indonesia.</p>
             <a
               href="/admin"
               className="flex items-center gap-1.5 text-xs font-semibold text-emerald-50/30 transition-colors hover:text-gold-light"
               aria-label="Masuk panel admin"
             >
               <Lock className="h-3 w-3" />
-              Admin
+              {dict.footer.admin}
             </a>
           </div>
         </div>

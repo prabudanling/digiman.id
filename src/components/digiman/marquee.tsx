@@ -1,25 +1,11 @@
 "use client";
 
 import { Sparkle } from "lucide-react";
-
-const items = [
-  "Akta Pendirian PT",
-  "Pendirian CV",
-  "PT PMA (Asing)",
-  "PT Perorangan",
-  "Yayasan & Perkumpulan",
-  "NIB & OSS-RBA",
-  "NPWP Badan",
-  "Pendaftaran Merek",
-  "Hak Cipta & Paten",
-  "Sertifikasi Halal",
-  "SNI & ISO",
-  "Izin Usaha Sektor",
-  "Website & Aplikasi",
-  "Konsultan Digitalisasi",
-];
+import { useI18n } from "@/components/i18n/locale-provider";
 
 export default function Marquee() {
+  const { dict } = useI18n();
+  const items = dict.marquee;
   const row = [...items, ...items];
   return (
     <div className="marquee-paused relative border-y border-emerald-400/15 bg-[#071410]/80 py-5 backdrop-blur-sm">

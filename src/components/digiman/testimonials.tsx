@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import { useI18n } from "@/components/i18n/locale-provider";
+import { testiC } from "@/lib/i18n";
 
 export interface TestimonialItem {
+  slug: string | null;
   name: string;
   role: string;
   text: string;
@@ -11,73 +14,8 @@ export interface TestimonialItem {
 
 interface T extends TestimonialItem {
   initials: string;
+  localized: string;
 }
-
-const DEFAULT_ROW_A: T[] = [
-  {
-    name: "Rendra Wijaya",
-    role: "Founder, Kopi Nusantara Rasa",
-    text: "Dari NIB sampai sertifikasi halal, semua beres dalam 9 hari. Tim Digiman bahkan membantu saya memilih KBLI yang bikin saya dapat cuti pajak UMKM. Luar biasa detail.",
-    initials: "RW",
-  },
-  {
-    name: "Sandra Halim",
-    role: "Owner, CV Sinar Teknik",
-    text: "Pendiriannya cuma 4 hari dan saya tidak pernah keluar kantor. Portal monitoring-nya bikin saya tenang karena selalu tahu dokumen saya sedang di mana.",
-    initials: "SH",
-  },
-  {
-    name: "Michael Tanaka",
-    role: "Director, Sakura Digital PMA",
-    text: "Sebagai investor asing, regulasi Indonesia terasa rumit. Digiman memegang semuanya — BKPM, OSS, sampai laporan berkala. Highly recommended.",
-    initials: "MT",
-  },
-  {
-    name: "dr. Amelinda Putri",
-    role: "Founder, Klinik Sehat Bersama",
-    text: "Izin operasional klinik itu rumit. Dewan pakar mereka paham banget alur Dinkes dan BPOM. Pendampingannya sampai klinik kami benar-benar beroperasi.",
-    initials: "AP",
-  },
-  {
-    name: "Bagas Prakoso",
-    role: "CEO, LogistikPro PT",
-    text: "Garansi terbitnya bukan gimmick. Ada revisi dokumen dari notaris, mereka ulangi proses tanpa biaya tambahan dan tetap tepat waktu.",
-    initials: "BP",
-  },
-];
-
-const DEFAULT_ROW_B: T[] = [
-  {
-    name: "Lestari Ningsih",
-    role: "Owner, Batik Larasati",
-    text: "Merek saya sempat hampir dibajak kompetitor. Untung pendaftaran DJKI lewat Digiman sudah jalan duluan. Sekarang brand saya aman total.",
-    initials: "LN",
-  },
-  {
-    name: "Yusuf Ramadhan",
-    role: "Founder, EduSkill Academy",
-    text: "Langit ke-7 mereka nyata: website + sistem manajemen siswa + otomasi marketing. Sekarang pendaftaran murid jalan sendiri 24 jam.",
-    initials: "YR",
-  },
-  {
-    name: "Clara Suryani",
-    role: "Managing Partner, CS Consulting",
-    text: "Saya langganan urus SPT klien-klien saya di sini. Konsultan pajaknya benar-benar bersertifikat dan fast response. 5 tahun tidak pernah telat lapor.",
-    initials: "CS",
-  },
-  {
-    name: "Hendra Gunawan",
-    role: "Owner, Gudang Makan Sehat",
-    text: "Sertifikasi halal + SNI selesai tanpa saya pusing. Harganya transparan dari awal, tidak ada biaya siluman seperti pengalaman saya di tempat lain.",
-    initials: "HG",
-  },
-  {
-    name: "Nadia Kusuma",
-    role: "Co-Founder, Glowlab Skincare",
-    text: "BPOM, merek, sampai website e-commerce semua ditangani satu tim. Koordinasinya gampang karena satu penanggung jawab akun.",
-    initials: "NK",
-  },
-];
 
 function Card({ t }: { t: T }) {
   return (
@@ -88,7 +26,7 @@ function Card({ t }: { t: T }) {
         ))}
       </div>
       <Quote className="mb-3 h-5 w-5 text-emerald-400/50" />
-      <p className="text-sm leading-relaxed text-emerald-50/75">&ldquo;{t.text}&rdquo;</p>
+      <p className="text-sm leading-relaxed text-emerald-50/75">&ldquo;{t.localized}&rdquo;</p>
       <div className="mt-5 flex items-center gap-3 border-t border-emerald-400/10 pt-4">
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 font-display text-sm font-bold text-emerald-950">
           {t.initials}
@@ -103,10 +41,12 @@ function Card({ t }: { t: T }) {
 }
 
 export default function Testimonials({ items }: { items?: TestimonialItem[] }) {
-  const source = items && items.length > 0 ? items : [...DEFAULT_ROW_A, ...DEFAULT_ROW_B];
+  const { dict, locale } = useI18n();
+  const source = items ?? [];
   const half = Math.ceil(source.length / 2);
   const withInitials: T[] = source.map((t) => ({
     ...t,
+    localized: testiC(t, dict, locale).text,
     initials: t.name
       .replace(/^dr\.\s*/i, "")
       .split(" ")
@@ -124,14 +64,14 @@ export default function Testimonials({ items }: { items?: TestimonialItem[] }) {
       <div className="section-padding mx-auto mb-14 max-w-3xl text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-5 py-2 text-xs font-bold uppercase tracking-[0.3em] text-emerald-300">
-            Testimoni
+            {dict.testi.kicker}
           </span>
           <h2 className="text-3xl font-extrabold leading-tight text-white sm:text-5xl">
-            2.500+ Pendaki Sudah{" "}
-            <span className="gradient-text-gold">Sampai Puncak</span>
+            {dict.testi.heading.split(" ").slice(0, -2).join(" ")} {" "}
+            <span className="gradient-text-gold">{dict.testi.heading.split(" ").slice(-2).join(" ")}</span>
           </h2>
           <p className="mt-5 leading-relaxed text-emerald-50/60 sm:text-lg">
-            UMKM, startup, klinik, pabrik, hingga perusahaan asing — mereka naik bersama kami.
+            {dict.testi.sub}
           </p>
         </motion.div>
       </div>

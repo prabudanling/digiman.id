@@ -7,41 +7,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useI18n } from "@/components/i18n/locale-provider";
+import { faqC } from "@/lib/i18n";
 
 export interface FaqItem {
+  slug: string | null;
   q: string;
   a: string;
 }
 
-const DEFAULT_FAQS: FaqItem[] = [
-  {
-    q: "Berapa lama proses pendirian PT sampai resmi beroperasi?",
-    a: "Rata-rata 3–7 hari kerja sejak dokumen lengkap dan akta ditandatangani. Proses mencakup akta notaris, pengesahan SK Kemenkumham (biasanya real-time atau 1 hari), penerbitan NPWP badan, dan NIB via OSS. Untuk izin sektor tertentu (kesehatan, logistik, makanan) dapat memakan waktu tambahan — estimasi detail selalu kami berikan di awal, gratis.",
-  },
-  {
-    q: "Apa saja yang saya siapkan untuk mendirikan perusahaan?",
-    a: "Cukup: KTP & NPWP para pendiri (dan pemegang saham), alamat email aktif, nomor HP, serta alamat usaha (bisa rumah — kami bantu atur domisili). Untuk PT PMA diperlukan paspor asing dan surat pernyataan modal. Selebihnya — penyusunan akta, KBLI, hingga pengurusan online — tim kami yang mengerjakan.",
-  },
-  {
-    q: "Apakah bisa mendirikan perusahaan tanpa datang ke kantor?",
-    a: "Bisa, 100% online. Dengan tanda tangan elektronik tersertifikasi (TTE) yang diakui Kemenkumham, akta dan pengesahan dapat dilakukan tanpa tatap muka. Dokumen asli kami kirim ke alamat Anda via kurir terjamin, atau Anda ambil di kantor kami di Jakarta.",
-  },
-  {
-    q: "Apakah ada biaya tersembunyi di tengah proses?",
-    a: "Tidak. Semua biaya — honor notaris, resi Kemenkumham, administrasi pemerintahan, hingga jasa kami — tertulis jelas dalam penawaran sebelum Anda setuju. Jika ada kebutuhan di luar scope (misal izin sektor tambahan), kami konfirmasi dulu sebelum melanjutkan. Ini komitmen transparansi Digiman.",
-  },
-  {
-    q: "Apa yang dimaksud 'Garansi Terbit'?",
-    a: "Jika dokumen tidak terbit karena kesalahan proses atau administrasi pihak kami, seluruh tahap yang bermasalah kami ulangi tanpa biaya tambahan, plus kompensasi penundaan. Selama 5 tahun operasi, 99,2% dokumen kami terbit sesuai jadwal — sisanya karena perubahan regulasi mendadak yang selalu kami antisipasi dan komunikasikan.",
-  },
-  {
-    q: "Bagaimana cara mulai konsultasi? Apakah berbayar?",
-    a: "Gratis. Klik tombol WhatsApp di halaman ini atau isi form kontak — dalam 1×24 jam Anda terhubung dengan dewan pakar sesuai bidang bisnis Anda. Kami akan memetakan kebutuhan legalitas, merekomendasikan bentuk badan usaha yang paling efisien secara pajak, dan memberi estimasi biaya & waktu. Tanpa komitmen apa pun.",
-  },
-];
-
 export default function Faq({ faqs: propFaqs }: { faqs?: FaqItem[] }) {
-  const faqs = propFaqs && propFaqs.length > 0 ? propFaqs : DEFAULT_FAQS;
+  const { dict, locale } = useI18n();
+  const faqs = (propFaqs ?? []).map((f) => ({ ...f, ...faqC(f, dict, locale) }));
   return (
     <section id="faq" className="section-padding relative py-24 sm:py-32">
       <div className="mx-auto max-w-3xl">
@@ -53,14 +30,14 @@ export default function Faq({ faqs: propFaqs }: { faqs?: FaqItem[] }) {
           className="mb-12 text-center"
         >
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-5 py-2 text-xs font-bold uppercase tracking-[0.3em] text-emerald-300">
-            FAQ
+            {dict.faq.kicker}
           </span>
           <h2 className="text-3xl font-extrabold leading-tight text-white sm:text-5xl">
-            Pertanyaan yang{" "}
-            <span className="gradient-text-emerald">Sering Diajukan</span>
+            {dict.faq.heading.split(" ").slice(0, -2).join(" ")} {" "}
+            <span className="gradient-text-emerald">{dict.faq.heading.split(" ").slice(-2).join(" ")}</span>
           </h2>
           <p className="mt-5 leading-relaxed text-emerald-50/60">
-            Belum menemukan jawabannya? Tim kami siap menjawab via WhatsApp — gratis, tentu saja.
+            {dict.faq.sub}
           </p>
         </motion.div>
 

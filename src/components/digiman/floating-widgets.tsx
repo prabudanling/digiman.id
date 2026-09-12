@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { MessageCircle, ArrowUp } from "lucide-react";
+import { useI18n } from "@/components/i18n/locale-provider";
 
 export default function FloatingWidgets({ waNumber }: { waNumber?: string }) {
+  const { dict } = useI18n();
   const [showTop, setShowTop] = useState(false);
   const [showTip, setShowTip] = useState(false);
   const { scrollY } = useScroll();
@@ -34,7 +36,7 @@ export default function FloatingWidgets({ waNumber }: { waNumber?: string }) {
             exit={{ opacity: 0, y: 16, scale: 0.8 }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="glass-strong flex h-11 w-11 items-center justify-center rounded-full text-emerald-200 transition-colors hover:text-gold"
-            aria-label="Kembali ke atas"
+            aria-label={dict.floating.top}
           >
             <ArrowUp className="h-5 w-5" />
           </motion.button>
@@ -52,16 +54,14 @@ export default function FloatingWidgets({ waNumber }: { waNumber?: string }) {
               className="glass-strong hidden max-w-[230px] rounded-2xl rounded-br-sm px-4 py-3 sm:block"
             >
               <p className="text-xs leading-relaxed text-emerald-50/85">
-                <strong className="text-gold-light">Halo pendaki! 👋</strong>
-                <br />
-                Mau tahu biaya pendirian PT bisnis Anda? Tanya langsung di sini — gratis.
+                <strong className="text-gold-light">{dict.floating.wa}</strong>
               </p>
             </motion.div>
           )}
         </AnimatePresence>
 
         <a
-          href={`https://wa.me/${waNumber || "6281333397223"}?text=Halo%20DIGIMAN.ID,%20saya%20ingin%20konsultasi%20gratis`}
+          href={`https://wa.me/${waNumber || "6281333397223"}?text=${encodeURIComponent(dict.hero.waGreeting)}`}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat WhatsApp Digiman.id"

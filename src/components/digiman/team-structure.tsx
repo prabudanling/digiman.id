@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Crown, Network, UserRound } from "lucide-react";
+import { useI18n } from "@/components/i18n/locale-provider";
 
 export interface TeamMemberItem {
   id: string;
@@ -48,6 +49,7 @@ function Avatar({ member, size = 128 }: { member: TeamMemberItem; size?: number 
 
 /** Section Struktur Perusahaan — data dikelola via Panel Admin (/admin/struktur). */
 export default function TeamStructure({ members }: { members: TeamMemberItem[] }) {
+  const { dict } = useI18n();
   const [head, ...rest] = members;
 
   return (
@@ -67,14 +69,13 @@ export default function TeamStructure({ members }: { members: TeamMemberItem[] }
         >
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-yellow-300/5 px-5 py-2 text-xs font-bold uppercase tracking-[0.3em] text-gold-light">
             <Network className="h-3.5 w-3.5" />
-            Struktur Perusahaan
+            {dict.team.kicker}
           </span>
           <h2 className="text-3xl font-extrabold leading-tight text-white sm:text-5xl">
-            Para <span className="gradient-text-gold font-display">Kapten</span> Pendakian
+            {dict.team.heading}
           </h2>
           <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-emerald-50/60 sm:text-lg">
-            Struktur resmi PT Digital Bisnis Manajemen (Perseroan Perorangan) — sesuai Akta
-            Pendirian & SK Kemenkumham AHU-059566.AH.01.30.Tahun 2022.
+            {dict.team.sub}
           </p>
         </motion.div>
 

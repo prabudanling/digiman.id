@@ -84,14 +84,27 @@ model ActivityLog {
   createdAt DateTime @default(now())
 }
 
+// Kantor perusahaan (head office & cabang) — ditampilkan di footer & CTA
+model Office {
+  id        String   @id @default(cuid())
+  type      String   @default("BRANCH") // "HEAD" | "BRANCH"
+  label     String // mis. "Head Office — Tasikmalaya", "Cabang I — Bandung"
+  address   String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 // Kartu layanan di section #layanan
 model Service {
   id        String   @id @default(cuid())
+  slug      String?  @unique // kunci terjemahan multi-bahasa (opsional; diisi seed)
   title     String
   desc      String
   price     String   @default("Konsultasi custom")
   features  String // JSON array of string (SQLite tidak mendukung list)
   icon      String   @default("Building2") // nama ikon lucide-react
+  category  String   @default("pendirian") // pendirian|perizinan|kekayaan-intelektual|sertifikasi|pajak|ketenagakerjaan|korporasi|digital
   featured  Boolean  @default(false)
   order     Int      @default(0)
   visible   Boolean  @default(true)
@@ -102,6 +115,7 @@ model Service {
 // Testimoni klien (marquee 2 baris)
 model Testimonial {
   id        String   @id @default(cuid())
+  slug      String?  @unique // kunci terjemahan (opsional; diisi seed)
   name      String
   role      String
   text      String
@@ -115,6 +129,7 @@ model Testimonial {
 // Pertanyaan yang sering diajukan
 model Faq {
   id        String   @id @default(cuid())
+  slug      String?  @unique // kunci terjemahan (opsional; diisi seed)
   question  String
   answer    String
   order     Int      @default(0)

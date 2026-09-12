@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import { motion, useScroll, useSpring, useInView, AnimatePresence } from "framer-motion";
 import {
   Building2,
@@ -12,6 +12,7 @@ import {
   Rocket,
   ArrowUp,
 } from "lucide-react";
+import { useI18n } from "@/components/i18n/locale-provider";
 
 interface Layer {
   no: string;
@@ -24,73 +25,16 @@ interface Layer {
   peak?: boolean;
 }
 
-const layers: Layer[] = [
-  {
-    no: "01",
-    title: "Badan Usaha & Akta Pendirian",
-    tagline: "Fondasi bisnis Anda lahir secara resmi",
-    desc: "Kami susun akta pendirian bersama notaris mitra, urus pengesahan Kemenkumham, sampai badan hukum Anda resmi berdiri — tanpa Anda keluar rumah.",
-    items: ["PT (Perseroan Terbatas)", "CV (Persekutuan Komanditer)", "PT PMA (Modal Asing)", "PT Perorangan", "Yayasan & Perkumpulan", "Koperasi"],
-    icon: Building2,
-    glow: "rgba(52,211,153,0.22)",
-  },
-  {
-    no: "02",
-    title: "Legalitas Inti Perusahaan",
-    tagline: "Identitas resmi di mata negara",
-    desc: "Dokumen vital yang menjadi syarat membuka rekening, mengajukan kredit, dan berkontrak dengan korporasi maupun instansi pemerintah.",
-    items: ["NIB (Nomor Induk Berusaha)", "NPWP Badan", "SK Pengesahan Kemenkumham", "SKDU & Domisili Usaha", "Dokumen Penunjang Lainnya"],
-    icon: FileCheck2,
-    glow: "rgba(45,212,191,0.22)",
-  },
-  {
-    no: "03",
-    title: "Perizinan OSS & Izin Sektor",
-    tagline: "Kunci gerbang regulasi",
-    desc: "Navigasi KBLI 2020 dan sistem OSS-RBA adalah labirin — dewan pakar kami memetakan izin yang benar untuk skala bisnis Anda, dari UMKM hingga korporasi.",
-    items: ["OSS-RBA (Risiko Berbasis Usaha)", "Pemetaan KBLI 2020", "Izin Usaha Sektor", "SIUP & SLO", "Izin Edar & Distribusi"],
-    icon: ScrollText,
-    glow: "rgba(163,230,53,0.2)",
-  },
-  {
-    no: "04",
-    title: "Kekayaan Intelektual",
-    tagline: "Bentengkan aset tak berwujud Anda",
-    desc: "Nama brand, logo, hingga inovasi Anda adalah aset berharga. Kami pastikan terdaftar resmi dan terlindungi dari pembajakan di seluruh Indonesia.",
-    items: ["Pendaftaran Merek (DJKI)", "Hak Cipta", "Paten & Paten Sederhana", "Desain Industri", "Rahasia Dagang"],
-    icon: Lightbulb,
-    glow: "rgba(251,191,36,0.22)",
-  },
-  {
-    no: "05",
-    title: "Sertifikasi & Standar Mutu",
-    tagline: "Paspor masuk pasar modern",
-    desc: "Marketplace, ritel modern, ekspor, dan tender pemerintah menuntut sertifikasi. Kami antar produk Anda melewati semua gerbang mutu.",
-    items: ["Sertifikasi Halal (BPJPH)", "SNI", "ISO 9001 / 22000 / 27001", "HACCP & BPOM", "Sertifikat Ekspor"],
-    icon: BadgeCheck,
-    glow: "rgba(251,146,60,0.22)",
-  },
-  {
-    no: "06",
-    title: "Pajak & Keuangan",
-    tagline: "Sehat secara fiskal, tenang di akhir tahun",
-    desc: "46 dewan pakar kami termasuk konsultan pajak bersertifikat — memastikan bisnis Anda patuh, efisien, dan bebas dari sanksi.",
-    items: ["Pelaporan SPT Tahunan & Masa", "Konsultasi Pajak", "Pembukuan & Laporan Keuangan", "Audit & Review", "Pendampingan Koreksi Pajak"],
-    icon: Landmark,
-    glow: "rgba(251,113,133,0.18)",
-  },
-  {
-    no: "07",
-    title: "Digitalisasi & Manajemen Bisnis",
-    tagline: "Puncak langit: bisnis yang berjalan otomatis",
-    desc: "Legality selesai, kini saatnya scale. Tim teknologi kami membangun website, aplikasi, sistem manajemen, hingga otomasi berbasis AI untuk bisnis Anda.",
-    items: ["Website Company Profile & E-Commerce", "Aplikasi & Sistem Internal", "Sistem Manajemen Digital", "AI & Otomasi Proses", "Digital Marketing 360°"],
-    icon: Rocket,
-    glow: "rgba(255,233,168,0.35)",
-    peak: true,
-  },
+// Struktur visual per lapis (ikon & cahaya); teks dari kamus bahasa.
+const LAYER_CONFIG = [
+  { no: "01", icon: Building2, glow: "rgba(52,211,153,0.22)" },
+  { no: "02", icon: FileCheck2, glow: "rgba(45,212,191,0.22)" },
+  { no: "03", icon: ScrollText, glow: "rgba(163,230,53,0.2)" },
+  { no: "04", icon: Lightbulb, glow: "rgba(251,191,36,0.22)" },
+  { no: "05", icon: BadgeCheck, glow: "rgba(251,146,60,0.22)" },
+  { no: "06", icon: Landmark, glow: "rgba(251,113,133,0.18)" },
+  { no: "07", icon: Rocket, glow: "rgba(255,233,168,0.35)", peak: true },
 ];
-
 function LayerCard({
   layer,
   index,
@@ -169,7 +113,7 @@ function LayerCard({
           ))}
         </div>
         <div className="relative mt-7 flex items-center gap-2 text-xs text-emerald-50/40">
-          <span>Lapis {index + 1} dari 7</span>
+          <span>{index + 1} / 7</span>
           <ArrowUp className="h-3.5 w-3.5 text-gold/70" aria-hidden />
         </div>
       </motion.div>
@@ -178,6 +122,15 @@ function LayerCard({
 }
 
 export default function SevenHeavens() {
+  const { dict } = useI18n();
+  const layers: Layer[] = useMemo(
+    () =>
+      LAYER_CONFIG.map((cfg, i) => ({
+        ...cfg,
+        ...dict.seven.layers[i],
+      })) as Layer[],
+    [dict]
+  );
   const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
   const { scrollYProgress } = useScroll({
@@ -201,17 +154,14 @@ export default function SevenHeavens() {
           className="mx-auto mb-14 max-w-3xl text-center sm:mb-20"
         >
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-yellow-300/5 px-5 py-2 text-xs font-bold uppercase tracking-[0.3em] text-gold-light">
-            Konsep Digiman
+            {dict.seven.kicker}
           </span>
           <h2 className="text-3xl font-extrabold leading-tight text-white sm:text-5xl">
-            Perjalanan Naik{" "}
-            <span className="gradient-text-gold font-display">7 Lapis Langit</span>{" "}
-            Legalitas Bisnis
+            <span className="gradient-text-gold font-display">{dict.seven.headingA}</span>{" "}
+            {dict.seven.headingB}
           </h2>
           <p className="mt-5 leading-relaxed text-emerald-50/60 sm:text-lg">
-            Setiap bisnis adalah pendakian. Kami adalah tim Sherpa Anda — melalui tujuh lapis langit
-            regulasi Indonesia, dari akta pendirian di lantai dasar hingga puncak digitalisasi di langit
-            ketujuh. Gulir dan rasakan perjalanannya.
+            {dict.seven.sub}
           </p>
         </motion.div>
 

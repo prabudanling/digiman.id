@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle, Mail, MapPin, Phone } from "lucide-react";
+import { useI18n } from "@/components/i18n/locale-provider";
 
 interface CtaProps {
   waNumber?: string;
@@ -14,8 +15,9 @@ export default function CtaSection({
   waNumber = "6281333397223",
   waDisplay = "+62 813-3339-7223",
   email = "halo@digiman.id",
-  address = "Jl. Muararajeun Lama No.26, Bandung",
+  address = "Andalusia Garden Granada No.11, Tasikmalaya",
 }: CtaProps) {
+  const { dict } = useI18n();
   return (
     <section id="kontak" className="section-padding relative pb-24 pt-8 sm:pb-32">
       <motion.div
@@ -48,27 +50,26 @@ export default function CtaSection({
             transition={{ delay: 0.2 }}
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/35 bg-yellow-300/8 px-5 py-2 text-xs font-bold uppercase tracking-[0.3em] text-gold-light"
           >
-            Langit ke-7 Menanti
+            {dict.cta.kicker}
           </motion.span>
 
           <h2 className="mx-auto max-w-3xl text-3xl font-extrabold leading-tight text-white sm:text-5xl">
-            Bisnis Anda Layak Berdiri{" "}
-            <span className="gradient-text-gold font-display">Di Atas Awan.</span>
+            {dict.cta.headingA}{" "}
+            <span className="gradient-text-gold font-display">{dict.cta.headingB}</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl leading-relaxed text-emerald-50/65 sm:text-lg">
-            Ceritakan rencana Anda hari ini — besok, dewan pakar kami sudah menyusun peta pendakian
-            legalitas & digitalisasi bisnis Anda. Gratis, tanpa komitmen.
+            {dict.cta.sub}
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
-              href={`https://wa.me/${waNumber}?text=Halo%20DIGIMAN.ID,%20saya%20siap%20mendaki%20ke%207%20Lapis%20Langit%20Legalitas!`}
+              href={`https://wa.me/${waNumber}?text=${encodeURIComponent(dict.cta.waMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="shimmer-btn group flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-500 px-8 py-4 text-base font-bold text-emerald-950 shadow-[0_14px_44px_-10px_rgba(52,211,153,0.65)] transition-all hover:scale-[1.04]"
             >
               <MessageCircle className="h-5 w-5" />
-              Chat WhatsApp Sekarang
+              {dict.cta.ctaWa}
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>
             <a
@@ -88,7 +89,7 @@ export default function CtaSection({
               <MapPin className="h-4 w-4 text-emerald-400" /> {address}
             </span>
             <span className="flex items-center gap-2">
-              <MessageCircle className="h-4 w-4 text-emerald-400" /> Respons &lt; 1×24 jam
+              <MessageCircle className="h-4 w-4 text-emerald-400" /> {dict.cta.respTime}
             </span>
           </div>
         </div>

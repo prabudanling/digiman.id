@@ -84,3 +84,23 @@ Stage Summary:
 - Dashboard admin kini command center penuh ala WordPress: overview statistik, Site Health ber skor, audit trail aktivitas, aksi cepat, editor hero dengan live preview
 - Prisma client freshness kini terjaga otomatis (daftar model wajib di db.ts — tambahkan model baru ke daftar saat evolusi skema)
 - Kredensial: admin / digiman2025 — sesi JWT valid lintas restart (secret fallback konstanta)
+
+---
+Task ID: 5
+Agent: Super Z (main agent)
+Task: Kantor (HQ + 3 cabang), katalog 29 layanan 8 kategori, dan website multi-bahasa 10 bahasa dunia.
+
+Work Log:
+- Riset web (web_search): layanan kompetitor — NIB/OSS-RBA/SS, PT Perorangan, Yayasan, Koperasi, pembubaran, Halal, BPOM, SNI, ISO, HAKI, KITAS — semua masuk katalog
+- Schema: model Office (HEAD/BRANCH, label, address, order) + Service.slug?/category + Faq.slug?/Testimonial.slug? (opsional agar db push tanpa reset); db push OK
+- scripts/seed-v2.ts: 4 kantor (HQ Andalusia Garden Tasikmalaya + Cabang I Bandung + II Sukarame + III Arjasari), 29 layanan/8 kategori (6 update + 23 baru), +4 FAQ (total 10), backfill slug faq/testimoni; alamat SiteSetting -> HQ Tasikmalaya
+- Frontend: services.tsx ditulis ulang (tab kategori animasi + count badge + AnimatePresence, konten per-slug via svc()); komponen baru offices.tsx (4 kartu, HQ emas); footer 5 kolom (brand+legal, layanan, navigasi, kantor, kontak); navbar stats marquee hero seven-heavens why-us process team-structure testimonials faq cta floating-widgets di-wire ke useI18n
+- i18n: types.ts (10 locale, RTL utk ar) + dict-id.ts & dict-en.ts manual (UI + konten default per slug); scripts/gen-locale.ts (LLM z-ai-web-dev-sdk, chunk halus services 8/faqs 3/testi 5, validasi jumlah daun, repairJson, resumable, anti-429) -> 8 locale JSON 450/450 string (zh es hi ar fr pt ru ja); index.ts deep-merge fallback id; LocaleProvider (localStorage + deteksi navigator.language + html lang/dir); LanguageSwitcher (dropdown globe 10 bahasa)
+- Admin: API /api/admin/offices (+[id] PUT/DELETE), halaman /admin/kantor (CRUD + urut + jenis HEAD/BRANCH), layanan admin dapat pilih kategori (8) + ikon baru, nav sidebar + "Kantor & Cabang", stats health + cek offices (>=2) & layanan >=10 & faq >=6
+- Bug fix: duplikat import useI18n di cta.tsx (build error dari user), Counter stats.tsx locale scope, key headline hero distabilkan agar ganti bahasa tidak re-animasi; restart dev server + rm .next (skema baru) + REQUIRED_MODELS += office
+- Verifikasi browser: auto-detect EN bekerja; switch ID/zh/ar instan (html lang/dir benar, RTL mirror penuh); 29 kartu + 9 tab filter (Digitalisasi -> 3 kartu); section kantor 4 kartu tampil; CRUD kantor E2E (tambah -> tayang publik -> hapus); skor health 78 (7/9); lint bersih; console tanpa error
+
+Stage Summary:
+- Website kini 10 bahasa (id en zh es hi ar fr pt ru ja) dengan fallback berlapis ke Bahasa Indonesia
+- 29 layanan resmi dalam 8 kategori + 4 lokasi kantor dikelola penuh dari admin panel
+- Semua string UI + konten layanan/FAQ/testimoni + 7 lapis langit + proses + chips pakar terjemahan lengkap

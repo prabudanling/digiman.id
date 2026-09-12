@@ -1,0 +1,720 @@
+{
+ "nav": {
+  "home": "Inicio",
+  "seven": "7 Cielos",
+  "services": "Servicios",
+  "structure": "Estructura",
+  "process": "Proceso",
+  "testimonials": "Testimonios",
+  "faq": "Preguntas Frecuentes",
+  "cta": "Consulta Gratuita"
+ },
+ "preloader": {
+  "tagline": "Abriendo 7 Cielos de Legalidad"
+ },
+ "hero": {
+  "headline": "Eleve su Negocio a 7 Cielos de Legalidad.",
+  "sub": "Una sola puerta para toda la legalidad empresarial en Indonesia — desde el acta constitutiva, licencias OSS, propiedad intelectual, hasta la transformación digital. Acompañado por 46 expertos multidisciplinarios, proceso transparente, garantía en sus manos.",
+  "startFrom": "Desde",
+  "ctaPrimary": "Iniciar Constitución Ahora",
+  "ctaSecondary": "Chat con Expertos",
+  "trustOfficial": "Oficial y Registrado AHU Kemenkumham",
+  "trustRating": "4.9/5 de 2.500+ clientes",
+  "trustSpeed": "Finalizado en 3-7 días hábiles",
+  "scroll": "Explorar",
+  "waGreeting": "Hola DIGIMAN.ID, quiero consultar sobre legalidad de negocio",
+  "words": [
+   "Constitución PT",
+   "Constitución CV",
+   "PT PMA",
+   "NIB & OSS",
+   "Registro de Marca",
+   "Certificación Halal",
+   "Digitalización Empresarial"
+  ]
+ },
+ "stats": {
+  "clients": {
+   "label": "Empresas Constituidas",
+   "note": "PT, CV, PMA y más"
+  },
+  "experts": {
+   "label": "Expertos Multidisciplinarios",
+   "note": "Derecho, impuestos, digital"
+  },
+  "layers": {
+   "label": "Capas de Servicio Integrado",
+   "note": "Desde acta hasta digital"
+  },
+  "success": {
+   "label": "Clientes que Recomiendan",
+   "note": "Calificación 4.9 / 5.0"
+  }
+ },
+ "marquee": [
+  "Acta Constitutiva PT",
+  "Constitución CV",
+  "PT PMA (Extranjera)",
+  "PT Individual",
+  "Fundación & Asociación",
+  "NIB & OSS-RBA",
+  "NPWP Empresa",
+  "Registro de Marca",
+  "Derecho de Autor & Patente",
+  "Certificación Halal",
+  "SNI & ISO",
+  "Licencias Sectoriales",
+  "Sitio Web & Aplicaciones",
+  "Consultoría de Digitalización"
+ ],
+ "switcher": {
+  "label": "Idioma"
+ },
+ "floating": {
+  "wa": "¿Necesitas ayuda? ¡Chatea con nosotros!",
+  "top": "Volver arriba"
+ },
+ "footer": {
+  "about": "PT Digital Bisnis Manajemen — una puerta única para legalidad y digitalización de negocios en Indonesia. Desde el acta constitutiva hasta la automatización con IA, nuestros 46 expertos guían su negocio para ascender a 7 cielos.",
+  "quickTitle": "Navegación",
+  "serviceTitle": "Servicios Destacados",
+  "contactTitle": "Contacto",
+  "officeTitle": "Nuestras Oficinas",
+  "rights": "© 2026 PT Digital Bisnis Manajemen (DIGIMAN.ID). Todos los derechos reservados.",
+  "admin": "Admin",
+  "links": [
+   "Constitución PT & CV",
+   "PT PMA (Capital Extranjero)",
+   "NIB, OSS & Licencias Sectoriales",
+   "Registro de Marca & PI",
+   "Certificación Halal & SNI",
+   "Digitalización Empresarial"
+  ]
+ },
+ "seven": {
+  "kicker": "Viaje de Escalada",
+  "headingA": "7 Cielos",
+  "headingB": "Legalidad Empresarial",
+  "sub": "Cada capa la completamos una por una — desde la fundación de la empresa hasta la cima de la digitalización. Este es el mapa de su escalada empresarial.",
+  "peakBadge": "Cima del Cielo",
+  "layers": [
+   {
+    "title": "Entidad y Acta Constitutiva",
+    "tagline": "Su fundación empresarial nace oficialmente",
+    "desc": "Elaboramos el acta constitutiva con notario asociado, gestionamos la aprobación del Ministerio de Ley y Derechos Humanos, hasta que su entidad legal esté oficialmente constituida — sin que usted tenga que salir de casa.",
+    "items": [
+     "PT (Perseroan Terbatas)",
+     "CV (Persekutuan Komanditer)",
+     "PT PMA (Modal Asing)",
+     "PT Perorangan",
+     "Fundación y Asociación",
+     "Cooperativa"
+    ]
+   },
+   {
+    "title": "Legalidad Central de la Empresa",
+    "tagline": "Identidad oficial ante el estado",
+    "desc": "Documentos vitales que son requisitos para abrir cuentas, solicitar créditos y contratar con corporaciones o agencias gubernamentales.",
+    "items": [
+     "NIB (Número de Identificación Empresarial)",
+     "NPWP de Empresa",
+     "Aprobación del Ministerio de Ley y Derechos Humanos",
+     "SKDU & Domicilio Empresarial",
+     "Otros Documentos de Apoyo"
+    ]
+   },
+   {
+    "title": "Licencias OSS e Izin Sectorial",
+    "tagline": "La llave de las regulaciones",
+    "desc": "Navegar por KBLI 2020 y el sistema OSS-RBA es un laberinto — nuestro equipo de expertos mapea la licencia correcta para la escala de su negocio, desde PYME hasta corporativo.",
+    "items": [
+     "OSS-RBA (Basado en Riesgo Empresarial)",
+     "Mapeo de KBLI 2020",
+     "Licencia Empresarial Sectorial",
+     "SIUP & SLO",
+     "Licencia de Distribución"
+    ]
+   },
+   {
+    "title": "Propiedad Intelectual",
+    "tagline": "Fortalezca sus activos intangibles",
+    "desc": "Su marca, logotipo e innovación son activos valiosos. Nos aseguramos de que estén registrados oficialmente y protegidos contra la piratería en todo Indonesia.",
+    "items": [
+     "Registro de Marca (DJKI)",
+     "Derecho de Autor",
+     "Patentes y Patentes Simplificadas",
+     "Diseño Industrial",
+     "Secreto Comercial"
+    ]
+   },
+   {
+    "title": "Certificación y Estándares de Calidad",
+    "tagline": "Pasaporte al mercado moderno",
+    "desc": "Marketplaces, retail moderno, exportación y licitaciones gubernamentales exigen certificaciones. Llevamos su producto a través de todos los controles de calidad.",
+    "items": [
+     "Certificación Halal (BPJPH)",
+     "SNI",
+     "ISO 9001 / 22000 / 27001",
+     "HACCP & BPOM",
+     "Certificado de Exportación"
+    ]
+   },
+   {
+    "title": "Impuestos y Finanzas",
+    "tagline": "Salud fiscal, tranquilidad al final del año",
+    "desc": "Nuestro equipo de 46 expertos incluye asesores fiscales certificados — aseguramos que su negocio esté en compliance, sea eficiente y libre de sanciones.",
+    "items": [
+     "Presentación de SPT Anual y Periódica",
+     "Asesoría Fiscal",
+     "Contabilidad y Reportes Financieros",
+     "Auditoría y Revisión",
+     "Asistencia en Correcciones Fiscales"
+    ]
+   },
+   {
+    "title": "Digitalización y Gestión Empresarial",
+    "tagline": "Cima del cielo: negocio que funciona automáticamente",
+    "desc": "La legalidad completada, ahora es hora de escalar. Nuestro equipo tecnológico construye sitios web, aplicaciones, sistemas de gestión y automatización basada en IA para su negocio.",
+    "items": [
+     "Sitio Web de Perfil Corporativo y E-Commerce",
+     "Aplicaciones y Sistemas Internos",
+     "Sistema de Gestión Digital",
+     "IA y Automatización de Procesos",
+     "Marketing Digital 360°"
+    ]
+   }
+  ]
+ },
+ "services": {
+  "kicker": "Catálogo Completo",
+  "headingA": "29 Servicios",
+  "headingB": "Una Puerta",
+  "sub": "Desde el establecimiento de empresas, permisos, impuestos, certificaciones hasta la digitalización — no necesita buscar en otro lugar.",
+  "all": "Todos",
+  "categories": {
+   "pendirian": "Establecimiento de Empresas",
+   "perizinan": "Permisos y Legalización",
+   "ki": "Propiedad Intelectual",
+   "sertifikasi": "Certificaciones y Estándares",
+   "pajak": "Tributación",
+   "ketenagakerjaan": "Relaciones Laborales",
+   "korporasi": "Corporativo y Legal",
+   "digital": "Digitalización"
+  },
+  "consult": "Consultar este Servicio",
+  "featured": "Más Popular"
+ },
+ "why": {
+  "kicker": "Por qué Digiman",
+  "headingA": "No Solo Gestionamos Documentos.",
+  "headingB": "Protegemos el Futuro de su Negocio.",
+  "expertTitle": "Consejo de Expertos Multidisciplinarios",
+  "expertDesc": "No es una persona, no es un equipo — son 46 expertos en derecho, impuestos, permisos, certificaciones y tecnología digital. Cada caso es manejado directamente por su especialista.",
+  "expertMore": "+ 28 expertos más",
+  "chips": [
+   "Derecho Corporativo",
+   "Notario y Registrador",
+   "Asesor Fiscal",
+   "Contador Público",
+   "Ministerio de Ley y Derechos Humanos",
+   "OSS y BKPM",
+   "DJKI Marcas",
+   "Halal BPJPH",
+   "Auditor ISO",
+   "SNI",
+   "BPOM",
+   "Ingeniero Web",
+   "Ingeniero IA",
+   "Marketing Digital",
+   "RRHH y Relaciones Laborales",
+   "Permisos Sectoriales",
+   "Relaciones con Inversionistas",
+   "Logística y Exportación"
+  ],
+  "reasons": [
+   {
+    "title": "Terminado en 3-7 Días Hábiles",
+    "desc": "Flujos de trabajo estandarizados y portal de monitoreo en tiempo real — siempre sabrá en qué etapa se encuentra su documento."
+   },
+   {
+    "title": "Garantía de Emisión y Transparencia",
+    "desc": "Costos claros desde el principio sin cargos ocultos. ¿El documento no se emite por error en nuestro proceso? Lo repetimos gratis."
+   },
+   {
+    "title": "Cumplimiento con Regulaciones Actualizadas",
+    "desc": "Nuestro equipo monitorea los cambios regulatorios — CTA, OSS-RBA, nuevos Perpres — para que su negocio siempre esté un paso adelante."
+   },
+   {
+    "title": "Acompañamiento de por Vida",
+    "desc": "Después de la entrega, usted sigue siendo parte de la familia Digiman: consultas anuales, recordatorios de obligaciones y apoyo al crecimiento."
+   },
+   {
+    "title": "Sin Salir de su Oficina",
+    "desc": "Proceso 100% en línea con firma electrónica. Su empresa se constituye oficialmente sin tener que abandonar su escritorio."
+   },
+   {
+    "title": "Séptimo Cielo: Automatización Digital",
+    "desc": "Solo Digiman lo lleva a la cima — sistema digital e IA para que su negocio funcione incluso mientras duerme."
+   }
+  ]
+ },
+ "process": {
+  "kicker": "Flujo de Trabajo",
+  "headingA": "7 Hacia",
+  "headingB": "Empresa Oficial",
+  "sub": "Cuatro pasos simples. Usted solo relájese — el resto es nuestra tarea.",
+  "steps": [
+   {
+    "title": "Consulta Gratuita",
+    "desc": "Cuéntenos sobre su negocio vía WhatsApp o formulario. En 24 horas, nuestro consejo de expertos mapeará los requisitos legales y KBLI más rentables — sin costo, sin compromiso.",
+    "tag": "Día 0"
+   },
+   {
+    "title": "Documentos y Acuerdo",
+    "desc": "Usted envía su KTP, datos comerciales y elección de nombre a través de nuestro portal seguro. Verificamos la disponibilidad del nombre de empresa, calculamos el costo final transparente, y fijamos la cita con el notario.",
+    "tag": "Día 1"
+   },
+   {
+    "title": "Nosotros nos Encargamos",
+    "desc": "Firma de la escritura electrónica, aprobación del Ministerio de Ley y Derechos Humanos, NPWP, NIB, hasta los permisos sectoriales — todo lo ejecutamos. Monitoree cada etapa en tiempo real desde su panel de control.",
+    "tag": "Días 2 a 6"
+   },
+   {
+    "title": "Entrega y Asesoramiento",
+    "desc": "Todos sus documentos originales llegan a sus manos (digital + físico). ¡Empresa oficial constituida! El asesoramiento fiscal anual y consultas de crecimiento se vuelven parte de la familia Digiman.",
+    "tag": "Día 7"
+   }
+  ]
+ },
+ "team": {
+  "kicker": "Estructura Corporativa",
+  "heading": "Los Guardianes del Cielo",
+  "sub": "Las empresas se construyen sobre manos experimentadas — líderes que aseguran que cada capa de servicios de Digiman permanezca protegida."
+ },
+ "offices": {
+  "kicker": "Nuestro Alcance",
+  "heading": "Oficinas y Sucursales",
+  "sub": "Cuatro ciudades de servicio — y toda Indonesia en línea. Visítenos, o déjenos llegar a través de su pantalla.",
+  "hq": "Oficina Principal",
+  "branch": "Oficina Sucursal",
+  "hoursLabel": "Horario de Operación"
+ },
+ "testi": {
+  "kicker": "Historias de Clientes",
+  "heading": "Ellos Ya Están Sobre las Nubes",
+  "sub": "2,500+ fundadores de negocios han confiado el momento más importante de sus empresas a Digiman."
+ },
+ "faq": {
+  "kicker": "Preguntas Frecuentes",
+  "heading": "Todo lo que Quiere Preguntar",
+  "sub": "¿No encontró la respuesta? Nuestro consejo de expertos está listo para responder directamente — gratis.",
+  "closing": "¿Aún tiene otras preguntas?",
+  "closingCta": "Pregunte al Consejo de Expertos"
+ },
+ "cta": {
+  "kicker": "El 7º Cielo lo Espera",
+  "headingA": "Su Negocio Merece Estar",
+  "headingB": "Sobre las Nubes.",
+  "sub": "Cuente sus planes hoy — mañana, nuestro consejo de expertos ya habrá trazado el mapa de la escalada legal y digitalización de su negocio. Gratis, sin compromiso.",
+  "ctaWa": "Chatear en WhatsApp Ahora",
+  "respTime": "Respuesta < 24 horas",
+  "waMessage": "¡Hola DIGIMAN.ID, estoy listo para escalar los 7 Cielos de Legalidad!"
+ },
+ "content": {
+  "services": {
+   "pendirian-pt": {
+    "title": "Constitución de PT",
+    "price": "Desde IDR 3.5M",
+    "desc": "Acta notarial, SK Kemenkumham, NPWP, NIB — paquete completo para PT oficial establecido en días.",
+    "items": [
+     "Acta Notarial + SK Kemenkumham",
+     "NPWP & NIB automáticos",
+     "Domicilio comercial",
+     "Consulta gratuita KBLI"
+    ]
+   },
+   "pt-perorangan": {
+    "title": "PT Individual (UUCK)",
+    "price": "Desde IDR 850K",
+    "desc": "Entidad legal para emprendedores individuales vía OSS — sin notario, NIB emitido al instante, capital mínimo.",
+    "items": [
+     "NIB como garantía legal",
+     "Sin acta notarial",
+     "Obligaciones fiscales ligeras",
+     "Ideal para PYMEs & freelancers"
+    ]
+   },
+   "pendirian-cv": {
+    "title": "Constitución de CV",
+    "price": "Desde IDR 1.8M",
+    "desc": "Opción ideal para negocios familiares & asociaciones. Rápido, económico y legalmente válido.",
+    "items": [
+     "Acta notarial CV",
+     "Aprobación judicial",
+     "NPWP & NIB",
+     "Consulta estructura de capital"
+    ]
+   },
+   "pt-pma": {
+    "title": "PT PMA (Inversión Extranjera)",
+    "price": "Desde IDR 15M",
+    "desc": "¿Invertir en Indonesia? Nos encargamos de toda la regulación BKPM & OSS para usted.",
+    "items": [
+     "Estructura de acciones extranjeras",
+     "Reportes BKPM/OSS",
+     "Permiso de inversión",
+     "Asesoría DGT & Bancos"
+    ]
+   },
+   "firma-ud": {
+    "title": "Firma, UD & Sociedad",
+    "price": "Desde IDR 1.2M",
+    "desc": "Forma clásica de negocio para comercio & asociaciones con nombre compartido — establecimiento rápido, costo eficiente.",
+    "items": [
+     "Acta Firma/UD notarial",
+     "NPWP & NIB",
+     "Carta de Confirmación de Domicilio",
+     "Consulta responsabilidad deudas"
+    ]
+   },
+   "pendirian-koperasi": {
+    "title": "Constitución de Cooperativa",
+    "price": "Desde IDR 2.5M",
+    "desc": "Cooperativa de consumo, productores o servicios — desde AD/ART hasta legalización oficial Kemenkop.",
+    "items": [
+     "Asamblea constitutiva & AD/ART",
+     "Aprobación Kemenkop PYME",
+     "NPWP & NIB cooperativa",
+     "Guía SHU & RAT"
+    ]
+   },
+   "pendirian-yayasan": {
+    "title": "Fundación & Institución Sin Fines de Lucro",
+    "price": "Desde IDR 3M",
+    "desc": "Creada para bien social, educación o religión — legal completa con estructura organizativa correcta.",
+    "items": [
+     "Acta fundación + SK Kemenkumham",
+     "Estructura directores-administradores-supervisores",
+     "NPWP & NIB",
+     "Consulta fiscal sin fines de lucro"
+    ]
+   },
+   "perkumpulan-asosiasi": {
+    "title": "Asociación & Gremio",
+    "price": "Desde IDR 2.5M",
+    "desc": "Asociaciones profesionales o industriales con personalidad jurídica — gran membresía, alta credibilidad.",
+    "items": [
+     "AD/ART asociación",
+     "SK Kemenkumham",
+     "NPWP & NIB",
+     "Guía de membresía & cuotas"
+    ]
+   },
+   "nib-oss": {
+    "title": "NIB, OSS-RBA & Mapeo KBLI",
+    "price": "Desde IDR 750K",
+    "desc": "Número de Identificación Empresarial como identidad principal en OSS-RBA — KBLI mapeado con precisión.",
+    "items": [
+     "Registro OSS-RBA",
+     "Análisis KBLI óptimo",
+     "NIB como permiso base",
+     "Revisión & ajuste de datos"
+    ]
+   },
+   "izin-sektor-ss": {
+    "title": "Permisos Sectoriales & Certificados Estándar",
+    "price": "Desde IDR 1M",
+    "desc": "Autorización específica por sector: salud, alimentos, logística, construcción, turismo — hasta aprobación.",
+    "items": [
+     "Certificado Estándar (SS)",
+     "PKKPR & medio ambiente",
+     "Permiso comercial, SIUP, SLO",
+     "Asesoría auditoría de campo"
+    ]
+   },
+   "domisili-vo": {
+    "title": "Domicilio Comercial & Oficina Virtual",
+    "price": "Desde IDR 500K",
+    "desc": "Dirección comercial prestigiosa sin costo de oficina física — SKDU/SKPPK completo para constitución & permisos.",
+    "items": [
+     "SKDU / SKPPK",
+     "Oficina virtual premium",
+     "Servicio de recepción de correos",
+     "Ideal para PT & PMA"
+    ]
+   },
+   "legalisasi-apostille": {
+    "title": "Legalización, Apostilla & Traducción",
+    "price": "Desde IDR 350K/doc",
+    "desc": "Documentos válidos para uso en el extranjero: apostilla Kemenkumham, legalización KBRI, traducción jurada.",
+    "items": [
+     "Apostilla documentos oficiales",
+     "Legalización embajada",
+     "Traducción jurada",
+     "Notario & e-KTA"
+    ]
+   },
+   "pendaftaran-merek": {
+    "title": "Registro de Marca",
+    "price": "Desde IDR 1.5M",
+    "desc": "Proteja su marca antes que otros. Verificación disponibilidad + presentación a DJKI.",
+    "items": [
+     "Búsqueda & análisis de marca",
+     "Presentación clases Nice",
+     "Monitoreo estatus",
+     "Respuesta a objeciones DJKI"
+    ]
+   },
+   "hak-cipta-paten": {
+    "title": "Derechos de Autor, Patentes & Diseño Industrial",
+    "price": "Desde IDR 900K",
+    "desc": "Obras, innovaciones y diseños son activos — regístrelos para que sean válidos, valiosos y negociables.",
+    "items": [
+     "Derechos de autor obras & aplicaciones",
+     "Patentes & patentes simples",
+     "Diseño industrial",
+     "Certificado oficial DJKI"
+    ]
+   },
+   "franchise": {
+    "title": "Licencia Franquicia (STPW)",
+    "price": "Desde IDR 2M",
+    "desc": "¿Listo para expandir tu red de franquicias? STPW + prospecto comercial según regulación Kemenperin.",
+    "items": [
+     "STPW Kemenperin",
+     "Prospecto & experiencia comercial",
+     "Contrato de franquicia",
+     "Manual marca & SOP"
+    ]
+   },
+   "sertifikasi-halal": {
+    "title": "Certificación Halal",
+    "price": "Desde IDR 1.5M",
+    "desc": "Proceso completo SIHALAL: desde SJPH, supervisor halal, hasta auditoría & fatwa — garantía halal.",
+    "items": [
+     "Solicitud SIHALAL",
+     "Asesoría SJPH",
+     "Supervisor halal capacitado",
+     "Auditoría & certificado BPJPH"
+    ]
+   },
+   "bpom": {
+    "title": "Permiso Comercial & Notificación BPOM",
+    "price": "Desde IDR 2M",
+    "desc": "Productos alimenticios, cosméticos, medicina tradicional aprobados por BPOM — MD/CD emitidos, listos para estanterías.",
+    "items": [
+     "Notificación cosméticos (e-Not)",
+     "Permiso comercial MD & CD",
+     "Análisis etiqueta & composición",
+     "Registro fábrica/importador"
+    ]
+   },
+   "sni": {
+    "title": "Certificado SNI",
+    "price": "Desde IDR 2.5M",
+    "desc": "Obligatorio para productos específicos (calzado, cables, alimentos procesados) — asesoramos pruebas de laboratorio hasta certificación SNI.",
+    "items": [
+     "Análisis obligaciones SNI",
+     "Pruebas laboratorio acreditado",
+     "Auditoría fábrica (SPPT-SNI)",
+     "Marcado LSPro"
+    ]
+   },
+   "iso": {
+    "title": "Certificación ISO",
+    "price": "Desde IDR 5M",
+    "desc": "ISO 9001, 14001, 22000, 27001 — aumente credibilidad en licitaciones & confianza socios internacionales.",
+    "items": [
+     "Análisis inicial de brechas",
+     "Elaboración documentación SMM",
+     "Asesoría auditoría certificación",
+     "Certificado organismo acreditación"
+    ]
+   },
+   "npwp-pkp": {
+    "title": "NPWP Entidad & Acreditación PKP",
+    "price": "Desde IDR 400K",
+    "desc": "NPWP entidad, acreditación PKP, PPh final 0.5% (PYME), hasta activación e-Faktura & Coretax.",
+    "items": [
+     "NPWP entidad/extranjero",
+     "Acreditación PKP",
+     "Activación Coretax DJP",
+     "Consulta tarifas óptimas"
+    ]
+   },
+   "pelaporan-pajak": {
+    "title": "SPT, e-Factura & Declaración Fiscal",
+    "price": "Desde IDR 500K/mes",
+    "desc": "Tranquilice su mente: todas las obligaciones fiscales mensuales & anuales gestionadas por consultores certificados.",
+    "items": [
+     "SPT Período PPN & PPh",
+     "SPT Anual entidad",
+     "e-Factura & contabilidad",
+     "Reembolso & fiscalizaciones"
+    ]
+   },
+   "bpjs": {
+    "title": "BPJS Salud & Trabajo",
+    "price": "Desde IDR 300K",
+    "desc": "Cumpla normas laborales: registre & gestione BPJS para todos empleados sin complicaciones administrativas.",
+    "items": [
+     "Registro empresa BPJS",
+     "Inscripción empleados",
+     "Integración contratos laborales",
+     "Movilidad & mensuales"
+    ]
+   },
+   "kitas-rptka": {
+    "title": "KITAS/KITAP & RPTKA",
+    "price": "Desde IDR 5M",
+    "desc": "Trabajadores extranjeros & inversos trabajando/viviendo legalmente: RPTKA, notification, VITAS-KITAS hasta KITAP.",
+    "items": [
+     "RPTKA Kemenaker",
+     "Notificación & telex VITAS",
+     "KITAS inversor & trabajador",
+     "KITAP & MERP"
+    ]
+   },
+   "perubahan-akta": {
+    "title": "Modificación Acta & Estructura",
+    "price": "Desde IDR 1.5M",
+    "desc": "Cambie nombre, dirección, administradores, capital, accionistas o agregue KBLI — todo gestionado integralmente.",
+    "items": [
+     "Acta modificación notarial",
+     "Aprobación Kemenkumham",
+     "Actualización NIB/OSS & NPWP",
+     "Publicación & ajuste documentos"
+    ]
+   },
+   "pembubaran": {
+    "title": "Disolución & Liquidación",
+    "price": "Desde IDR 2.5M",
+    "desc": "Cierre de entidad correcto: RUPS disolución, pago de obligaciones, hasta eliminación NIB.",
+    "items": [
+     "RUPS & acta disolución",
+     "Aviso a acreedores",
+     "Declaración fiscal final",
+     "Eliminación NIB & NPWP"
+    ]
+   },
+   "legal-drafting": {
+    "title": "Redacción Legal & Due Diligence",
+    "price": "Desde IDR 750K",
+    "desc": "Acuerdos comerciales que cubren vacíos legales, y verificación legal de socios antes de firmar.",
+    "items": [
+     "Acuerdos de colaboración",
+     "Contratos laborales & confidencialidad",
+     "Due diligence legal socios",
+     "Revisión contratos por expertos"
+    ]
+   },
+   "website-ecommerce": {
+    "title": "Sitio Web & E-Commerce",
+    "price": "Desde IDR 3M",
+    "desc": "Desde perfil corporativo hasta tienda online — rápido, preparado para SEO y persuasivo para clientes.",
+    "items": [
+     "Perfil corporativo premium",
+     "Tienda online & pasarela de pago",
+     "SEO & Google Business",
+     "Dominio, hosting, email corporativo"
+    ]
+   },
+   "aplikasi-sistem": {
+    "title": "Aplicaciones & Sistemas Internos",
+    "price": "Consulta personalizada",
+    "desc": "POS, inventario, HRIS, CRM, hasta sistemas específicos industria — desarrollado por equipo software experimentado.",
+    "items": [
+     "Caja, stock & reportes",
+     "HRIS & nómina",
+     "CRM & membresía",
+     "Integración & dashboard"
+    ]
+   },
+   "otomasi-ai": {
+    "title": "Automatización IA & Marketing Digital",
+    "price": "Desde IDR 2.5M/mes",
+    "desc": "Chatbot WhatsApp IA, anuncios de alto rendimiento, contenido trabajando 24/7 para sus ventas.",
+    "items": [
+     "Chatbot & asistente IA",
+     "Anuncios Meta/Google/TikTok",
+     "Contenido & redes sociales",
+     "Reporte de rendimiento mensual"
+    ]
+   }
+  },
+  "faqs": {
+   "faq-1": {
+    "q": "¿Cuánto tiempo tarda el proceso de constitución de PT hasta operar oficialmente?",
+    "a": "En promedio 3-7 días hábiles desde que los documentos están completos y la escritura es firmada. El proceso incluye la escritura notarial, la aprobación del SK del Ministerio de Ley y Derechos Humanos (usualmente en tiempo real o 1 día), la emisión de NPWP de entidad y NIB a través de OSS. Para permisos de sectores específicos (salud, logística, alimentos) puede requerir tiempo adicional — siempre proporcionamos una estimación detallada al inicio, sin costo."
+   },
+   "faq-2": {
+    "q": "¿Qué debo preparar para constituir mi empresa?",
+    "a": "Solo: KTP & NPWP de los fundadores (y accionistas), email activo, número de teléfono móvil, y dirección comercial (puede ser tu domicilio — nosotros ayudamos con la domiciliación). Para PT PMA se requiere pasaporte extranjero y declaración de capital. El resto — redacción de escritura, KBLI, hasta trámites en línea — lo hace nuestro equipo."
+   },
+   "faq-3": {
+    "q": "¿Es posible constituir una empresa sin visitar la oficina?",
+    "a": "Sí, 100% en línea. Con firma electrónica certificada (FTE) reconocida por el Ministerio de Ley y Derechos Humanos, la escritura y aprobación pueden realizarse sin contacto físico. Los documentos originales los enviamos a tu dirección por mensajería garantizada, o puedes recogerlos en nuestra oficina."
+   },
+   "faq-4": {
+    "q": "¿Hay costos ocultos durante el proceso?",
+    "a": "No. Todos los costos — honorarios notariales, tarifa del Ministerio de Ley y Derechos Humanos, administración gubernamental, hasta nuestros servicios — están claramente especificados en la propuesta antes de que aceptes. Si hay necesidades fuera del alcance (ej. permisos sectoriales adicionales), lo confirmamos antes de proceder. Este es nuestro compromiso de transparencia Digiman."
+   },
+   "faq-5": {
+    "q": "¿Qué significa 'Garantía de Emisión'?",
+    "a": "Si los documentos no se emiten debido a errores en el proceso o administración por parte nuestra, repetimos todas las etapas problemáticas sin costo adicional, más compensación por demora. En 5 años de operación, el 99.2% de nuestros documentos se emiten a tiempo — el restante por cambios regulatorios repentinos que siempre anticipamos y comunicamos."
+   },
+   "faq-6": {
+    "q": "¿Cómo iniciar una consulta? ¿Es de pago?",
+    "a": "Gratis. Haz clic en el botón de WhatsApp en esta página o completa el formulario de contacto — en 24 horas te conectarás con un experto según tu sector empresarial. Mapearemos tus necesidades legales, recomendaremos la forma de entidad más eficiente fiscalmente, y daremos estimación de costos y tiempo. Sin ningún compromiso."
+   },
+   "faq-7": {
+    "q": "¿Cuál es la diferencia entre PT, CV y PT Perorangan? ¿Cuál es adecuada para mi negocio?",
+    "a": "PT es ideal para negocios que necesitan alta credibilidad, inversores y protección de activos personales (responsabilidad limitada al capital). CV es perfecto para negocios familiares/asociativos con capital ligero pero responsabilidad ilimitada de los socios. PT Peroranan es el más ligero y económico — para individuos con capital pequeño, sin notario, basta con NIB vía OSS. Nuestro equipo mapeará la opción más eficiente fiscal y legal según tu escala y plan de negocio, gratis en la consulta inicial."
+   },
+   "faq-8": {
+    "q": "Mi empresa ya está operando — ¿puedo cambiar el nombre, dirección, o agregar KBLI?",
+    "a": "Totalmente sí. Nuestro servicio de cambios de escritura y estructura incluye: cambio de razón social, dirección, giro de negocio (KBLI), composición de directores/comisarios, accionistas, y capital social. Nosotros nos encargamos desde la escritura notarial, aprobación del Ministerio de Ley y Derechos Humanos, hasta sincronización NIB/OSS y NPWP para que todos los documentos derivados sean consistentes. El proceso promedio es 3-7 días hábiles, y tú sigues operando mientras nosotros manejamos toda la burocracia."
+   },
+   "faq-9": {
+    "q": "¿Cómo se garantiza la seguridad de datos sensibles como KTP y NPWP que envío?",
+    "a": "Tus datos solo son accesibles por el consultor responsable de tu cuenta — no se comparten con terceros fuera de los necesarios para el trámite (notario, ministerios). Todos los archivos están encriptados, y al terminar el proceso puedes solicitar la eliminación de tus archivos digitales. También proporcionamos un recibo claro de documentos y monitoreo en tiempo real, así que siempre sabes en qué etapa están tus documentos sensibles."
+   },
+   "faq-10": {
+    "q": "¿DIGIMAN atiende clientes de otras ciudades o países?",
+    "a": "Sí atendemos. Todo el proceso puede realizarse 100% en línea con firma electrónica certificada — nuestros clientes están desde Aceh hasta Papua, incluyendo diáspora indonesia e inversores extranjeros constituyendo PT PMA. Los documentos originales se envían por mensajería garantizada. Tenemos nuestra sede principal en Tasikmalaya y sucursales en Bandung y alrededores, pero para ti dondequiera que estés, tu gerente de cuenta personal monitorea cada etapa de tu trámite."
+   }
+  },
+  "testi": {
+   "testimoni-1": {
+    "text": "Desde NIB hasta certificación halal, todo listo en 9 días. El equipo de Digiman incluso me ayudó a elegir el KBLI que me permitió obtener beneficios fiscales para UMKM. Increíblemente detallistas."
+   },
+   "testimoni-2": {
+    "text": "La constitución solo tomó 4 días y yo no tuve que salir de la oficina. Su portal de monitoreo me dio tranquilidad porque siempre sabía dónde estaban mis documentos."
+   },
+   "testimoni-3": {
+    "text": "Como inversor extranjero, la regulación indonesia parecía complicada. Digiman se encargó de todo — BKPM, OSS, hasta reportes periódicos. Altamente recomendados."
+   },
+   "testimoni-4": {
+    "text": "El permiso de operación de la clínica era complicado. Su panel de expertos conoce perfectamente los procedimientos de Dinkes y BPOM. Su acompañamiento hasta que la clínica operó fue excelente."
+   },
+   "testimoni-5": {
+    "text": "La garantía de emisión no es un truco. Hubo revisiones del documento por parte del notario, ellos repitieron el proceso sin costo adicional y cumplieron el plazo."
+   },
+   "testimoni-6": {
+    "text": "Mi marca casi fue registrada por un competidor. Afortunadamente el registro DJKI a través de Digiman se completó primero. Ahora mi marca está totalmente segura."
+   },
+   "testimoni-7": {
+    "text": "Su séptimo cielo es real: sitio web + sistema de gestión estudiantil + automatización de marketing. Ahora las inscripciones de alumnos llegan solas 24/7."
+   },
+   "testimoni-8": {
+    "text": "Contrato sus servicios para gestionar SPT de mis clientes. Su asesor fiscal está certificado y responde rápido. En 5 años nunca he reportado tarde."
+   },
+   "testimoni-9": {
+    "text": "Certificación halal + SNI completada sin que me preocupara. El precio fue transparente desde el inicio, sin costos ocultos como en mi experiencia en otros lugares."
+   },
+   "testimoni-10": {
+    "text": "BPOM, marca, hasta sitio e-commerce todo manejado por un mismo equipo. La coordinación es fácil porque tienen un responsable de cuenta único."
+   }
+  }
+ }
+}

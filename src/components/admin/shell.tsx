@@ -17,6 +17,7 @@ import {
   X,
   ShieldCheck,
   Type,
+  MapPin,
 } from "lucide-react";
 
 const NAV = [
@@ -24,6 +25,7 @@ const NAV = [
   { href: "/admin/beranda", label: "Beranda (Hero)", icon: Type },
   { href: "/admin/pengaturan", label: "Pengaturan Situs", icon: Settings },
   { href: "/admin/struktur", label: "Struktur Perusahaan", icon: Network },
+  { href: "/admin/kantor", label: "Kantor & Cabang", icon: MapPin },
   { href: "/admin/layanan", label: "Layanan", icon: Briefcase },
   { href: "/admin/testimoni", label: "Testimoni", icon: MessageSquareQuote },
   { href: "/admin/faq", label: "FAQ", icon: CircleHelp },

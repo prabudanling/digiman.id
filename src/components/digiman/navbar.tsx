@@ -3,23 +3,26 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
-
-const links = [
-  { href: "#beranda", label: "Beranda" },
-  { href: "#tujuh-langit", label: "7 Langit" },
-  { href: "#layanan", label: "Layanan" },
-  { href: "#struktur", label: "Struktur" },
-  { href: "#proses", label: "Proses" },
-  { href: "#testimoni", label: "Testimoni" },
-  { href: "#faq", label: "FAQ" },
-];
+import { useI18n } from "@/components/i18n/locale-provider";
+import LanguageSwitcher from "@/components/i18n/language-switcher";
 
 export default function Navbar({ logoUrl }: { logoUrl?: string | null }) {
+  const { dict } = useI18n();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
 
   useEffect(() => scrollY.on("change", (v) => setScrolled(v > 40)), [scrollY]);
+
+  const links = [
+    { href: "#beranda", label: dict.nav.home },
+    { href: "#tujuh-langit", label: dict.nav.seven },
+    { href: "#layanan", label: dict.nav.services },
+    { href: "#struktur", label: dict.nav.structure },
+    { href: "#proses", label: dict.nav.process },
+    { href: "#testimoni", label: dict.nav.testimonials },
+    { href: "#faq", label: dict.nav.faq },
+  ];
 
   return (
     <>
@@ -66,11 +69,12 @@ export default function Navbar({ logoUrl }: { logoUrl?: string | null }) {
           </nav>
 
           <div className="flex items-center gap-3">
+            <LanguageSwitcher compact />
             <a
               href="#kontak"
               className="group hidden items-center gap-1.5 rounded-full bg-gradient-to-r from-yellow-300 to-amber-400 px-5 py-2.5 text-sm font-bold text-emerald-950 shadow-[0_8px_30px_-8px_rgba(242,193,78,0.6)] transition-all hover:shadow-[0_10px_40px_-6px_rgba(242,193,78,0.8)] hover:brightness-110 sm:flex"
             >
-              Konsultasi Gratis
+              {dict.nav.cta}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <button
@@ -117,7 +121,7 @@ export default function Navbar({ logoUrl }: { logoUrl?: string | null }) {
                 transition={{ delay: 0.35 }}
                 className="mt-3 flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-yellow-300 to-amber-400 px-5 py-4 text-base font-bold text-emerald-950"
               >
-                Konsultasi Gratis <ArrowUpRight className="h-4 w-4" />
+                {dict.nav.cta} <ArrowUpRight className="h-4 w-4" />
               </motion.a>
             </nav>
           </motion.div>

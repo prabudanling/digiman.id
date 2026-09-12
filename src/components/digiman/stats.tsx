@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Building2, Users, Layers, HeartHandshake } from "lucide-react";
+import { useI18n } from "@/components/i18n/locale-provider";
 
 function Counter({ target, suffix }: { target: number; suffix?: string }) {
+  const { locale } = useI18n();
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const [val, setVal] = useState(0);
@@ -26,18 +28,13 @@ function Counter({ target, suffix }: { target: number; suffix?: string }) {
 
   return (
     <span ref={ref} className="tabular-nums">
-      {val.toLocaleString("id-ID")}
+      {val.toLocaleString(locale === "id" ? "id-ID" : locale)}
       {suffix}
     </span>
   );
 }
 
-const DEFAULT_STATS = [
-  { icon: Building2, value: 2500, suffix: "+", label: "Perusahaan Didasarkan", note: "PT, CV, PMA & lainnya" },
-  { icon: Users, value: 46, suffix: "", label: "Dewan Pakar Lintas Bidang", note: "Hukum, pajak, digital" },
-  { icon: Layers, value: 7, suffix: "", label: "Lapis Layanan Terpadu", note: "Dari akta sampai digital" },
-  { icon: HeartHandshake, value: 98, suffix: "%", label: "Klien Merekomendasikan", note: "Rating 4.9 / 5.0" },
-];
+const STAT_ICONS = [Building2, Users, Layers, HeartHandshake];
 
 export default function Stats({
   clients,
@@ -50,10 +47,15 @@ export default function Stats({
   layers?: number;
   success?: number;
 }) {
+  const { dict, locale } = useI18n();
+  const meta = [dict.stats.clients, dict.stats.experts, dict.stats.layers, dict.stats.success];
   const values = [clients, experts, layers, success];
-  const stats = DEFAULT_STATS.map((s, i) => ({
-    ...s,
-    value: typeof values[i] === "number" && values[i]! >= 0 ? values[i]! : s.value,
+  const stats = STAT_ICONS.map((icon, i) => ({
+    icon,
+    value: typeof values[i] === "number" && values[i]! >= 0 ? values[i]! : [2500, 46, 7, 98][i],
+    suffix: ["+", "", "", "%"][i],
+    label: meta[i].label,
+    note: meta[i].note,
   }));
   return (
     <section className="section-padding relative py-20 sm:py-24">

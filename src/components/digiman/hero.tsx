@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import { ArrowRight, MessageCircle, ShieldCheck, ChevronDown, Sparkles, Star } from "lucide-react";
 import ParticleField from "./particle-field";
-
-const DEFAULT_ROTATING = ["Pendirian PT", "Pendirian CV", "PT PMA", "NIB & OSS", "Pendaftaran Merek", "Sertifikasi Halal", "Digitalisasi Bisnis"];
+import { useI18n } from "@/components/i18n/locale-provider";
 
 const badges = [
   { label: "PT", x: "8%", y: "22%", delay: 0 },
@@ -16,7 +15,6 @@ const badges = [
   { label: "HALAL", x: "20%", y: "84%", delay: 4 },
 ];
 
-const FALLBACK_HEADLINE = "Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas.";
 
 export default function Hero({
   waNumber,
@@ -29,10 +27,13 @@ export default function Hero({
   sub?: string;
   rotatingWords?: string[];
 }) {
-  const rotating = rotatingWords && rotatingWords.length >= 2 ? rotatingWords : DEFAULT_ROTATING;
-  const headlineWords = (headline?.trim() || FALLBACK_HEADLINE).split(/\s+/).filter(Boolean);
-  const subText = sub?.trim() ||
-    "Satu pintu untuk seluruh legalitas perusahaan di Indonesia — dari akta pendirian, perizinan OSS, kekayaan intelektual, hingga transformasi digital. Didampingi 46 dewan pakar lintas bidang, proses transparan, garansi di tangan.";
+  const { dict, locale } = useI18n();
+  // Bahasa lain memakai kamus; Indonesia memakai konten yang dikelola admin (DB)
+  const rotating =
+    locale !== "id" ? dict.hero.words : rotatingWords && rotatingWords.length >= 2 ? rotatingWords : dict.hero.words;
+  const headlineText = locale !== "id" ? dict.hero.headline : headline?.trim() || dict.hero.headline;
+  const subText = locale !== "id" ? dict.hero.sub : sub?.trim() || dict.hero.sub;
+  const headlineWords = headlineText.split(/\s+/).filter(Boolean);
   const [wordIndex, setWordIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
 
@@ -132,7 +133,7 @@ export default function Hero({
             const isLast = i === headlineWords.length - 1 && /\.$/.test(w);
             return (
               <motion.span
-                key={`${i}-${w}`}
+                key={i}
                 initial={{ opacity: 0, y: 44, rotateX: -60 }}
                 animate={mounted ? { opacity: 1, y: 0, rotateX: 0 } : {}}
                 transition={{ delay: 2.4 + i * 0.09, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -153,7 +154,7 @@ export default function Hero({
           transition={{ delay: 3.3 }}
           className="mx-auto mt-6 flex h-9 items-center justify-center gap-2 text-center"
         >
-          <span className="text-lg text-emerald-100/70 sm:text-xl">Mulai dari</span>
+          <span className="text-lg text-emerald-100/70 sm:text-xl">{dict.hero.startFrom}</span>
           <span className="relative inline-flex h-9 min-w-[220px] items-center justify-center overflow-hidden sm:min-w-[280px]">
             {rotating.map((r, i) => (
               <motion.span
@@ -193,17 +194,17 @@ export default function Hero({
             href="#kontak"
             className="shimmer-btn group relative flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-500 px-8 py-4 text-base font-bold text-emerald-950 shadow-[0_14px_44px_-10px_rgba(52,211,153,0.65)] transition-all hover:scale-[1.04] hover:shadow-[0_18px_54px_-8px_rgba(52,211,153,0.85)]"
           >
-            Mulai Pendirian Sekarang
+            {dict.hero.ctaPrimary}
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
           </a>
           <a
-            href={`https://wa.me/${waNumber || "6281333397223"}?text=Halo%20DIGIMAN.ID,%20saya%20ingin%20konsultasi%20legalitas%20bisnis`}
+            href={`https://wa.me/${waNumber || "6281333397223"}?text=${encodeURIComponent(dict.hero.waGreeting)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 rounded-2xl border border-emerald-400/30 bg-emerald-950/40 px-8 py-4 text-base font-semibold text-emerald-100 backdrop-blur-md transition-all hover:border-gold/60 hover:bg-emerald-900/40 hover:text-gold-light"
           >
             <MessageCircle className="h-5 w-5 text-gold" />
-            Chat Dewan Pakar
+            {dict.hero.ctaSecondary}
           </a>
         </motion.div>
 
@@ -215,13 +216,13 @@ export default function Hero({
           className="mx-auto mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-emerald-50/55"
         >
           <span className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-emerald-400" /> Resmi & Terdaftar AHU Kemenkumham
+            <ShieldCheck className="h-4 w-4 text-emerald-400" /> {dict.hero.trustOfficial}
           </span>
           <span className="flex items-center gap-2">
-            <Star className="h-4 w-4 fill-gold text-gold" /> 4.9/5 dari 2.500+ klien
+            <Star className="h-4 w-4 fill-gold text-gold" /> {dict.hero.trustRating}
           </span>
           <span className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-gold" /> Selesai 3–7 hari kerja
+            <Sparkles className="h-4 w-4 text-gold" /> {dict.hero.trustSpeed}
           </span>
         </motion.div>
       </motion.div>
@@ -236,7 +237,7 @@ export default function Hero({
         className="absolute bottom-7 left-1/2 z-10 -translate-x-1/2"
       >
         <div className="flex flex-col items-center gap-2 text-emerald-100/50 transition-colors hover:text-gold">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.35em]">Menjelajah</span>
+          <span className="text-[10px] font-semibold uppercase tracking-[0.35em]">{dict.hero.scroll}</span>
           <ChevronDown className="animate-bounce-soft h-5 w-5" />
         </div>
       </motion.a>
