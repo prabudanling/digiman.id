@@ -1,0 +1,563 @@
+     1→Console Error
+     2→
+     3→
+     4→A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+     5→- A server/client branch `if (typeof window !== 'undefined')`.
+     6→- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+     7→- Date formatting in a user's locale which doesn't match the server.
+     8→- External changing data without sending a snapshot of it along with the HTML.
+     9→- Invalid HTML tag nesting.
+    10→
+    11→It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+    12→
+    13→See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    14→
+    15→
+    16→  ...
+    17→    <div data-slot="accordion" className="space-y-4" data-orientation="vertical" onKeyDown={function handleEvent} ...>
+    18→      ...
+    19→        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_q...">
+    20→          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+    21→            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_8..." open={false} ...>
+    22→              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+    23→                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" data-slot="accordion-..." ...>
+    24→                  ...
+    25→                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+    26→                      <AccordionTrigger data-slot="accordion-..." className={"focus-vi..."}>
+    27→                        <AccordionCollectionItemSlot scope={undefined}>
+    28→                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+    29→                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+    30→                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+    31→                                <Primitive.button type="button" aria-controls="radix-_R_8..." aria-expanded={false} ...>
+    32→                                  <button
+    33→                                    type="button"
+    34→+                                   aria-controls="radix-_R_8qnandlb_"
+    35→-                                   aria-controls="radix-_R_13atindlb_"
+    36→                                    aria-expanded={false}
+    37→                                    data-state="closed"
+    38→                                    data-disabled={undefined}
+    39→                                    disabled={undefined}
+    40→                                    aria-disabled={undefined}
+    41→                                    data-orientation="vertical"
+    42→+                                   id="radix-_R_qnandlb_"
+    43→-                                   id="radix-_R_3atindlb_"
+    44→                                    data-slot="accordion-trigger"
+    45→                                    className={"focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 item..."}
+    46→                                    data-radix-collection-item=""
+    47→                                    onClick={function handleEvent}
+    48→                                    ref={function}
+    49→                                  >
+    50→                  <AccordionContent className="pb-6 leadi...">
+    51→                    <AccordionContent data-slot="accordion-..." className="data-[stat...">
+    52→                      <CollapsibleContent role="region" aria-labelledby="radix-_R_q..." data-orientation="vertical" ...>
+    53→                        <Presence present={false}>
+    54→                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_8..." hidden={true} ...>
+    55→                            <div
+    56→                              data-state="closed"
+    57→                              data-disabled={undefined}
+    58→+                             id="radix-_R_8qnandlb_"
+    59→-                             id="radix-_R_13atindlb_"
+    60→                              hidden={true}
+    61→                              role="region"
+    62→+                             aria-labelledby="radix-_R_qnandlb_"
+    63→-                             aria-labelledby="radix-_R_3atindlb_"
+    64→                              data-orientation="vertical"
+    65→                              data-slot="accordion-content"
+    66→                              className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-..."
+    67→                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+    68→                              ref={function}
+    69→                            >
+    70→      ...
+    71→        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_1...">
+    72→          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+    73→            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_9..." open={false} ...>
+    74→              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+    75→                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" data-slot="accordion-..." ...>
+    76→                  ...
+    77→                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+    78→                      <AccordionTrigger data-slot="accordion-..." className={"focus-vi..."}>
+    79→                        <AccordionCollectionItemSlot scope={undefined}>
+    80→                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+    81→                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+    82→                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+    83→                                <Primitive.button type="button" aria-controls="radix-_R_9..." aria-expanded={false} ...>
+    84→                                  <button
+    85→                                    type="button"
+    86→+                                   aria-controls="radix-_R_9anandlb_"
+    87→-                                   aria-controls="radix-_R_15atindlb_"
+    88→                                    aria-expanded={false}
+    89→                                    data-state="closed"
+    90→                                    data-disabled={undefined}
+    91→                                    disabled={undefined}
+    92→                                    aria-disabled={undefined}
+    93→                                    data-orientation="vertical"
+    94→+                                   id="radix-_R_1anandlb_"
+    95→-                                   id="radix-_R_5atindlb_"
+    96→                                    data-slot="accordion-trigger"
+    97→                                    className={"focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 item..."}
+    98→                                    data-radix-collection-item=""
+    99→                                    onClick={function handleEvent}
+   100→                                    ref={function}
+   101→                                  >
+   102→                  <AccordionContent className="pb-6 leadi...">
+   103→                    <AccordionContent data-slot="accordion-..." className="data-[stat...">
+   104→                      <CollapsibleContent role="region" aria-labelledby="radix-_R_1..." data-orientation="vertical" ...>
+   105→                        <Presence present={false}>
+   106→                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_9..." hidden={true} ...>
+   107→                            <div
+   108→                              data-state="closed"
+   109→                              data-disabled={undefined}
+   110→+                             id="radix-_R_9anandlb_"
+   111→-                             id="radix-_R_15atindlb_"
+   112→                              hidden={true}
+   113→                              role="region"
+   114→+                             aria-labelledby="radix-_R_1anandlb_"
+   115→-                             aria-labelledby="radix-_R_5atindlb_"
+   116→                              data-orientation="vertical"
+   117→                              data-slot="accordion-content"
+   118→                              className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-..."
+   119→                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+   120→                              ref={function}
+   121→                            >
+   122→      ...
+   123→        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_1...">
+   124→          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+   125→            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_9..." open={false} ...>
+   126→              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+   127→                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" data-slot="accordion-..." ...>
+   128→                  ...
+   129→                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+   130→                      <AccordionTrigger data-slot="accordion-..." className={"focus-vi..."}>
+   131→                        <AccordionCollectionItemSlot scope={undefined}>
+   132→                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+   133→                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+   134→                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+   135→                                <Primitive.button type="button" aria-controls="radix-_R_9..." aria-expanded={false} ...>
+   136→                                  <button
+   137→                                    type="button"
+   138→+                                   aria-controls="radix-_R_9qnandlb_"
+   139→-                                   aria-controls="radix-_R_17atindlb_"
+   140→                                    aria-expanded={false}
+   141→                                    data-state="closed"
+   142→                                    data-disabled={undefined}
+   143→                                    disabled={undefined}
+   144→                                    aria-disabled={undefined}
+   145→                                    data-orientation="vertical"
+   146→+                                   id="radix-_R_1qnandlb_"
+   147→-                                   id="radix-_R_7atindlb_"
+   148→                                    data-slot="accordion-trigger"
+   149→                                    className={"focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 item..."}
+   150→                                    data-radix-collection-item=""
+   151→                                    onClick={function handleEvent}
+   152→                                    ref={function}
+   153→                                  >
+   154→                  <AccordionContent className="pb-6 leadi...">
+   155→                    <AccordionContent data-slot="accordion-..." className="data-[stat...">
+   156→                      <CollapsibleContent role="region" aria-labelledby="radix-_R_1..." data-orientation="vertical" ...>
+   157→                        <Presence present={false}>
+   158→                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_9..." hidden={true} ...>
+   159→                            <div
+   160→                              data-state="closed"
+   161→                              data-disabled={undefined}
+   162→+                             id="radix-_R_9qnandlb_"
+   163→-                             id="radix-_R_17atindlb_"
+   164→                              hidden={true}
+   165→                              role="region"
+   166→+                             aria-labelledby="radix-_R_1qnandlb_"
+   167→-                             aria-labelledby="radix-_R_7atindlb_"
+   168→                              data-orientation="vertical"
+   169→                              data-slot="accordion-content"
+   170→                              className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-..."
+   171→                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+   172→                              ref={function}
+   173→                            >
+   174→      ...
+   175→        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_2...">
+   176→          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+   177→            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_a..." open={false} ...>
+   178→              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+   179→                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" data-slot="accordion-..." ...>
+   180→                  ...
+   181→                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+   182→                      <AccordionTrigger data-slot="accordion-..." className={"focus-vi..."}>
+   183→                        <AccordionCollectionItemSlot scope={undefined}>
+   184→                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+   185→                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+   186→                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+   187→                                <Primitive.button type="button" aria-controls="radix-_R_a..." aria-expanded={false} ...>
+   188→                                  <button
+   189→                                    type="button"
+   190→+                                   aria-controls="radix-_R_aanandlb_"
+   191→-                                   aria-controls="radix-_R_19atindlb_"
+   192→                                    aria-expanded={false}
+   193→                                    data-state="closed"
+   194→                                    data-disabled={undefined}
+   195→                                    disabled={undefined}
+   196→                                    aria-disabled={undefined}
+   197→                                    data-orientation="vertical"
+   198→+                                   id="radix-_R_2anandlb_"
+   199→-                                   id="radix-_R_9atindlb_"
+   200→                                    data-slot="accordion-trigger"
+   201→                                    className={"focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 item..."}
+   202→                                    data-radix-collection-item=""
+   203→                                    onClick={function handleEvent}
+   204→                                    ref={function}
+   205→                                  >
+   206→                  <AccordionContent className="pb-6 leadi...">
+   207→                    <AccordionContent data-slot="accordion-..." className="data-[stat...">
+   208→                      <CollapsibleContent role="region" aria-labelledby="radix-_R_2..." data-orientation="vertical" ...>
+   209→                        <Presence present={false}>
+   210→                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_a..." hidden={true} ...>
+   211→                            <div
+   212→                              data-state="closed"
+   213→                              data-disabled={undefined}
+   214→+                             id="radix-_R_aanandlb_"
+   215→-                             id="radix-_R_19atindlb_"
+   216→                              hidden={true}
+   217→                              role="region"
+   218→+                             aria-labelledby="radix-_R_2anandlb_"
+   219→-                             aria-labelledby="radix-_R_9atindlb_"
+   220→                              data-orientation="vertical"
+   221→                              data-slot="accordion-content"
+   222→                              className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-..."
+   223→                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+   224→                              ref={function}
+   225→                            >
+   226→      ...
+   227→        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_2...">
+   228→          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+   229→            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_a..." open={false} ...>
+   230→              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+   231→                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" data-slot="accordion-..." ...>
+   232→                  ...
+   233→                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+   234→                      <AccordionTrigger data-slot="accordion-..." className={"focus-vi..."}>
+   235→                        <AccordionCollectionItemSlot scope={undefined}>
+   236→                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+   237→                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+   238→                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+   239→                                <Primitive.button type="button" aria-controls="radix-_R_a..." aria-expanded={false} ...>
+   240→                                  <button
+   241→                                    type="button"
+   242→+                                   aria-controls="radix-_R_aqnandlb_"
+   243→-                                   aria-controls="radix-_R_1batindlb_"
+   244→                                    aria-expanded={false}
+   245→                                    data-state="closed"
+   246→                                    data-disabled={undefined}
+   247→                                    disabled={undefined}
+   248→                                    aria-disabled={undefined}
+   249→                                    data-orientation="vertical"
+   250→+                                   id="radix-_R_2qnandlb_"
+   251→-                                   id="radix-_R_batindlb_"
+   252→                                    data-slot="accordion-trigger"
+   253→                                    className={"focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 item..."}
+   254→                                    data-radix-collection-item=""
+   255→                                    onClick={function handleEvent}
+   256→                                    ref={function}
+   257→                                  >
+   258→                  <AccordionContent className="pb-6 leadi...">
+   259→                    <AccordionContent data-slot="accordion-..." className="data-[stat...">
+   260→                      <CollapsibleContent role="region" aria-labelledby="radix-_R_2..." data-orientation="vertical" ...>
+   261→                        <Presence present={false}>
+   262→                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_a..." hidden={true} ...>
+   263→                            <div
+   264→                              data-state="closed"
+   265→                              data-disabled={undefined}
+   266→+                             id="radix-_R_aqnandlb_"
+   267→-                             id="radix-_R_1batindlb_"
+   268→                              hidden={true}
+   269→                              role="region"
+   270→+                             aria-labelledby="radix-_R_2qnandlb_"
+   271→-                             aria-labelledby="radix-_R_batindlb_"
+   272→                              data-orientation="vertical"
+   273→                              data-slot="accordion-content"
+   274→                              className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-..."
+   275→                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+   276→                              ref={function}
+   277→                            >
+   278→      ...
+   279→        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_3...">
+   280→          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+   281→            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_b..." open={false} ...>
+   282→              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+   283→                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" data-slot="accordion-..." ...>
+   284→                  ...
+   285→                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+   286→                      <AccordionTrigger data-slot="accordion-..." className={"focus-vi..."}>
+   287→                        <AccordionCollectionItemSlot scope={undefined}>
+   288→                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+   289→                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+   290→                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+   291→                                <Primitive.button type="button" aria-controls="radix-_R_b..." aria-expanded={false} ...>
+   292→                                  <button
+   293→                                    type="button"
+   294→+                                   aria-controls="radix-_R_banandlb_"
+   295→-                                   aria-controls="radix-_R_1datindlb_"
+   296→                                    aria-expanded={false}
+   297→                                    data-state="closed"
+   298→                                    data-disabled={undefined}
+   299→                                    disabled={undefined}
+   300→                                    aria-disabled={undefined}
+   301→                                    data-orientation="vertical"
+   302→+                                   id="radix-_R_3anandlb_"
+   303→-                                   id="radix-_R_datindlb_"
+   304→                                    data-slot="accordion-trigger"
+   305→                                    className={"focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 item..."}
+   306→                                    data-radix-collection-item=""
+   307→                                    onClick={function handleEvent}
+   308→                                    ref={function}
+   309→                                  >
+   310→                  <AccordionContent className="pb-6 leadi...">
+   311→                    <AccordionContent data-slot="accordion-..." className="data-[stat...">
+   312→                      <CollapsibleContent role="region" aria-labelledby="radix-_R_3..." data-orientation="vertical" ...>
+   313→                        <Presence present={false}>
+   314→                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_b..." hidden={true} ...>
+   315→                            <div
+   316→                              data-state="closed"
+   317→                              data-disabled={undefined}
+   318→+                             id="radix-_R_banandlb_"
+   319→-                             id="radix-_R_1datindlb_"
+   320→                              hidden={true}
+   321→                              role="region"
+   322→+                             aria-labelledby="radix-_R_3anandlb_"
+   323→-                             aria-labelledby="radix-_R_datindlb_"
+   324→                              data-orientation="vertical"
+   325→                              data-slot="accordion-content"
+   326→                              className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-..."
+   327→                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+   328→                              ref={function}
+   329→                            >
+   330→      ...
+   331→        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_3...">
+   332→          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+   333→            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_b..." open={false} ...>
+   334→              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+   335→                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" data-slot="accordion-..." ...>
+   336→                  ...
+   337→                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+   338→                      <AccordionTrigger data-slot="accordion-..." className={"focus-vi..."}>
+   339→                        <AccordionCollectionItemSlot scope={undefined}>
+   340→                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+   341→                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+   342→                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+   343→                                <Primitive.button type="button" aria-controls="radix-_R_b..." aria-expanded={false} ...>
+   344→                                  <button
+   345→                                    type="button"
+   346→+                                   aria-controls="radix-_R_bqnandlb_"
+   347→-                                   aria-controls="radix-_R_1fatindlb_"
+   348→                                    aria-expanded={false}
+   349→                                    data-state="closed"
+   350→                                    data-disabled={undefined}
+   351→                                    disabled={undefined}
+   352→                                    aria-disabled={undefined}
+   353→                                    data-orientation="vertical"
+   354→+                                   id="radix-_R_3qnandlb_"
+   355→-                                   id="radix-_R_fatindlb_"
+   356→                                    data-slot="accordion-trigger"
+   357→                                    className={"focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 item..."}
+   358→                                    data-radix-collection-item=""
+   359→                                    onClick={function handleEvent}
+   360→                                    ref={function}
+   361→                                  >
+   362→                  <AccordionContent className="pb-6 leadi...">
+   363→                    <AccordionContent data-slot="accordion-..." className="data-[stat...">
+   364→                      <CollapsibleContent role="region" aria-labelledby="radix-_R_3..." data-orientation="vertical" ...>
+   365→                        <Presence present={false}>
+   366→                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_b..." hidden={true} ...>
+   367→                            <div
+   368→                              data-state="closed"
+   369→                              data-disabled={undefined}
+   370→+                             id="radix-_R_bqnandlb_"
+   371→-                             id="radix-_R_1fatindlb_"
+   372→                              hidden={true}
+   373→                              role="region"
+   374→+                             aria-labelledby="radix-_R_3qnandlb_"
+   375→-                             aria-labelledby="radix-_R_fatindlb_"
+   376→                              data-orientation="vertical"
+   377→                              data-slot="accordion-content"
+   378→                              className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-..."
+   379→                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+   380→                              ref={function}
+   381→                            >
+   382→      ...
+   383→        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_4...">
+   384→          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+   385→            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_c..." open={false} ...>
+   386→              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+   387→                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" data-slot="accordion-..." ...>
+   388→                  ...
+   389→                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+   390→                      <AccordionTrigger data-slot="accordion-..." className={"focus-vi..."}>
+   391→                        <AccordionCollectionItemSlot scope={undefined}>
+   392→                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+   393→                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+   394→                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+   395→                                <Primitive.button type="button" aria-controls="radix-_R_c..." aria-expanded={false} ...>
+   396→                                  <button
+   397→                                    type="button"
+   398→+                                   aria-controls="radix-_R_canandlb_"
+   399→-                                   aria-controls="radix-_R_1hatindlb_"
+   400→                                    aria-expanded={false}
+   401→                                    data-state="closed"
+   402→                                    data-disabled={undefined}
+   403→                                    disabled={undefined}
+   404→                                    aria-disabled={undefined}
+   405→                                    data-orientation="vertical"
+   406→+                                   id="radix-_R_4anandlb_"
+   407→-                                   id="radix-_R_hatindlb_"
+   408→                                    data-slot="accordion-trigger"
+   409→                                    className={"focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 item..."}
+   410→                                    data-radix-collection-item=""
+   411→                                    onClick={function handleEvent}
+   412→                                    ref={function}
+   413→                                  >
+   414→                  <AccordionContent className="pb-6 leadi...">
+   415→                    <AccordionContent data-slot="accordion-..." className="data-[stat...">
+   416→                      <CollapsibleContent role="region" aria-labelledby="radix-_R_4..." data-orientation="vertical" ...>
+   417→                        <Presence present={false}>
+   418→                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_c..." hidden={true} ...>
+   419→                            <div
+   420→                              data-state="closed"
+   421→                              data-disabled={undefined}
+   422→+                             id="radix-_R_canandlb_"
+   423→-                             id="radix-_R_1hatindlb_"
+   424→                              hidden={true}
+   425→                              role="region"
+   426→+                             aria-labelledby="radix-_R_4anandlb_"
+   427→-                             aria-labelledby="radix-_R_hatindlb_"
+   428→                              data-orientation="vertical"
+   429→                              data-slot="accordion-content"
+   430→                              className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-..."
+   431→                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+   432→                              ref={function}
+   433→                            >
+   434→      ...
+   435→        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_4...">
+   436→          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+   437→            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_c..." open={false} ...>
+   438→              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+   439→                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" data-slot="accordion-..." ...>
+   440→                  ...
+   441→                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+   442→                      <AccordionTrigger data-slot="accordion-..." className={"focus-vi..."}>
+   443→                        <AccordionCollectionItemSlot scope={undefined}>
+   444→                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+   445→                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+   446→                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+   447→                                <Primitive.button type="button" aria-controls="radix-_R_c..." aria-expanded={false} ...>
+   448→                                  <button
+   449→                                    type="button"
+   450→+                                   aria-controls="radix-_R_cqnandlb_"
+   451→-                                   aria-controls="radix-_R_1jatindlb_"
+   452→                                    aria-expanded={false}
+   453→                                    data-state="closed"
+   454→                                    data-disabled={undefined}
+   455→                                    disabled={undefined}
+   456→                                    aria-disabled={undefined}
+   457→                                    data-orientation="vertical"
+   458→+                                   id="radix-_R_4qnandlb_"
+   459→-                                   id="radix-_R_jatindlb_"
+   460→                                    data-slot="accordion-trigger"
+   461→                                    className={"focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 item..."}
+   462→                                    data-radix-collection-item=""
+   463→                                    onClick={function handleEvent}
+   464→                                    ref={function}
+   465→                                  >
+   466→                  <AccordionContent className="pb-6 leadi...">
+   467→                    <AccordionContent data-slot="accordion-..." className="data-[stat...">
+   468→                      <CollapsibleContent role="region" aria-labelledby="radix-_R_4..." data-orientation="vertical" ...>
+   469→                        <Presence present={false}>
+   470→                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_c..." hidden={true} ...>
+   471→                            <div
+   472→                              data-state="closed"
+   473→                              data-disabled={undefined}
+   474→+                             id="radix-_R_cqnandlb_"
+   475→-                             id="radix-_R_1jatindlb_"
+   476→                              hidden={true}
+   477→                              role="region"
+   478→+                             aria-labelledby="radix-_R_4qnandlb_"
+   479→-                             aria-labelledby="radix-_R_jatindlb_"
+   480→                              data-orientation="vertical"
+   481→                              data-slot="accordion-content"
+   482→                              className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-..."
+   483→                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+   484→                              ref={function}
+   485→                            >
+   486→      ...
+   487→        <AccordionItemProvider scope={undefined} open={false} disabled={undefined} triggerId="radix-_R_5...">
+   488→          <Collapsible data-orientation="vertical" data-state="closed" __scopeCollapsible={{...}} ...>
+   489→            <CollapsibleProvider scope={{...}} disabled={undefined} contentId="radix-_R_d..." open={false} ...>
+   490→              <Primitive.div data-state="closed" data-disabled={undefined} data-orientation="vertical" ...>
+   491→                <div data-state="closed" data-disabled={undefined} data-orientation="vertical" data-slot="accordion-..." ...>
+   492→                  ...
+   493→                    <h3 data-orientation="vertical" data-state="closed" data-disabled={undefined} className="flex" ...>
+   494→                      <AccordionTrigger data-slot="accordion-..." className={"focus-vi..."}>
+   495→                        <AccordionCollectionItemSlot scope={undefined}>
+   496→                          <AccordionCollectionItemSlot.Slot data-radix-collection-item="" ref={function}>
+   497→                            <AccordionCollectionItemSlot.SlotClone data-radix-collection-item="" ref={function}>
+   498→                              <CollapsibleTrigger aria-disabled={undefined} data-orientation="vertical" ...>
+   499→                                <Primitive.button type="button" aria-controls="radix-_R_d..." aria-expanded={false} ...>
+   500→                                  <button
+   501→                                    type="button"
+   502→+                                   aria-controls="radix-_R_danandlb_"
+   503→-                                   aria-controls="radix-_R_1latindlb_"
+   504→                                    aria-expanded={false}
+   505→                                    data-state="closed"
+   506→                                    data-disabled={undefined}
+   507→                                    disabled={undefined}
+   508→                                    aria-disabled={undefined}
+   509→                                    data-orientation="vertical"
+   510→+                                   id="radix-_R_5anandlb_"
+   511→-                                   id="radix-_R_latindlb_"
+   512→                                    data-slot="accordion-trigger"
+   513→                                    className={"focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 item..."}
+   514→                                    data-radix-collection-item=""
+   515→                                    onClick={function handleEvent}
+   516→                                    ref={function}
+   517→                                  >
+   518→                  <AccordionContent className="pb-6 leadi...">
+   519→                    <AccordionContent data-slot="accordion-..." className="data-[stat...">
+   520→                      <CollapsibleContent role="region" aria-labelledby="radix-_R_5..." data-orientation="vertical" ...>
+   521→                        <Presence present={false}>
+   522→                          <Primitive.div data-state="closed" data-disabled={undefined} id="radix-_R_d..." hidden={true} ...>
+   523→                            <div
+   524→                              data-state="closed"
+   525→                              data-disabled={undefined}
+   526→+                             id="radix-_R_danandlb_"
+   527→-                             id="radix-_R_1latindlb_"
+   528→                              hidden={true}
+   529→                              role="region"
+   530→+                             aria-labelledby="radix-_R_5anandlb_"
+   531→-                             aria-labelledby="radix-_R_latindlb_"
+   532→                              data-orientation="vertical"
+   533→                              data-slot="accordion-content"
+   534→                              className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-..."
+   535→                              style={{--radix-collapsible-content-height:undefined,--radix-collapsible-content-width:undefined, ...}}
+   536→                              ref={function}
+   537→                            >
+   538→src/components/ui/accordion.tsx (35:7) @ AccordionTrigger
+   539→
+   540→
+   541→  33 |   return (
+   542→  34 |     <AccordionPrimitive.Header className="flex">
+   543→> 35 |       <AccordionPrimitive.Trigger
+   544→     |       ^
+   545→  36 |         data-slot="accordion-trigger"
+   546→  37 |         className={cn(
+   547→  38 |           "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180",
+   548→Call Stack
+   549→28
+   550→
+   551→Show 22 ignore-listed frame(s)
+   552→button
+   553→<anonymous>
+   554→AccordionTrigger
+   555→src/components/ui/accordion.tsx (35:7)
+   556→<unknown>
+   557→src/components/digiman/faq.tsx (57:17)
+   558→Array.map
+   559→<anonymous>
+   560→Faq
+   561→src/components/digiman/faq.tsx (51:19)
+   562→Home
+   563→src/app/page.tsx (81:11)

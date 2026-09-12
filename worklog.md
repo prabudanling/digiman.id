@@ -104,3 +104,20 @@ Stage Summary:
 - Website kini 10 bahasa (id en zh es hi ar fr pt ru ja) dengan fallback berlapis ke Bahasa Indonesia
 - 29 layanan resmi dalam 8 kategori + 4 lokasi kantor dikelola penuh dari admin panel
 - Semua string UI + konten layanan/FAQ/testimoni + 7 lapis langit + proses + chips pakar terjemahan lengkap
+
+---
+Task ID: 6
+Agent: Super Z (main agent)
+Task: Perbaikan error hydration React pada halaman publik — "aria-controls/id didn't match" dari Radix Accordion di section FAQ (laporan user via console error paste).
+
+Work Log:
+- Analisis file error user: semua mismatch HANYA pada id generatif Radix (radix-_R_3atindlb_ vs radix-_R_qnandlb_) di src/components/digiman/faq.tsx -> useId server vs client menyimpang; konten teks identik (bukan masalah data/locale)
+- Audit menyeluruh: LocaleProvider aman hydration (render pertama selalu "id", sinkron via useEffect microtask); Math.random hanya di canvas particle (client-only); toLocaleString/getFullYear hanya beda teks; ui/accordion dipakai TIDAK LAIN selain faq.tsx; LanguageSwitcher & semua komponen digiman custom/framer (tanpa Radix) — FAQ satu-satunya konsumen Radix yang ter-SSR di halaman publik
+- Solusi permanen: tulis ulang faq.tsx dgn accordion custom bebas-useId — id deterministik eksplisit (faq-trigger-N / faq-panel-N) identik di server & client (mustahil mismatch), animasi tinggi via CSS grid-template-rows 0fr->1fr cubic-bezier + visibility transition (delay otomatis), chevron rotate 500ms, border emas saat aktif, single-open state, a11y penuh (h3 > button aria-expanded/aria-controls, panel role=region aria-labelledby, focus-visible ring, motion-reduce)
+- Bonus SEO: JSON-LD schema.org FAQPage (10 pertanyaan dari DB, escape \\u003c) ter-render server-side
+- Verifikasi: lint bersih; SSR HTML 0 radix-id + 10 faq-trigger + JSON-LD ada; Agent Browser: console tanpa error hydration, item buka/tutup benar (expanded true/false, grid 1fr/0fr, panel 119px), single-open OK, keyboard Enter OK, RTL Arab mirror penuh (dir=rtl + konten Arab), mobile 390px rapi; dev.log hanya query prisma normal
+
+Stage Summary:
+- Halaman publik kini 100% bebas useId Radix -> kelas error hydration "id didn't match" hilang permanen di semua environment (termasuk ekstensi browser/auto-translate)
+- FAQ accordion custom: visual identik (glass card, nomor emas, chevron), animasi lebih halus, SEO bertambah FAQPage rich-snippet
+- Screenshot verifikasi: download/verify-faq-open.png, verify-faq-rtl.png, verify-faq-mobile.png
