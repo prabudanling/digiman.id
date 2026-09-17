@@ -388,3 +388,21 @@ body {
   background: rgba(242, 193, 78, 0.85);
   color: #050d0a;
 }
+
+/* ============================================================
+   AKSESIBILITAS — hormati prefers-reduced-motion
+   Matikan semua animasi/transition CSS (marquee, aurora, twinkle,
+   shimmer, floaty, pulse-ring, dll) bagi pengguna yang memilih
+   "kurangi gerakan" di OS-nya. Animasi framer-motion ditangani
+   MotionConfig reducedMotion="user" di motion-provider.tsx.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

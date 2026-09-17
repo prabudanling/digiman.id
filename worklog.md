@@ -121,3 +121,24 @@ Stage Summary:
 - Halaman publik kini 100% bebas useId Radix -> kelas error hydration "id didn't match" hilang permanen di semua environment (termasuk ekstensi browser/auto-translate)
 - FAQ accordion custom: visual identik (glass card, nomor emas, chevron), animasi lebih halus, SEO bertambah FAQPage rich-snippet
 - Screenshot verifikasi: download/verify-faq-open.png, verify-faq-rtl.png, verify-faq-mobile.png
+
+---
+Task ID: 7
+Agent: Super Z (main agent)
+Task: Audit to-do list (anti terlewat), audit full animasi, dan kesiapan full di shared hosting.
+
+Work Log:
+- Audit to-do: WA 6281333397223 terpasang 37x, 4 kantor (Andalusia/Muararajeun/Guntur Village/Arjamukti) tampil, NIB+AHU di footer, 29 layanan 9 tab kategori, 8 locale JSON + id/en manual = 10 bahasa, JSON-LD FAQPage live — SEMUA item task lama terverifikasi live. Satu-satunya yang menunggu: data foto direksi/komisaris dari user.
+- Shared hosting: next.config sudah output standalone; MASALAH DITEMUKAN: .env DATABASE_URL path absolut mesin (file:/home/z/...) pasti salah di hosting -> db.ts ditulis ulang dgn resolusi runtime berlapis (env jika file ada -> cwd/db/custom.db -> cwd/custom.db -> ../db/custom.db, semua di-absolutkan) + log prisma error-only di produksi
+- Aksesibilitas animasi: MotionProvider (framer MotionConfig reducedMotion="user") membungkus seluruh halaman publik + media query prefers-reduced-motion di globals.css utk semua keyframe CSS (marquee/aurora/shimmer/dll)
+- Build produksi: next build sukses (semua route + proxy), standalone diuji dgn NODE (bukan bun) TANPA DATABASE_URL -> fallback path bekerja: konten DB tampil, login admin OK, /api/admin/stats OK (29 layanan, health 78)
+- kendala sandbox: background server ter-reap antar call -> solusi setsid -f (fork paksa), server persisten
+- Audit animasi di build PRODUKSI via browser (1440x900): hero partikel+word-reveal (tertangkap mid-reveal), services 3D-tilt+9 tab, seven-heavens sticky journey (4/7 indikator), process timeline, CTA+footer 4 kantor+legal — semua jalan, console 0 error/hydration
+- Paket deploy: PANDUAN-HOSTING.md (7 bab: syarat Node 20.9+, langkah cPanel Setup Node.js App startup file=server.js, admin, backup SQLite, env opsional, troubleshooting, update) + scripts/make-deploy-package.sh (kurasi runtime, buang junk skills/download/src/scripts hasil tracing) -> download/digiman-deploy-20260917.zip (78MB)
+- Uji integritas paket: extract ke /tmp/deploy-test, jalankan node server.js dari sana (path project tak ada) -> 200, WA 37x, kantor OK, faq-trigger 20, login admin OK; lint bersih; dev server dikembalikan (200)
+
+Stage Summary:
+- Website TERBUKTI berjalan penuh di kondisi shared hosting: standalone node tanpa env, DB fallback portable, admin + publik + semua animasi berfungsi
+- Deliverable: download/digiman-deploy-20260917.zip + PANDUAN-HOSTING.md (juga ikut di dalam zip) — cukup upload ke cPanel yang punya Setup Node.js App
+- Animasi kini aksesibel (reduced-motion) tanpa mengurangi efek bagi pengguna umum
+- Menunggu dari user: data foto/nama direksi & komisaris untuk section Struktur

@@ -19,6 +19,7 @@ import Offices from "@/components/digiman/offices";
 import Footer from "@/components/digiman/footer";
 import FloatingWidgets from "@/components/digiman/floating-widgets";
 import { LocaleProvider } from "@/components/i18n/locale-provider";
+import MotionProvider from "@/components/digiman/motion-provider";
 
 // Konten dikelola via Panel Admin — selalu ambil data terbaru
 export const dynamic = "force-dynamic";
@@ -51,6 +52,7 @@ export default async function Home() {
 
   return (
     <LocaleProvider>
+      <MotionProvider>
       <div className="relative flex min-h-screen flex-col bg-[#050d0a]">
         <Preloader logoUrl={s.logoUrl} />
         <ScrollProgress />
@@ -101,6 +103,7 @@ export default async function Home() {
         />
         <FloatingWidgets waNumber={s.waNumber} />
       </div>
+      </MotionProvider>
     </LocaleProvider>
   );
 }
