@@ -28,6 +28,23 @@ import {
   HeartHandshake,
   Cpu,
   BarChart3,
+  FileBadge,
+  Store,
+  Handshake,
+  Network,
+  MapPin,
+  FileSignature,
+  Copyright,
+  Award,
+  Medal,
+  Receipt,
+  Calculator,
+  HeartPulse,
+  Plane,
+  FileText,
+  Archive,
+  MonitorSmartphone,
+  Sparkles,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
