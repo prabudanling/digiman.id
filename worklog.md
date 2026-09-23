@@ -179,3 +179,22 @@ Stage Summary:
 - Panel admin super lengkap TERVERIFIKASI E2E siap diserahkan ke PBB: 16 halaman, RBAC 3 peran, Command Palette, backup/restore, audit log, SEO center, section layout manager
 - 1 bug dihaltakan (import ikon layanan) — semua halaman kini 100% sehat
 - Preview: https://preview-ce6b8baf-a228-40f7-ab59-67111ef43777.space-z.ai/admin/login (admin / digiman2025)
+
+---
+Task ID: 10
+Agent: Super Z (main agent)
+Task: Tampilkan screenshot panel admin di chat + pastikan paket shared hosting berisi kode terbaru & jalan tanpa setup.
+
+Work Log:
+- Cek mekanisme upload media: tersimpan sebagai dataUrl base64 DI DALAM SQLite (bukan file disk) -> paling aman utk shared hosting, ikut backup JSON, tidak butuh folder writable
+- Build produksi ulang dgn seluruh kode Task 8+9 (bun run build sukses, semua route ter-generate)
+- Rakit ulang paket deploy: download/digiman-deploy-20260923.zip (79M, sebelumnya 20260917 sudah usang -- tanpa fitur admin mega)
+- Uji integritas REAL: extract ke /tmp/deploy-final-test, jalankan node server.js dengan env KOSONG (env -i) -> HOME 200 (konten DB tampil, WA 6281333397223 ada), /admin/login 200, guard stats 401 tanpa login (benar), POST login -> JWT ok
+- Kesimpulan hosting: upload zip -> extract -> cPanel Setup Node.js App (startup server.js) -> jalan; TANPA npm install, TANPA env, TANPA setup DB
+- Isi paket: server.js, .next, node_modules (hasil tracing), public, db/custom.db, prisma/schema, PANDUAN-HOSTING.md, BACA-DULU.txt, .env.example
+- Dev server di-restart (pkill test sempat mematikan) -> 200 kembali
+
+Stage Summary:
+- Paket deploy FINAL + TERKINI: download/digiman-deploy-20260923.zip (79M) terbukti jalan mandiri di kondisi bersih -- siap upload shared hosting
+- Satu-satunya "setup" wajib di hosting: 1x buat Node.js App di cPanel (startup file server.js) -- selain itu zero config
+- Akun admin bawaan ikut dalam DB: admin/digiman2025 (peringatan ganti sandi ada di BACA-DULU.txt)
