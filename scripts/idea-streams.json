@@ -1,0 +1,83 @@
+[
+  {
+    "kode": "A",
+    "judul": "Arus A — Penggandaan Layanan Inti",
+    "intro": "Arus ini memanfaatkan mesin produksi yang sudah berjalan: tim legal, relasi notaris, dan proses tujuh hari yang teruji. Tidak ada biaya tetap baru yang berarti; yang diubah hanyalah cara paket dijual dan cara harga dibentuk. Karena itu arus ini adalah sumber uang tercepat: bisa dieksekusi dalam hitungan hari dan langsung menaikkan nilai rata-rata transaksi setiap klien baru maupun klien lama.",
+    "closing": "Kombinasi delapan ide di atas dapat dieksekusi tanpa menambah satu pun pegawai inti, cukup dengan melatih staf penjualan pada skrip penawaran paket dan memperbarui halaman layanan di panel admin. Estimasi dampak: nilai transaksi rata-rata naik 30 sampai 60 persen dari penjualan silang add-on dan paket berjenjang.",
+    "ide": [
+      ["A1", "Paket Legalitas Berjenjang (Starter / Bisnis / Korporat)", "Bundel akta pendirian + NIB + NPWP + merek dalam tiga tingkatan harga. Klien tidak lagi memilih item satu-satu; naik ke paket lebih tinggi menjadi keputusan mudah. Margin tumbuh dari bundling, bukan dari menaikkan harga satuan.", "Sangat siap"],
+      ["A2", "Jaminan 7 Hari atau Uang Kembali", "Klaim garansi atas proses tujuh hari yang sudah terbukti. Menjadi alasan premium untuk mematok harga lebih tinggi daripada pesaing dan memangkas keraguan klien di titik keputusan.", "Sangat siap"],
+      ["A3", "Layanan Kilat 48 Jam (Rush Fee)", "Biaya tambahan 30 sampai 50 persen untuk klien yang butuh dokumen mendesak, misalnya mengikuti batas tender atau kontrak kerja sama. Kapasitas produksi yang sama menghasilkan pendapatan lebih besar.", "Sangat siap"],
+      ["A4", "Paket PT PMA untuk Investor Asing", "Pendirian badan usaha asing dengan biaya jasa jauh di atas rata-rata pasar domestik, dilengkapi terjemahan dokumen dan konsultasi bahasa Inggris. Satu klien PMA bernilai beberapa klien lokal.", "Siap (perlu materi Inggris)"],
+      ["A5", "Add-on Merek, Halal, dan Izin Khusus di Setiap Transaksi", "Setiap penyelesaian pendirian badan usaha otomatis ditawari pendaftaran merek, sertifikasi halal, dan izin sektor. Titik jual paling hangat adalah ketika klien baru saja merasakan hasil yang baik.", "Sangat siap"],
+      ["A6", "Domisili Usaha & Virtual Office Premium SCBD", "Menjual alamat kantor representatif SCBD (Gedung Bursa Efek Indonesia) sebagai paket domisili bisnis: alamat prestisius untuk surat menyurat, pendaftaran aplikasi, dan citra perusahaan. Branding SCBD menjadi produk, bukan sekadar kantor.", "Siap (perjanjian dengan penyedia VA)"],
+      ["A7", "Perpanjangan & Restrukturisasi Berkala", "Merek diperpanjang setiap sepuluh tahun, sertifikat halal dijaga berkala, NIB berbasis risiko wajib dipantau. Menawarkan jasa penjagaan dokumen mengubah transaksi sekali jadi aliran berulang.", "Sangat siap"],
+      ["A8", "Langganan Kepatuhan Tahunan", "Paket tahunan yang mencakup pemantauan kewajiban OSS, pelaporan, dan pembaruan dokumen. Klien membayar lebih dulu, DIGIMAN mengurus sisanya; pendapatan datang setiap tahun tanpa mencari klien baru.", "Siap (perlu ceklis kepatuhan)"]
+    ]
+  },
+  {
+    "kode": "B",
+    "judul": "Arus B — Langganan & Retainer (Uang Berulang)",
+    "intro": "Pendapatan paling sehat bukan yang besar, melainkan yang datang berulang. Arus ini mengubah hubungan sekali-jadi menjadi langganan: klien membayar setiap bulan atau setiap tahun untuk rasa tenang bahwa seluruh urusan legalitasnya dijaga. Basis 2.500 klien yang sudah ada adalah pasar siap pakai; yang dibutuhkan hanyalah tawaran retainer yang jelas dan pengingat otomatis melalui WhatsApp.",
+    "closing": "Satu dari sepuluh klien lama yang mengambil retainer termurah sudah menciptakan lantai pendapatan bulanan yang stabil sebelum satu klien baru pun datang. Eksekusi dimulai dari pesan WhatsApp tersegmentasi ke basis klien lama, bukan dari pembangunan sistem baru.",
+    "ide": [
+      ["B9", "Dewan Legalitas Langganan (3 Tingkat)", "Retainer bulanan berisi konsultasi hukum bisnis, peninjauan kontrak, dan prioritas antrean. Disinggung sebagai pengganti biaya lawyer permanen yang jauh lebih mahal bagi UMKM dan perusahaan menengah.", "Siap (perlu SLA layanan)"],
+      ["B10", "Membership Klien Seumur Hidup", "Kartu anggota berbayar tahunan: diskon semua layanan, perpanjangan merek dan halal diurus otomatis, undangan acara tertutup. Pendapatan tahunan diterima di muka, loyalitas tertanam.", "Siap"],
+      ["B11", "Layanan Pengingat Jatuh Tempo Izin", "Sistem mengingatkan klien sebelum merek, halal, atau izin lainnya kedaluwarsa, lengkap dengan tawaran pengurusan sekali klik. Biaya langganan kecil per tahun, tetapi tingkat retensi sangat tinggi dan membuka jualan lanjutan.", "Siap (cron + WA template)"],
+      ["B12", "Bundling Payroll untuk Klien PT Baru", "Kemitraan dengan penyedia payroll: setiap klien yang diarahkan menghasilkan komisi berulang bulanan. Klien baru PT hampir selalu membutuhkannya dalam 30 hari pertama.", "Siap (cari mitra payroll)"],
+      ["B13", "Akuntansi & Pajak Bulanan (Revenue Share)", "Aliansi dengan kantor jasa akuntansi: DIGIMAN membawa klien, mitra mengerjakan, pendapatan dibagi. Melengkapi siklus hidup klien dari pendirian hingga kepatuhan bulanan.", "Siap (cari mitra akuntan)"],
+      ["B14", "Program Perawatan Website Klien Digitalisasi", "Klien jasa pembuatan website diberi tawaran pemeliharaan bulanan: update konten, cadangan, pemantauan. Panel admin yang sudah ada membuat pekerjaan ini ringan bagi tim.", "Sangat siap"]
+    ]
+  },
+  {
+    "kode": "C",
+    "judul": "Arus C — Produk Digital & Skala Tanpa Batas",
+    "intro": "Arus ini menjual pengetahuan dalam bentuk produk yang dibuat sekali dan dijual berkali-kali. Biaya produksi marginalnya mendekati nol, sehingga hampir seluruh harga jual menjadi margin. Aset yang dibutuhkan sudah ada: proses terdokumentasi dari 2.500 lebih penyelesaian klien, 46 dewan pakar sebagai penyusun materi, dan website dengan panel admin sebagai etalase distribusi.",
+    "closing": "Produk digital juga berfungsi sebagai corong penjualan: pembeli panduan murah hari ini adalah klien jasa mahal tahun depan. Mulailah dari template dokumen dan e-book karena bisa rilis dalam satu minggu.",
+    "ide": [
+      ["C15", "Template Dokumen Legal Siap Pakai", "Perjanjian kerja sama, NDA, kontrak jual beli usaha, surat perjanjian kemitraan — dibuat pakar, dijual sebagai file siap isi. Harga pasaran umumnya 99 ribu hingga 499 ribu per dokumen dengan margin hampir penuh.", "Sangat siap"],
+      ["C16", "E-Book Panduan Premium", "Panduan ilustrasi langkah demi langkah: Pendirian PT 2026, Sertifikasi Halal dalam 30 Hari, Panduan Merek Tanpa Binguang. Dijual langsung di website, menjadi bukti keahlian sekaligus produk.", "Sangat siap"],
+      ["C17", "Kursus Online Bisnis Legal 30 Hari", "Kelas video terstruktur dengan kelompok diskusi. Harga jual kelas bisnis di Indonesia umumnya ratusan ribu hingga jutaan; sekali direkam, dijual terus-menerus.", "Siap (perlu rekaman)"],
+      ["C18", "Webinar Berbayar Bulanan & Pelatihan Korporat", "Sesi langsung tematik tiap bulan (tunjuk pakar) plus paket pelatihan khusus untuk perusahaan. Webinar menjadi mesin penjumlah prospek sekaligus pendapatan tiket.", "Sangat siap"],
+      ["C19", "Kalkulator Legalitas Online (Freemium)", "Alat interaktif di website: pilih jenis usaha, keluar daftar izin yang wajib dan estimasi biaya. Versi gratis menarik pengunjung; versi lengkap berbayar sekaligus corong lead jasa.", "Siap (website sudah siap)"],
+      ["C20", "Kuis Cek Kesiapan Legalitas", "Kuis lima menit dengan hasil otomatis via WhatsApp; selesai kuis, sistem menawarkan konsultasi. Setiap pemeriksa adalah prospek hangat dengan data kebutuhan yang sudah jelas.", "Sangat siap"]
+    ]
+  },
+  {
+    "kode": "D",
+    "judul": "Arus D — Komisi, Kemitraan & Reseller",
+    "intro": "DIGIMAN tidak harus menjual sendiri untuk mendapat uang dari setiap penjualan. Arus ini membangun jaringan tangan yang menjualkan layanan inti dengan sistem komisi: akuntan, agen properti, konsultan pajak, komunitas UMKM, bahkan klien yang puas. Modal utamanya hanyalah materi pemasaran dan dasbor pelacakan komisi sederhana.",
+    "closing": "Jaringan reseller juga memperluas jangkauan geografis tanpa membuka kantor baru: setiap mitra adalah etalase DIGIMAN di kotanya masing-masing, dan Representative Office SCBD menjadi alamat resmi yang meyakinkan mitra besar.",
+    "ide": [
+      ["D21", "Program Afiliasi 10–20%", "Akuntan, notaris mitra, dan agen pemasaran mendaftar sebagai afiliasi; setiap klien yang mereka bawa menghasilkan komisi. Terlacak dengan kode rujukan sederhana di website.", "Sangat siap"],
+      ["D22", "Referral Bank & Fintech", "Klien PT baru wajib membuka rekening korporasi; kerja sama dengan bank menghasilkan komisi rujukan dua arah. Bank mendapat nasabah baru, DIGIMAN mendapat aliran komisi.", "Siap (pendekatan mitra bank)"],
+      ["D23", "White-Label untuk Agensi & Konsultan", "Agensi digital dan konsultan bisnis menjual legalitas dengan merek mereka sendiri, DIGIMAN mengerjakan di belakang dengan harga grosir. Seluruh pasar mitra terbuka tanpa konflik merek.", "Sangat siap"],
+      ["D24", "Kemitraan Asuransi Usaha Kecil", "Klien yang baru sah dan berdiri membutuhkan proteksi; komisi rujukan asuransi menjadi tambahan alami di ujung alur layanan.", "Siap"],
+      ["D25", "MoU Komunitas UMKM, Inkubator & Kampus", "Mitra komunitas mendapat potongan khusus untuk anggotanya, DIGIMAN mendapat aliran prospek teratur. Satu perjanjian kerja sama = ratusan calon klien per tahun.", "Sangat siap"]
+    ]
+  },
+  {
+    "kode": "E",
+    "judul": "Arus E — Teknologi & SaaS (Aset Jangka Panjang)",
+    "intro": "Arus ini membangun produk teknologi yang menjadi aset permanen perusahaan: berjalan 24 jam, melayani ribuan klien sekaligus, dan bernilai jual sangat tinggi bila suatu saat dibawa ke investor. Modal utamanya sudah dimiliki: aplikasi Next.js dengan panel admin penuh, database terpusat, dan integrasi WhatsApp yang hidup. Setiap produk di arus ini dapat dibangun bertahap di atas fondasi yang sama.",
+    "closing": "Urutan yang disarankan: chatbot dulu karena paling murah dan langsung menghasilkan lead, portal klien kedua karena mengunci retensi, marketplace dan API ketika volume klien sudah besar. Nama Grand Design by Gunara dapat menjadi payung merek untuk seluruh lini produk ini.",
+    "ide": [
+      ["E26", "Chatbot AI WhatsApp 24 Jam", "Robot percakapan yang menjawab pertanyaan legalitas, menghitung estimasi biaya, dan mengambil data lead langsung ke WhatsApp bisnis. Tidak ada prospek yang hilang di luar jam kantor; biaya operasional nyaris nol.", "Sangat siap (fondasi tersedia)"],
+      ["E27", "Portal LegalTech Klien (Dashboard Legalitas)", "Klien masuk ke dasbor pribadi: status seluruh izin, jatuh tempo, dokumen siap unduh, pengajuan layanan satu klik. Langganan bulanan 99 ribu hingga 499 ribu; retensi melonjak karena datanya tinggal di dalam.", "Siap (bangun di admin panel)"],
+      ["E28", "Marketplace Jasa Legalitas", "Platform yang menghubungkan pencari izin dengan notaris dan konsultan terverifikasi; DIGIMAN mengambil potongan 10 sampai 15 persen per transaksi. Membutuhkan volume, tetapi nilainya eksponensial.", "Tahap lanjut"],
+      ["E29", "API Pemeriksaan Legalitas B2B", "Fintech, marketplace, dan platform pinjaman membutuhkan verifikasi legalitas mitra usaha secara otomatis; DIGIMAN menjual akses API per pencarian. Satu kontrak B2B bernilai puluhan transaksi retail.", "Tahap lanjut"]
+    ]
+  },
+  {
+    "kode": "F",
+    "judul": "Arus F — Konten, Komunitas & Merek Pribadi",
+    "intro": "Arus ini menumbuhkan aset yang tidak terlihat di neraca tetapi paling tahan lama: otoritas nama. Gugun Gunara dan kerangka Grand Design by Gunara dibesarkan menjadi merek pribadi yang dikenali pasar, sementara Representative Office SCBD memberi panggung fisik yang sepadan. Otoritas menurunkan biaya penjualan untuk semua arus lainnya: orang datang mencari DIGIMAN, bukan diburu.",
+    "closing": "Konten juga memelihara jejak digital abadi yang telah ditanam: setiap video, artikel, dan peristiwa menambah entri yang dibaca mesin pencari atas nama Gugun Gunara, TOP Konsultan, dan DIGIMAN.ID. Pemasaran dan arsip abadi berjalan dalam satu gerakan yang sama.",
+    "ide": [
+      ["F30", "Kanal Video Legalitas Bisnis (YouTube / TikTok)", "Konten pendek menjawab pertanyaan paling dicari: berapa biaya PT, apakah CV bisa naik kelas PT, gimana mendaftar halal. Monetisasi dari iklan, sponsor, dan corong konsultasi berbayar; kamera dan skrip cukup dari tim internal.", "Sangat siap"],
+      ["F31", "Klub Pengusaha Legal (Komunitas Berbayar)", "Grup tertutup dengan pertemuan bulanan, kelas mini, dan jaringan sesama pengusaha. Iuran keanggotaan berulang; anggota adalah calon klien hangat yang saling merekomendasikan.", "Siap"],
+      ["F32", "Grand Design Summit di SCBD", "Konferensi tahunan bertaraf nasional bertajuk transformasi legalitas-digital, bertempat di lingkungan SCBD. Pendapatan dari tiket, sponsor bank dan vendor teknologi, serta liputan media yang mengukuhkan otoritas.", "Siap (rencana 6 bulan)"],
+      ["F33", "Penghargaan Tahunan UMKM Pilihan", "Ajang apresiasi tahunan untuk UMKM paling tertata legalitasnya; sponsor mendatar biaya, pemenang menjadi studi kasus konten, seluruh peserta menjadi prospek.", "Siap (gabung dengan Summit)"]
+    ]
+  }
+]

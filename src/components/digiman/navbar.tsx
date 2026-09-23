@@ -18,6 +18,7 @@ export default function Navbar({ logoUrl }: { logoUrl?: string | null }) {
     { href: "#beranda", label: dict.nav.home },
     { href: "#tujuh-langit", label: dict.nav.seven },
     { href: "#layanan", label: dict.nav.services },
+    { href: "#paket", label: dict.nav.paket },
     { href: "#struktur", label: dict.nav.structure },
     { href: "#proses", label: dict.nav.process },
     { href: "#testimoni", label: dict.nav.testimonials },

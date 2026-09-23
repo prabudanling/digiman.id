@@ -1,3 +1,12 @@
+# ============================================================
+# DIGIMAN.ID — robots.txt
+# Dikelola oleh PT Digital Bisnis Manajemen
+# Pendiri & Direktur Utama: Gugun Gunara
+# Konstelasi digital: TOP Konsultan (https://topkonsultan.com)
+#   · Grand Design by Gunara · Muhammad Lutfi Azmi
+# Situs utama: https://digiman.id
+# ============================================================
+
 User-agent: Googlebot
 Allow: /
 
@@ -12,3 +21,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://digiman.id/sitemap.xml

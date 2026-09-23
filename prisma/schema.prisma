@@ -74,6 +74,12 @@ model SiteSetting {
   headScripts            String  @default("") // kode analytics/pixel custom (GA, GTM, Meta Pixel)
   contactFormEnabled     Boolean @default(true) // tampilkan formulir konsultasi di beranda
 
+  // --- Legalitas perusahaan (dari dokumen asli: SK Kemenkumham, NIB OSS, NPWP) ---
+  skNumber    String @default("AHU-059566.AH.01.30.Tahun 2022") // Sertifikat Pendaftaran Pendirian Perseroan Perorangan
+  nibNumber   String @default("2612220035584") // Nomor Induk Berusaha (Perizinan Berusaha Berbasis Risiko)
+  npwpNumber  String @default("62.239.729.7-423.000") // NPWP perusahaan (KPP Pratama Bandung Cibeunying)
+  established String @default("26 Desember 2022") // tanggal terbit SK / berbadan hukum
+
   // --- Info tambahan & sosial media ---
   hours     String @default("Senin–Jumat 09.00–17.00 WIB")
   instagram String @default("")

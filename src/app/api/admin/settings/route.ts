@@ -66,6 +66,10 @@ export async function PUT(req: NextRequest) {
       tiktok: cleanStr(body.tiktok, 300),
       facebook: cleanStr(body.facebook, 300),
       youtube: cleanStr(body.youtube, 300),
+      skNumber: cleanStr(body.skNumber, 80),
+      nibNumber: cleanStr(body.nibNumber, 40),
+      npwpNumber: cleanStr(body.npwpNumber, 40),
+      established: cleanStr(body.established, 60),
       ...(body.logoClear === true ? { logoUrl: null } : logoUrl ? { logoUrl } : {}),
       ...(body.ogImageClear === true ? { ogImage: null } : ogImage ? { ogImage } : {}),
     };

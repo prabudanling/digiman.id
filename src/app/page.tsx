@@ -9,6 +9,7 @@ import Marquee from "@/components/digiman/marquee";
 import Stats from "@/components/digiman/stats";
 import SevenHeavens from "@/components/digiman/seven-heavens";
 import Services from "@/components/digiman/services";
+import Paket from "@/components/digiman/paket";
 import WhyUs from "@/components/digiman/why-us";
 import TeamStructure from "@/components/digiman/team-structure";
 import Process from "@/components/digiman/process";
@@ -71,6 +72,7 @@ export default async function Home() {
     ),
     "seven-heavens": <SevenHeavens />,
     services: <Services items={data.services} waNumber={s.waNumber} />,
+    paket: <Paket waNumber={s.waNumber} />,
     "why-us": <WhyUs />,
     team: <TeamStructure members={data.team} />,
     offices: (
@@ -112,6 +114,10 @@ export default async function Home() {
           instagram={s.instagram}
           linkedin={s.linkedin}
           tiktok={s.tiktok}
+          skNumber={s.skNumber}
+          nibNumber={s.nibNumber}
+          npwpNumber={s.npwpNumber}
+          established={s.established}
           offices={data.offices}
         />
         <FloatingWidgets waNumber={s.waNumber} />

@@ -32,6 +32,10 @@ export interface SiteSettingsData {
   googleSiteVerification: string;
   headScripts: string;
   contactFormEnabled: boolean;
+  skNumber: string;
+  nibNumber: string;
+  npwpNumber: string;
+  established: string;
 }
 
 export interface ServiceItem {
@@ -98,14 +102,15 @@ export const DEFAULT_SECTIONS: SectionRow[] = [
   { key: "stats", label: "Statistik", enabled: true, order: 2 },
   { key: "seven-heavens", label: "7 Lapis Langit", enabled: true, order: 3 },
   { key: "services", label: "Layanan", enabled: true, order: 4 },
-  { key: "why-us", label: "Mengapa Kami", enabled: true, order: 5 },
-  { key: "team", label: "Struktur Perusahaan", enabled: true, order: 6 },
-  { key: "offices", label: "Kantor & Cabang", enabled: true, order: 7 },
-  { key: "process", label: "Proses Kerja", enabled: true, order: 8 },
-  { key: "testimonials", label: "Testimoni", enabled: true, order: 9 },
-  { key: "faq", label: "FAQ", enabled: true, order: 10 },
-  { key: "cta", label: "Ajakan Konsultasi", enabled: true, order: 11 },
-  { key: "contact-form", label: "Formulir Konsultasi", enabled: true, order: 12 },
+  { key: "paket", label: "Paket & Harga", enabled: true, order: 5 },
+  { key: "why-us", label: "Mengapa Kami", enabled: true, order: 6 },
+  { key: "team", label: "Struktur Perusahaan", enabled: true, order: 7 },
+  { key: "offices", label: "Kantor & Cabang", enabled: true, order: 8 },
+  { key: "process", label: "Proses Kerja", enabled: true, order: 9 },
+  { key: "testimonials", label: "Testimoni", enabled: true, order: 10 },
+  { key: "faq", label: "FAQ", enabled: true, order: 11 },
+  { key: "cta", label: "Ajakan Konsultasi", enabled: true, order: 12 },
+  { key: "contact-form", label: "Formulir Konsultasi", enabled: true, order: 13 },
 ];
 
 /** Baca konfigurasi urutan/visibilitas section (fallback: urutan default bila DB kosong) */
@@ -162,6 +167,10 @@ const DEFAULT_SETTINGS: SiteSettingsData = {
   googleSiteVerification: "",
   headScripts: "",
   contactFormEnabled: true,
+  skNumber: "AHU-059566.AH.01.30.Tahun 2022",
+  nibNumber: "2612220035584",
+  npwpNumber: "62.239.729.7-423.000",
+  established: "26 Desember 2022",
 };
 
 const DEFAULT_SERVICES: ServiceItem[] = [
@@ -326,6 +335,10 @@ export async function getSiteData(): Promise<SiteData> {
           googleSiteVerification: settingsRow.googleSiteVerification ?? "",
           headScripts: settingsRow.headScripts ?? "",
           contactFormEnabled: settingsRow.contactFormEnabled !== false,
+          skNumber: settingsRow.skNumber || DEFAULT_SETTINGS.skNumber,
+          nibNumber: settingsRow.nibNumber || DEFAULT_SETTINGS.nibNumber,
+          npwpNumber: settingsRow.npwpNumber || DEFAULT_SETTINGS.npwpNumber,
+          established: settingsRow.established || DEFAULT_SETTINGS.established,
         }
       : DEFAULT_SETTINGS;
 

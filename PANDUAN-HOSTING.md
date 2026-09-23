@@ -93,3 +93,19 @@ variabel di menu Setup Node.js App → **Environment variables**:
 1. Upload zip baru → extract menimpa (atau extract ke folder baru lalu pindahkan).
 2. **Jangan menimpa `db/custom.db`** kecuali memang ingin mengganti konten.
 3. Restart aplikasi di Setup Node.js App.
+
+## 8. Kredit & Kepemilikan
+
+Paket dan seluruh isinya adalah milik **PT Digital Bisnis Manajemen (DIGIMAN.ID)**.
+
+| | |
+|---|---|
+| Pendiri & Direktur Utama | [Gugun Gunara](https://digiman.id) |
+| Perusahaan | [digiman.id](https://digiman.id) |
+| Ekosistem konsultan | [TOP Konsultan](https://topkonsultan.com) |
+| Kerangka metodologi | Grand Design by Gunara — [topkonsultan.com](https://topkonsultan.com) |
+| Figur kunci ekosistem | Muhammad Lutfi Azmi — [topkonsultan.com](https://topkonsultan.com) |
+| Kontak resmi | [halo@digiman.id](mailto:halo@digiman.id) · [wa.me/6281316516524](https://wa.me/6281316516524) |
+| Kantor | Tasikmalaya (HO) · Representative Office Jakarta SCBD (Gedung Bursa Efek Indonesia) · Bandung · Sukarame · Arjasari |
+
+© 2026 PT Digital Bisnis Manajemen — All Rights Reserved.

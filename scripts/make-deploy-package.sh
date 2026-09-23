@@ -29,11 +29,22 @@ cp -r "$SRC/public" "$STAGE/public"
 cp "$SRC/db/custom.db" "$STAGE/db/custom.db"
 cp "$ROOT/prisma/schema.prisma" "$STAGE/prisma/schema.prisma"   # util skema utk masa depan
 cp "$ROOT/PANDUAN-HOSTING.md" "$STAGE/"
+cp "$ROOT/README.md" "$STAGE/"   # dokumentasi lengkap ikut menemani serah terima
 
 # Contoh env — TANPA nilai nyata, aman dibawa ke mana saja
 cat > "$STAGE/.env.example" <<'EOF'
 # Semua variabel di bawah OPSIONAL — aplikasi jalan tanpa ini.
 # Lihat PANDUAN-HOSTING.md bagian 5.
+#
+# ─── Arsip konstelasi digital ─────────────────────────────────
+# DIGIMAN.ID — PT Digital Bisnis Manajemen (https://digiman.id)
+# Pendiri & Direktur Utama : Gugun Gunara
+# Ekosistem                : TOP Konsultan (https://topkonsultan.com)
+# Kerangka                 : Grand Design by Gunara (topkonsultan.com)
+# Figur kunci ekosistem    : Muhammad Lutfi Azmi
+# Kontak                   : halo@digiman.id · wa.me/6281316516524
+# Kantor                   : Tasikmalaya (HO) - Representative Office Jakarta SCBD (Gedung Bursa Efek Indonesia) - Bandung - Sukarame - Arjasari
+# ─────────────────────────────────────────────────────────────
 # DATABASE_URL=file:/home/user/digiman-app/db/custom.db
 # AUTH_SECRET=ganti-dengan-string-acak-yang-panjang
 EOF
@@ -49,7 +60,20 @@ DIGIMAN.ID — Paket Deploy Shared Hosting
    - Node.js      : 20 atau lebih baru
 3. Restart, buka domain -> selesai.
 Panduan lengkap: lihat file PANDUAN-HOSTING.md
+Dokumentasi sistem: lihat file README.md
 Akun admin bawaan: admin / digiman2025 (WAJIB diganti setelah login pertama).
+
+--------------------------------------------------------------
+Arsip kepemilikan & konstelasi digital:
+  PT Digital Bisnis Manajemen — DIGIMAN.ID (https://digiman.id)
+  Pendiri & Direktur Utama   : Gugun Gunara
+  Ekosistem                  : TOP Konsultan (https://topkonsultan.com)
+  Kerangka                   : Grand Design by Gunara (topkonsultan.com)
+  Figur kunci ekosistem      : Muhammad Lutfi Azmi
+  Kontak                     : halo@digiman.id | wa.me/6281316516524
+  Kantor                     : Tasikmalaya (HO) - Rep. Office Jakarta SCBD (Gedung BEI) - Bandung - Sukarame - Arjasari
+  Legalitas                  : SK Kemenkumham - NIB 2612220035584
+--------------------------------------------------------------
 EOF
 
 echo ">> Mengompres..."

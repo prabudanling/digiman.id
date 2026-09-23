@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Phone, Mail, FileBadge, Landmark, Lock, Clock, Instagram, Linkedin, Building } from "lucide-react";
+import { MapPin, Phone, Mail, FileBadge, Landmark, Receipt, Lock, Clock, Instagram, Linkedin, Building } from "lucide-react";
 import { useI18n } from "@/components/i18n/locale-provider";
 import type { OfficeItem } from "@/lib/site-data";
 
@@ -14,6 +14,10 @@ interface FooterProps {
   instagram?: string;
   linkedin?: string;
   tiktok?: string;
+  skNumber?: string;
+  nibNumber?: string;
+  npwpNumber?: string;
+  established?: string;
   offices?: OfficeItem[];
 }
 
@@ -28,14 +32,18 @@ function TikTokIcon({ className = "" }: { className?: string }) {
 
 export default function Footer({
   logoUrl,
-  waNumber = "6281333397223",
-  waDisplay = "+62 813-3339-7223",
+  waNumber = "6281316516524",
+  waDisplay = "+62 813-1651-6524",
   email = "halo@digiman.id",
   addressFull = "Andalusia Garden Cluster Granada No.11, Mangkubumi, Tasikmalaya, 46181, Jawa Barat",
   hours = "Senin–Jumat 09.00–17.00 WIB",
   instagram = "",
   linkedin = "",
   tiktok = "",
+  skNumber = "AHU-059566.AH.01.30.Tahun 2022",
+  nibNumber = "2612220035584",
+  npwpNumber = "62.239.729.7-423.000",
+  established = "26 Desember 2022",
   offices = [],
 }: FooterProps) {
   const { dict } = useI18n();
@@ -82,15 +90,19 @@ export default function Footer({
             <div className="mt-5 space-y-2 text-xs text-emerald-50/50">
               <p className="flex items-center gap-2">
                 <Landmark className="h-3.5 w-3.5 shrink-0 text-gold/80" />
-                SK Kemenkumham: <span className="text-emerald-100/75">AHU-059566.AH.01.30.Tahun 2022</span>
+                SK Kemenkumham: <span className="text-emerald-100/75">{skNumber}</span>
               </p>
               <p className="flex items-center gap-2">
                 <FileBadge className="h-3.5 w-3.5 shrink-0 text-gold/80" />
-                NIB (OSS-RBA): <span className="text-emerald-100/75">2612220035584</span>
+                NIB (OSS-RBA): <span className="text-emerald-100/75">{nibNumber}</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <Receipt className="h-3.5 w-3.5 shrink-0 text-gold/80" />
+                NPWP: <span className="text-emerald-100/75">{npwpNumber}</span>
               </p>
               <p className="flex items-center gap-2">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-400" />
-                Berbadan hukum resmi sejak 26 Desember 2022
+                Berbadan hukum resmi sejak {established}
               </p>
             </div>
           </div>

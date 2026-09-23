@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Settings, Loader2, Save, Info, FormInput, Clock } from "lucide-react";
+import { Settings, Loader2, Save, Info, FormInput, Clock, Landmark } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -27,6 +27,10 @@ interface Settings {
   facebook: string;
   youtube: string;
   contactFormEnabled: boolean;
+  skNumber: string;
+  nibNumber: string;
+  npwpNumber: string;
+  established: string;
 }
 
 export default function PengaturanPage() {
@@ -231,6 +235,31 @@ export default function PengaturanPage() {
                 />
               </span>
             </label>
+          </AdminCard>
+
+          <AdminCard className="h-fit">
+            <h2 className="flex items-center gap-2 font-display mb-4 text-lg font-bold text-white">
+              <Landmark className="h-4.5 w-4.5 text-gold" /> Legalitas Perusahaan
+            </h2>
+            <div className="space-y-4">
+              <div>
+                <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-emerald-50/55">No. SK Kemenkumham</label>
+                <Input value={s.skNumber} onChange={(e) => set("skNumber", e.target.value)} className={inputCls} placeholder="AHU-059566.AH.01.30.Tahun 2022" />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-emerald-50/55">NIB (OSS-RBA)</label>
+                <Input value={s.nibNumber} onChange={(e) => set("nibNumber", e.target.value)} className={inputCls} placeholder="2612220035584" />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-emerald-50/55">NPWP Perusahaan</label>
+                <Input value={s.npwpNumber} onChange={(e) => set("npwpNumber", e.target.value)} className={inputCls} placeholder="62.239.729.7-423.000" />
+              </div>
+              <div>
+                <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-emerald-50/55">Berbadan Hukum Sejak</label>
+                <Input value={s.established} onChange={(e) => set("established", e.target.value)} className={inputCls} placeholder="26 Desember 2022" />
+              </div>
+            </div>
+            <p className="mt-3 text-[11px] text-emerald-50/45">Tampil di footer website — bukti kredibilitas di mata klien.</p>
           </AdminCard>
         </div>
       </div>

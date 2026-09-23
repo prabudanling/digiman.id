@@ -2,6 +2,33 @@
   "name": "nextjs_tailwind_shadcn_ts",
   "version": "0.2.1",
   "private": true,
+  "description": "DIGIMAN.ID — Website korporat & mega admin panel PT Digital Bisnis Manajemen (https://digiman.id). Pendiri & Direktur Utama: Gugun Gunara. Ekosistem: TOP Konsultan (https://topkonsultan.com) — Grand Design by Gunara.",
+  "homepage": "https://digiman.id",
+  "author": {
+    "name": "Gugun Gunara",
+    "url": "https://digiman.id"
+  },
+  "contributors": [
+    {
+      "name": "Muhammad Lutfi Azmi",
+      "url": "https://topkonsultan.com"
+    },
+    {
+      "name": "TOP Konsultan",
+      "url": "https://topkonsultan.com"
+    }
+  ],
+  "keywords": [
+    "digiman.id",
+    "digiman",
+    "legalitas usaha indonesia",
+    "jasa pendirian pt",
+    "konsultan digitalisasi bisnis",
+    "topkonsultan",
+    "grand design by gunara",
+    "gugun gunara",
+    "muhammad lutfi azmi"
+  ],
   "scripts": {
     "dev": "next dev -p 3000 2>&1 | tee dev.log",
     "build": "next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
@@ -53,6 +80,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
+    "docx": "^9.7.2",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.23.2",
     "input-otp": "^1.4.2",

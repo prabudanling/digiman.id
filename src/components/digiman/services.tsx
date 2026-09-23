@@ -66,7 +66,7 @@ export default function Services({
     [services, cat]
   );
 
-  const waBase = waNumber || "6281333397223";
+  const waBase = waNumber || "6281316516524";
 
   return (
     <section id="layanan" className="section-padding relative py-24 sm:py-32">

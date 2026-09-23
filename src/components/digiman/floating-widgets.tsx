@@ -61,7 +61,7 @@ export default function FloatingWidgets({ waNumber }: { waNumber?: string }) {
         </AnimatePresence>
 
         <a
-          href={`https://wa.me/${waNumber || "6281333397223"}?text=${encodeURIComponent(dict.hero.waGreeting)}`}
+          href={`https://wa.me/${waNumber || "6281316516524"}?text=${encodeURIComponent(dict.hero.waGreeting)}`}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat WhatsApp Digiman.id"

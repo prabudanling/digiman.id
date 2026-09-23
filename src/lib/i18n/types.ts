@@ -32,6 +32,7 @@ export interface Dictionary {
     home: string;
     seven: string;
     services: string;
+    paket: string;
     structure: string;
     process: string;
     testimonials: string;
@@ -76,6 +77,63 @@ export interface Dictionary {
     categories: Record<string, string>;
     consult: string;
     featured: string;
+  };
+  paket: {
+    kicker: string;
+    headingA: string;
+    headingB: string;
+    sub: string;
+    popular: string;
+    durationLabel: string;
+    days: string;
+    ctaTier: string;
+    ctaTierCustom: string;
+    note: string;
+    tiers: {
+      name: string;
+      entity: string;
+      price: string;
+      priceNote: string;
+      desc: string;
+      features: string[];
+    }[];
+    addons: {
+      kicker: string;
+      headingA: string;
+      headingB: string;
+      sub: string;
+      items: { name: string; price: string; icon: string }[];
+    };
+    calc: {
+      kicker: string;
+      headingA: string;
+      headingB: string;
+      sub: string;
+      step1: string;
+      step1Hint: string;
+      step2: string;
+      step2Hint: string;
+      step3: string;
+      step3Hint: string;
+      entities: Record<string, string>;
+      addons: Record<string, string>;
+      timelines: Record<string, string>;
+      resultKicker: string;
+      resultTitle: string;
+      resultEmpty: string;
+      restart: string;
+      investment: string;
+      duration: string;
+      recommended: string;
+      breakdown: string;
+      ctaWa: string;
+      note: string;
+      waIntro: string;
+      waEntity: string;
+      waAddons: string;
+      waTimeline: string;
+      waClose: string;
+    };
   };
   why: {
     kicker: string;
