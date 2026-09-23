@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, cleanStr, toInt, logActivity } from "@/lib/admin-guard";
+import { cleanStr, logActivity, requireAdmin, requireWrite, toInt } from "@/lib/admin-guard";
 
 /** Ikon lucide yang diizinkan untuk kartu layanan */
 export const ALLOWED_ICONS = [
@@ -26,8 +26,8 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const session = await requireAdmin(req);
-  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
+  const session = await requireWrite(req, "services");
+  if (session instanceof NextResponse) return session;
 
   try {
     const body = await req.json();

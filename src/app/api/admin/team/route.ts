@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, cleanStr, isValidDataUrl, logActivity } from "@/lib/admin-guard";
+import { cleanStr, isValidDataUrl, logActivity, requireAdmin, requireWrite } from "@/lib/admin-guard";
 
 const MAX_PHOTO_LEN = 2_100_000;
 
@@ -15,8 +15,8 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const session = await requireAdmin(req);
-  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
+  const session = await requireWrite(req, "team");
+  if (session instanceof NextResponse) return session;
 
   try {
     const body = await req.json();

@@ -6,13 +6,18 @@ export async function GET(req: NextRequest) {
   const session = await requireAdmin(req);
   if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
 
-  const [team, services, testimonials, faqs, offices] = await Promise.all([
-    db.teamMember.count(),
-    db.service.count(),
-    db.testimonial.count(),
-    db.faq.count(),
-    db.office.count(),
-  ]);
+  const [team, services, testimonials, faqs, offices, mediaCount, unreadMessages, sectionCount, userCount] =
+    await Promise.all([
+      db.teamMember.count(),
+      db.service.count(),
+      db.testimonial.count(),
+      db.faq.count(),
+      db.office.count(),
+      db.mediaAsset.count(),
+      db.contactMessage.count({ where: { status: "NEW" } }),
+      db.sectionConfig.count(),
+      db.adminUser.count(),
+    ]);
 
   const settings = await db.siteSetting.findUnique({ where: { id: 1 } });
 
@@ -27,11 +32,16 @@ export async function GET(req: NextRequest) {
     { label: "FAQ minimal 6 pertanyaan", ok: faqs >= 6 },
     { label: "Hero beranda tersedia", ok: Boolean(settings?.heroHeadline) },
     { label: "SEO metadata terisi", ok: Boolean(settings?.metaTitle && settings?.metaDescription) },
+    { label: "Tidak ada pesan belum dibaca", ok: unreadMessages === 0 },
   ];
   const done = checks.filter((c) => c.ok).length;
 
   return NextResponse.json({
     stats: { team, services, testimonials, faqs },
+    mediaCount,
+    unreadMessages,
+    sectionCount,
+    userCount,
     health: {
       score: Math.round((done / checks.length) * 100),
       done,

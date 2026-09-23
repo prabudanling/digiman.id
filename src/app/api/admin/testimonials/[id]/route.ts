@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, logActivity } from "@/lib/admin-guard";
+import { logActivity, requireAdmin, requireWrite } from "@/lib/admin-guard";
 
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const session = await requireAdmin(req);
-  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
+  const session = await requireWrite(req, "testimonials");
+  if (session instanceof NextResponse) return session;
 
   const { id } = await params;
   try {

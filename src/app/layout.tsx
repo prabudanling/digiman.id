@@ -58,17 +58,39 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headScripts = await getHeadScripts();
   return (
     <html lang="id" suppressHydrationWarning>
+      <head>
+        {/* Skrip analytics/pixel custom dari Panel Admin > SEO Lanjutan */}
+        {headScripts ? (
+          <script
+            id="digiman-custom-head"
+            type="text/javascript"
+            dangerouslySetInnerHTML={{ __html: headScripts }}
+          />
+        ) : null}
+      </head>
       <body className={`${jakarta.variable} ${grotesk.variable} antialiased bg-background text-foreground`}>
         {children}
         <Toaster />
       </body>
     </html>
   );
+}
+
+/** Baca kode skrip kustom dari DB (aman gagal: fallback string kosong) */
+async function getHeadScripts(): Promise<string> {
+  try {
+    const { getSiteData } = await import("@/lib/site-data");
+    const { settings } = await getSiteData();
+    return settings.headScripts || "";
+  } catch {
+    return "";
+  }
 }

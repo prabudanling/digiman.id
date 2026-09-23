@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, cleanStr, logActivity } from "@/lib/admin-guard";
+import { requireAdmin, requireWrite, cleanStr, logActivity } from "@/lib/admin-guard";
 
 /** Editor Hero (beranda) — endpoint terpisah agar update parsial tidak mengganggu pengaturan lain. */
 
@@ -31,8 +31,8 @@ export async function GET(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
-  const session = await requireAdmin(req);
-  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
+  const session = await requireWrite(req, "hero");
+  if (session instanceof NextResponse) return session;
 
   try {
     const body = await req.json();

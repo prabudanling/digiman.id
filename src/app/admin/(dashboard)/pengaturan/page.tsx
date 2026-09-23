@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Settings, Loader2, Save, Info } from "lucide-react";
+import { Settings, Loader2, Save, Info, FormInput, Clock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,13 @@ interface Settings {
   statExperts: number;
   statLayers: number;
   statSuccess: number;
+  hours: string;
+  instagram: string;
+  linkedin: string;
+  tiktok: string;
+  facebook: string;
+  youtube: string;
+  contactFormEnabled: boolean;
 }
 
 export default function PengaturanPage() {
@@ -164,27 +171,96 @@ export default function PengaturanPage() {
         </div>
 
         {/* Kolom logo */}
-        <AdminCard className="h-fit">
-          <h2 className="font-display mb-1.5 text-lg font-bold text-white">Logo Perusahaan</h2>
-          <p className="mb-5 text-xs leading-relaxed text-emerald-50/50">
-            PNG transparan disarankan. Digunakan di navbar, footer, preloader & CTA.
-          </p>
-          <div className="flex flex-col items-center gap-4">
-            <ImageUpload
-              value={s.logoUrl}
-              onChange={(v) => set("logoUrl", v)}
-              shape="rounded"
-              size={150}
-              maxSize={512}
-              label="Unggah Logo"
-            />
-            <div className="flex items-start gap-2 rounded-xl border border-emerald-400/15 bg-emerald-950/40 px-3.5 py-3 text-[11px] leading-relaxed text-emerald-50/55">
-              <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold" />
-              Jika dikosongkan, logo emas bawaan DIGIMAN yang digunakan. Setelah simpan, refresh halaman website untuk melihat hasilnya.
+        <div className="space-y-6">
+          <AdminCard className="h-fit">
+            <h2 className="font-display mb-1.5 text-lg font-bold text-white">Logo Perusahaan</h2>
+            <p className="mb-5 text-xs leading-relaxed text-emerald-50/50">
+              PNG transparan disarankan. Digunakan di navbar, footer, preloader & CTA.
+            </p>
+            <div className="flex flex-col items-center gap-4">
+              <ImageUpload
+                value={s.logoUrl}
+                onChange={(v) => set("logoUrl", v)}
+                shape="rounded"
+                size={150}
+                maxSize={512}
+                label="Unggah Logo"
+              />
+              <div className="flex items-start gap-2 rounded-xl border border-emerald-400/15 bg-emerald-950/40 px-3.5 py-3 text-[11px] leading-relaxed text-emerald-50/55">
+                <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold" />
+                Jika dikosongkan, logo emas bawaan DIGIMAN yang digunakan. Setelah simpan, refresh halaman website untuk melihat hasilnya.
+              </div>
             </div>
-          </div>
-        </AdminCard>
+          </AdminCard>
+
+          <AdminCard className="h-fit">
+            <h2 className="flex items-center gap-2 font-display mb-4 text-lg font-bold text-white">
+              <Clock className="h-4.5 w-4.5 text-gold" /> Jam Operasional
+            </h2>
+            <Input value={s.hours} onChange={(e) => set("hours", e.target.value)} className={inputCls} placeholder="Senin–Jumat 09.00–17.00 WIB" />
+            <p className="mt-2 text-[11px] text-emerald-50/45">Tampil di section kantor & footer.</p>
+          </AdminCard>
+
+          <AdminCard className="h-fit">
+            <h2 className="flex items-center gap-2 font-display mb-4 text-lg font-bold text-white">
+              <FormInput className="h-4.5 w-4.5 text-gold" /> Formulir Konsultasi
+            </h2>
+            <label className="flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-emerald-400/15 bg-[#0a1613] px-4 py-3">
+              <span>
+                <span className="block text-sm font-semibold text-emerald-50/85">Tampilkan di beranda</span>
+                <span className="mt-0.5 block text-[11px] text-emerald-50/45">Leads masuk ke menu Kotak Masuk</span>
+              </span>
+              <input
+                type="checkbox"
+                checked={s.contactFormEnabled}
+                onChange={(e) => set("contactFormEnabled", e.target.checked)}
+                className="peer sr-only"
+              />
+              <span
+                aria-hidden
+                className={`relative h-7 w-12 shrink-0 rounded-full border transition-colors ${
+                  s.contactFormEnabled ? "border-gold/50 bg-gold/25" : "border-emerald-400/20 bg-[#04100c]"
+                }`}
+              >
+                <span
+                  className={`absolute top-1/2 h-5 w-5 -translate-y-1/2 rounded-full transition-all ${
+                    s.contactFormEnabled
+                      ? "left-[calc(100%-1.5rem)] bg-gradient-to-br from-yellow-300 to-amber-400"
+                      : "left-1 bg-emerald-400/30"
+                  }`}
+                />
+              </span>
+            </label>
+          </AdminCard>
+        </div>
       </div>
+
+      {/* Media sosial */}
+      <AdminCard className="mt-6">
+        <h2 className="font-display mb-5 text-lg font-bold text-white">Media Sosial</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <FieldLabel hint="URL lengkap profil">Instagram</FieldLabel>
+            <Input value={s.instagram} onChange={(e) => set("instagram", e.target.value)} placeholder="https://instagram.com/digiman.id" className={inputCls} />
+          </div>
+          <div>
+            <FieldLabel>LinkedIn</FieldLabel>
+            <Input value={s.linkedin} onChange={(e) => set("linkedin", e.target.value)} placeholder="https://linkedin.com/company/digiman" className={inputCls} />
+          </div>
+          <div>
+            <FieldLabel>TikTok</FieldLabel>
+            <Input value={s.tiktok} onChange={(e) => set("tiktok", e.target.value)} placeholder="https://tiktok.com/@digiman.id" className={inputCls} />
+          </div>
+          <div>
+            <FieldLabel>Facebook</FieldLabel>
+            <Input value={s.facebook} onChange={(e) => set("facebook", e.target.value)} placeholder="https://facebook.com/digiman.id" className={inputCls} />
+          </div>
+          <div>
+            <FieldLabel>YouTube</FieldLabel>
+            <Input value={s.youtube} onChange={(e) => set("youtube", e.target.value)} placeholder="https://youtube.com/@digiman" className={inputCls} />
+          </div>
+        </div>
+      </AdminCard>
 
       <div className="mt-8">
         <Button onClick={save} disabled={saving} className={`${btnEmerald} w-full sm:w-auto`}>

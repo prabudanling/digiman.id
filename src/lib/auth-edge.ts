@@ -17,10 +17,11 @@ export interface SessionPayload {
   sub: string;
   username: string;
   name: string;
+  role: string; // SUPERADMIN | EDITOR | VIEWER
 }
 
 export async function signSession(payload: SessionPayload): Promise<string> {
-  return new SignJWT({ username: payload.username, name: payload.name })
+  return new SignJWT({ username: payload.username, name: payload.name, role: payload.role })
     .setProtectedHeader({ alg: "HS256" })
     .setSubject(payload.sub)
     .setIssuedAt()
@@ -37,6 +38,7 @@ export async function verifySession(token: string | undefined | null): Promise<S
       sub: payload.sub,
       username: String(payload.username ?? ""),
       name: String(payload.name ?? "Administrator"),
+      role: String(payload.role ?? "SUPERADMIN"),
     };
   } catch {
     return null;

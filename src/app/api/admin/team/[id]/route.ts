@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, toInt, logActivity } from "@/lib/admin-guard";
+import { logActivity, requireAdmin, requireWrite, toInt } from "@/lib/admin-guard";
 
 /** Pindahkan urutan anggota (naik/turun) atau hapus. */
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const session = await requireAdmin(req);
-  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
+  const session = await requireWrite(req, "team");
+  if (session instanceof NextResponse) return session;
 
   const { id } = await params;
   try {
@@ -40,8 +40,8 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
 }
 
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const session = await requireAdmin(req);
-  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
+  const session = await requireWrite(req, "team");
+  if (session instanceof NextResponse) return session;
 
   const { id } = await params;
   try {

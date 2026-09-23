@@ -142,3 +142,20 @@ Stage Summary:
 - Deliverable: download/digiman-deploy-20260917.zip + PANDUAN-HOSTING.md (juga ikut di dalam zip) — cukup upload ke cPanel yang punya Setup Node.js App
 - Animasi kini aksesibel (reduced-motion) tanpa mengurangi efek bagi pengguna umum
 - Menunggu dari user: data foto/nama direksi & komisaris untuk section Struktur
+
+---
+Task ID: 8
+Agent: Super Z (main agent)
+Task: Panel Admin SUPER LENGKAP setara WordPress+ (siap diserahkan ke PBB): Pusat Media, Kotak Masuk leads, Tata Letak Section, Pusat SEO, Pengguna & Peran (RBAC), Backup & Pulihkan, Log Aktivitas penuh, Command Palette, analytics pengunjung, formulir konsultasi publik.
+
+Work Log:
+- Schema + db push: model MediaAsset, ContactMessage, SectionConfig, PageView; AdminUser += role (SUPERADMIN|EDITOR|VIEWER) & lastLoginAt; SiteSetting += metaKeywords/ogImage/googleSiteVerification/headScripts/contactFormEnabled/facebook/youtube; REQUIRED_MODELS db.ts diperbarui (8 model)
+- Auth v2: role ikut JWT; login route += rate limit 8 percobaan/5 menit (429), update lastLoginAt; /api/auth/me kirim role; admin-guard += ROLES/canWrite/requireWrite (EDITOR: hero,team,services,testimonials,faqs,offices,media,messages; VIEWER: read-only; sections/settings/users/backup = SUPERADMIN)
+- Revoke instan: requireAdmin (node) & layout admin sekarang selalu baca AdminUser dari DB — akun dihapus/role diganti langsung efektif walau JWT masih hidup (terverifikasi: token sari.editor → 401 setelah delete)
+- FIX KRITIS RBAC: requireWrite mengembalikan NextResponse (truthy) — pola lama `if (!session)` lolos; semua 14 route write diperbaiki ke `if (session instanceof NextResponse) return session;` (python batch); settings PUT kini merge-parsial (field tak dikirim dipertahankan, tidak lagi wipe data saat partial PUT)
+- API baru: /api/contact (publik, rate limit 5/10 min, validasi kuat), /api/track (publik, skip /admin), /api/admin/{media,media/[id],messages,messages/[id],sections,users,users/[id],backup,analytics}; /api/admin/activity += filter&q&limit; /api/admin/stats += mediaCount/unreadMessages/sectionCount/userCount + cek health "pesan belum dibaca"; settings route += field baru
+- Halaman admin baru (7): /admin/media (grid + drag&drop + upload multi + modal pratinjau/unduh/hapus + pencarian), /admin/pesan (inbox 4 tab + badge, detail, bintang/arsip/tandai, balas via WhatsApp deep-link), /admin/tampilan (13 section: toggle switch + reorder atas/bawah, simpan → beranda ikut), /admin/seo (SERP preview Google live + karakter counter, keywords, GSC verification, inject headScripts tanpa sentuh kode), /admin/pengguna (tabel + dialog tambah/edit + guard self-delete & last-superadmin), /admin/backup (export JSON satu klik + import dgn konfirmasi "PULIHKAN" + ringkasan isi tabel), /admin/aktivitas (timeline penuh 300 entri + filter 8 aksi + pencarian)
+- Shell v3: sidebar bergrup 6 grup per-role, badge unread Kotak Masuk (poll 60s + focus), chip peran di topbar, Command Palette Ctrl/Cmd+K (fuzzy search nav + aksi, keyboard ↑↓⏎esc) — fitur yang tidak ada di WordPress inti
+- Dashboard v3: 4 kartu baru (kunjungan 14/30 hari, leads belum dibaca, media, pengguna), grafik batang SVG animasi 14 hari (total vs mobile), panel Sumber Kunjungan + Halaman Terpopuler; pengaturan += jam operasional, 5 sosial media, toggle formulir
+- Publik: section beranda kini dinamis dari SectionConfig (urutan + visibilitas dikendalikan admin); komponen ContactForm (id/en, motion, validasi, rate-limited) + PageViewTracker (first-party, 1x per path per sesi); generateMetadata += keywords & google verification; layout root injek headScripts
+- Verifikasi E2E (Agent Browser + curl): login admin/editor; RBAC matriks 403/201 akurat; buat user editor via dialog; palette Ctrl+K cari "pengguna" → navigasi; toggle why-us → hilang dari SSR → dinyalakan lagi → kembali; upload media E2E (ASET TAMPIL); form publik submit 2x → masuk inbox → detail/balas-WA; backup export 34KB valid; SEO/backup/aktivitas halaman OK; console 0 error; lint bersih; data uji dihapus bersih

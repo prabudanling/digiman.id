@@ -53,7 +53,10 @@ function getClient(): PrismaClient {
   // Deteksi instance lama hasil hot-reload yang dibuat sebelum skema diperbarui:
   // model/kolom baru tidak dikenal (mis. activityLog, heroHeadline) → buat client segar.
   // PENTING: setiap menambah model baru di schema.prisma, daftarkan juga di sini.
-  const REQUIRED_MODELS = ['siteSetting', 'activityLog', 'office'] as const
+  const REQUIRED_MODELS = [
+    'siteSetting', 'activityLog', 'office', 'mediaAsset', 'contactMessage',
+    'sectionConfig', 'pageView', 'adminUser',
+  ] as const
   if (existing) {
     const probe = existing as unknown as Record<string, unknown>
     const hasAllModels = REQUIRED_MODELS.every((m) => probe[m] !== undefined)

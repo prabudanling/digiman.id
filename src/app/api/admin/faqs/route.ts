@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, cleanStr, logActivity } from "@/lib/admin-guard";
+import { cleanStr, logActivity, requireAdmin, requireWrite } from "@/lib/admin-guard";
 
 export async function GET(req: NextRequest) {
   const session = await requireAdmin(req);
@@ -11,8 +11,8 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const session = await requireAdmin(req);
-  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
+  const session = await requireWrite(req, "faqs");
+  if (session instanceof NextResponse) return session;
 
   try {
     const body = await req.json();

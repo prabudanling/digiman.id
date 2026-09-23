@@ -26,6 +26,12 @@ export interface SiteSettingsData {
   instagram: string;
   linkedin: string;
   tiktok: string;
+  facebook: string;
+  youtube: string;
+  metaKeywords: string;
+  googleSiteVerification: string;
+  headScripts: string;
+  contactFormEnabled: boolean;
 }
 
 export interface ServiceItem {
@@ -75,6 +81,46 @@ export interface SiteData {
   faqs: FaqItem[];
   team: TeamItem[];
   offices: OfficeItem[];
+  sections: SectionRow[];
+}
+
+export interface SectionRow {
+  key: string;
+  label: string;
+  enabled: boolean;
+  order: number;
+}
+
+/** Urutan & label default section beranda (harus sinkron dengan API admin sections) */
+export const DEFAULT_SECTIONS: SectionRow[] = [
+  { key: "hero", label: "Hero / Beranda", enabled: true, order: 0 },
+  { key: "marquee", label: "Marquee Layanan", enabled: true, order: 1 },
+  { key: "stats", label: "Statistik", enabled: true, order: 2 },
+  { key: "seven-heavens", label: "7 Lapis Langit", enabled: true, order: 3 },
+  { key: "services", label: "Layanan", enabled: true, order: 4 },
+  { key: "why-us", label: "Mengapa Kami", enabled: true, order: 5 },
+  { key: "team", label: "Struktur Perusahaan", enabled: true, order: 6 },
+  { key: "offices", label: "Kantor & Cabang", enabled: true, order: 7 },
+  { key: "process", label: "Proses Kerja", enabled: true, order: 8 },
+  { key: "testimonials", label: "Testimoni", enabled: true, order: 9 },
+  { key: "faq", label: "FAQ", enabled: true, order: 10 },
+  { key: "cta", label: "Ajakan Konsultasi", enabled: true, order: 11 },
+  { key: "contact-form", label: "Formulir Konsultasi", enabled: true, order: 12 },
+];
+
+/** Baca konfigurasi urutan/visibilitas section (fallback: urutan default bila DB kosong) */
+export async function getSectionConfig(): Promise<SectionRow[]> {
+  try {
+    const saved = await db.sectionConfig.findMany({ orderBy: { order: "asc" } });
+    if (saved.length === 0) return DEFAULT_SECTIONS;
+    const byKey = new Map(saved.map((s) => [s.key, s]));
+    return DEFAULT_SECTIONS.map((def) => {
+      const s = byKey.get(def.key);
+      return s ? { key: s.key, label: s.label, enabled: s.enabled, order: s.order } : def;
+    }).sort((a, b) => a.order - b.order);
+  } catch {
+    return DEFAULT_SECTIONS;
+  }
 }
 
 // ---------- Data default (fallback) ----------
@@ -110,6 +156,12 @@ const DEFAULT_SETTINGS: SiteSettingsData = {
   instagram: "",
   linkedin: "",
   tiktok: "",
+  facebook: "",
+  youtube: "",
+  metaKeywords: "",
+  googleSiteVerification: "",
+  headScripts: "",
+  contactFormEnabled: true,
 };
 
 const DEFAULT_SERVICES: ServiceItem[] = [
@@ -205,13 +257,14 @@ const DEFAULT_FAQS: FaqItem[] = [
 
 export async function getSiteData(): Promise<SiteData> {
   try {
-    const [settingsRow, serviceRows, testimonialRows, faqRows, teamRows, officeRows] = await Promise.all([
+    const [settingsRow, serviceRows, testimonialRows, faqRows, teamRows, officeRows, sectionRows] = await Promise.all([
       db.siteSetting.findUnique({ where: { id: 1 } }),
       db.service.findMany({ where: { visible: true }, orderBy: [{ order: "asc" }, { createdAt: "asc" }] }),
       db.testimonial.findMany({ where: { visible: true }, orderBy: [{ order: "asc" }, { createdAt: "asc" }] }),
       db.faq.findMany({ where: { visible: true }, orderBy: [{ order: "asc" }, { createdAt: "asc" }] }),
       db.teamMember.findMany({ orderBy: [{ order: "asc" }, { createdAt: "asc" }] }),
       db.office.findMany({ orderBy: [{ order: "asc" }, { createdAt: "asc" }] }),
+      db.sectionConfig.findMany({ orderBy: { order: "asc" } }),
     ]);
 
     const services: ServiceItem[] = serviceRows.map((s) => {
@@ -267,8 +320,25 @@ export async function getSiteData(): Promise<SiteData> {
           instagram: settingsRow.instagram,
           linkedin: settingsRow.linkedin,
           tiktok: settingsRow.tiktok,
+          facebook: settingsRow.facebook ?? "",
+          youtube: settingsRow.youtube ?? "",
+          metaKeywords: settingsRow.metaKeywords ?? "",
+          googleSiteVerification: settingsRow.googleSiteVerification ?? "",
+          headScripts: settingsRow.headScripts ?? "",
+          contactFormEnabled: settingsRow.contactFormEnabled !== false,
         }
       : DEFAULT_SETTINGS;
+
+    // Konfigurasi section: gabungkan default dengan yang tersimpan
+    const savedSections = sectionRows.length > 0
+      ? (() => {
+          const byKey = new Map(sectionRows.map((sec) => [sec.key, sec]));
+          return DEFAULT_SECTIONS.map((def) => {
+            const s = byKey.get(def.key);
+            return s ? { key: s.key, label: s.label, enabled: s.enabled, order: s.order } : def;
+          }).sort((a, b) => a.order - b.order);
+        })()
+      : DEFAULT_SECTIONS;
 
     return {
       settings,
@@ -294,6 +364,7 @@ export async function getSiteData(): Promise<SiteData> {
         address: o.address,
         order: o.order,
       })),
+      sections: savedSections,
     };
   } catch (e) {
     console.error("getSiteData fallback ke data default:", e);
@@ -304,6 +375,7 @@ export async function getSiteData(): Promise<SiteData> {
       faqs: DEFAULT_FAQS,
       team: [],
       offices: [],
+      sections: DEFAULT_SECTIONS,
     };
   }
 }

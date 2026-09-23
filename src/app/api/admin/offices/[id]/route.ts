@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { requireAdmin, cleanStr, toInt, logActivity } from "@/lib/admin-guard";
+import { cleanStr, logActivity, requireAdmin, requireWrite, toInt } from "@/lib/admin-guard";
 
 export async function PUT(req: NextRequest, ctx: { params: Promise<{ id: string }> }) {
-  const session = await requireAdmin(req);
-  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
+  const session = await requireWrite(req, "offices");
+  if (session instanceof NextResponse) return session;
   const { id } = await ctx.params;
 
   try {
@@ -27,8 +27,8 @@ export async function PUT(req: NextRequest, ctx: { params: Promise<{ id: string 
 }
 
 export async function DELETE(req: NextRequest, ctx: { params: Promise<{ id: string }> }) {
-  const session = await requireAdmin(req);
-  if (!session) return NextResponse.json({ error: "Tidak terautentikasi." }, { status: 401 });
+  const session = await requireWrite(req, "offices");
+  if (session instanceof NextResponse) return session;
   const { id } = await ctx.params;
 
   try {

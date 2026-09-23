@@ -67,12 +67,67 @@ model SiteSetting {
   metaTitle       String @default("DIGIMAN.ID — Naikkan Bisnis Anda ke 7 Lapis Langit Legalitas & Digitalisasi")
   metaDescription String @default("PT Digital Bisnis Manajemen (DIGIMAN.ID) — Jasa pembuatan akta pendirian perusahaan (PT, CV, PT PMA) dan seluruh legalitas usaha di Indonesia: NIB, OSS, NPWP, Merek, Halal, hingga konsultan digitalisasi bisnis.")
 
+  // --- SEO lanjutan ---
+  metaKeywords           String  @default("")
+  ogImage                String? // data URL gambar share (og:image)
+  googleSiteVerification String  @default("")
+  headScripts            String  @default("") // kode analytics/pixel custom (GA, GTM, Meta Pixel)
+  contactFormEnabled     Boolean @default(true) // tampilkan formulir konsultasi di beranda
+
   // --- Info tambahan & sosial media ---
   hours     String @default("Senin–Jumat 09.00–17.00 WIB")
   instagram String @default("")
   linkedin  String @default("")
   tiktok    String @default("")
+  facebook  String @default("")
+  youtube   String @default("")
   updatedAt DateTime @updatedAt
+}
+
+// Pusat Media — aset gambar hasil upload (ala WordPress Media Library)
+model MediaAsset {
+  id        String   @id @default(cuid())
+  name      String // nama file asli
+  mime      String // image/png | image/jpeg | image/webp
+  size      Int      @default(0) // bytes setelah kompresi klien
+  width     Int      @default(0)
+  height    Int      @default(0)
+  dataUrl   String // data URL base64 (portabel, aman utk shared hosting)
+  createdAt DateTime @default(now())
+}
+
+// Kotak masuk leads dari formulir konsultasi di beranda
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  email     String   @default("")
+  service   String   @default("") // layanan yang diminati
+  message   String
+  status    String   @default("NEW") // NEW | READ | ARCHIVED
+  starred   Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+// Konfigurasi tampilan beranda: urutan & visibilitas tiap section
+model SectionConfig {
+  id        String   @id @default(cuid())
+  key       String   @unique // hero | stats | services | ...
+  label     String
+  enabled   Boolean  @default(true)
+  order     Int      @default(0)
+  updatedAt DateTime @updatedAt
+}
+
+// Statistik kunjungan halaman publik (ringan, tanpa cookie pihak ketiga)
+model PageView {
+  id        String   @id @default(cuid())
+  path      String   @default("/")
+  referrer  String   @default("")
+  device    String   @default("desktop") // mobile | desktop
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
 }
 
 // Jejak aktivitas admin (audit trail ala WordPress)
@@ -140,10 +195,12 @@ model Faq {
 
 // Akun admin panel (/admin)
 model AdminUser {
-  id           String   @id @default(cuid())
-  username     String   @unique
+  id           String    @id @default(cuid())
+  username     String    @unique
   passwordHash String // scrypt: salt:hash (hex)
-  name         String   @default("Administrator")
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  name         String    @default("Administrator")
+  role         String    @default("SUPERADMIN") // SUPERADMIN | EDITOR | VIEWER
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 }

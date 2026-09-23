@@ -25,6 +25,12 @@ import {
   Wrench,
   ExternalLink,
   Type,
+  Eye,
+  Inbox,
+  ImageIcon,
+  UserRoundCog,
+  TrendingUp,
+  Globe,
 } from "lucide-react";
 import { PageHeader, AdminCard } from "@/components/admin/admin-ui";
 
@@ -43,6 +49,12 @@ interface ActivityItem {
   detail: string;
   username: string;
   createdAt: string;
+}
+interface AnalyticsData {
+  daily: { day: string; count: number; mobile: number }[];
+  totals: { days: number; views: number; views30: number; mobileShare: number; unread: number; mediaCount: number; userCount: number };
+  topPaths: { path: string; count: number }[];
+  topReferrers: { source: string; count: number }[];
 }
 
 const CARDS = [
@@ -125,6 +137,7 @@ function HealthRing({ score }: { score: number }) {
 
 export default function AdminDashboard() {
   const [data, setData] = useState<DashData | null>(null);
+  const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
   const [logs, setLogs] = useState<ActivityItem[]>([]);
   const [todayCount, setTodayCount] = useState(0);
   const [userName, setUserName] = useState("");
@@ -137,12 +150,14 @@ export default function AdminDashboard() {
     setLoading(true);
     setError(null);
     try {
-      const [statsRes, actRes] = await Promise.all([
+      const [statsRes, actRes, anRes] = await Promise.all([
         fetch("/api/admin/stats", { cache: "no-store" }),
         fetch("/api/admin/activity", { cache: "no-store" }),
+        fetch("/api/admin/analytics?days=14", { cache: "no-store" }),
       ]);
       if (!statsRes.ok) throw new Error("Gagal memuat data.");
       setData(await statsRes.json());
+      if (anRes.ok) setAnalytics(await anRes.json());
       if (actRes.ok) {
         const act = await actRes.json();
         setLogs(Array.isArray(act.logs) ? act.logs : []);
@@ -258,6 +273,82 @@ export default function AdminDashboard() {
                 </motion.div>
               ))}
             </div>
+
+            {/* Ringkasan cepat: pengunjung, leads, media, pengguna */}
+            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {analytics && (
+                <>
+                  <MiniStat icon={Eye} label="Kunjungan 14 hari" value={String(analytics.totals.views)} sub={`${analytics.totals.mobileShare}% dari ponsel`} href="/admin" delay={0.1} />
+                  <MiniStat icon={Globe} label="Kunjungan 30 hari" value={String(analytics.totals.views30)} sub="total pageview" href="/admin" delay={0.16} />
+                  <Link href="/admin/pesan" className="group block">
+                    <AdminCard className="transition-all group-hover:border-gold/35">
+                      <div className="mb-4 flex items-center justify-between">
+                        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-950/70 ring-1 ring-gold/30 transition-transform duration-300 group-hover:scale-110">
+                          <Inbox className="h-5 w-5 text-gold-light" />
+                        </span>
+                        {analytics.totals.unread > 0 && (
+                          <span className="rounded-full bg-gradient-to-r from-yellow-300 to-amber-400 px-2.5 py-1 text-[10px] font-bold text-emerald-950">{analytics.totals.unread} BARU</span>
+                        )}
+                      </div>
+                      <p className="font-display text-4xl font-bold text-white">{analytics.totals.unread}</p>
+                      <p className="mt-1 text-sm font-medium text-emerald-50/55">Leads Belum Dibaca</p>
+                    </AdminCard>
+                  </Link>
+                  <div className="grid grid-cols-2 gap-5">
+                    <MiniStat icon={ImageIcon} label="Media" value={String(analytics.totals.mediaCount)} sub="aset gambar" href="/admin/media" delay={0.22} compact />
+                    <MiniStat icon={UserRoundCog} label="Pengguna" value={String(analytics.totals.userCount)} sub="akun admin" href="/admin/pengguna" delay={0.28} compact />
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Grafik pengunjung + sumber lalu lintas */}
+            {analytics && (
+              <div className="mt-6 grid gap-5 lg:grid-cols-3">
+                <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.5 }} className="lg:col-span-2">
+                  <AdminCard className="h-full">
+                    <div className="mb-5 flex items-center gap-2.5">
+                      <TrendingUp className="h-4.5 w-4.5 text-gold" />
+                      <h2 className="font-display text-lg font-bold text-white">Kunjungan 14 Hari Terakhir</h2>
+                    </div>
+                    <VisitorChart daily={analytics.daily} />
+                  </AdminCard>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.26, duration: 0.5 }}>
+                  <AdminCard className="h-full">
+                    <div className="mb-4 flex items-center gap-2.5">
+                      <Globe className="h-4.5 w-4.5 text-gold" />
+                      <h2 className="font-display text-lg font-bold text-white">Sumber Kunjungan</h2>
+                    </div>
+                    {analytics.topReferrers.length === 0 ? (
+                      <p className="py-6 text-center text-xs text-emerald-50/40">Belum ada data sumber — semua kunjungan langsung.</p>
+                    ) : (
+                      <ul className="space-y-2.5">
+                        {analytics.topReferrers.map((r) => (
+                          <li key={r.source} className="flex items-center justify-between rounded-xl border border-emerald-400/10 bg-[#0a1613] px-3.5 py-2.5">
+                            <span className="truncate text-xs font-semibold text-emerald-50/75">{r.source}</span>
+                            <span className="ml-3 shrink-0 rounded-full bg-gold/10 px-2 py-0.5 text-[10px] font-bold text-gold-light">{r.count}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {analytics.topPaths.length > 0 && (
+                      <>
+                        <p className="mb-2 mt-5 text-xs font-bold uppercase tracking-wider text-emerald-50/40">Halaman Terpopuler</p>
+                        <ul className="space-y-1.5">
+                          {analytics.topPaths.slice(0, 3).map((p) => (
+                            <li key={p.path} className="flex items-center justify-between text-xs text-emerald-50/60">
+                              <span className="truncate font-mono">{p.path}</span>
+                              <span className="ml-2 text-gold-light">{p.count}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
+                  </AdminCard>
+                </motion.div>
+              </div>
+            )}
 
             {/* Site Health + Aktivitas */}
             <div className="mt-6 grid gap-5 lg:grid-cols-3">
@@ -432,6 +523,103 @@ export default function AdminDashboard() {
           </>
         )
       )}
+    </div>
+  );
+}
+
+/** Kartu statistik mini (pengunjung, media, pengguna) */
+function MiniStat({
+  icon: Icon,
+  label,
+  value,
+  sub,
+  href,
+  delay,
+  compact,
+}: {
+  icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  value: string;
+  sub: string;
+  href: string;
+  delay: number;
+  compact?: boolean;
+}) {
+  const inner = (
+    <AdminCard
+      className={`transition-all hover:border-gold/35 ${
+        compact ? "p-4 sm:p-4" : ""
+      }`}
+    >
+      <div className="mb-3 flex items-center justify-between">
+        <span className={`flex ${compact ? "h-9 w-9" : "h-11 w-11"} items-center justify-center rounded-2xl bg-emerald-950/70 ring-1 ring-emerald-400/25`}>
+          <Icon className={`${compact ? "h-4 w-4" : "h-5 w-5"} text-emerald-300`} />
+        </span>
+        {!compact && <ArrowRight className="h-4 w-4 text-emerald-50/20" />}
+      </div>
+      <p className={`font-display font-bold text-white ${compact ? "text-2xl" : "text-3xl"}`}>{value}</p>
+      <p className={`mt-0.5 ${compact ? "text-[11px]" : "text-sm"} font-medium text-emerald-50/55`}>
+        {label} <span className="font-normal text-emerald-50/35">· {sub}</span>
+      </p>
+    </AdminCard>
+  );
+  return (
+    <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay, duration: 0.5 }}>
+      <Link href={href} className="group block h-full">
+        {inner}
+      </Link>
+    </motion.div>
+  );
+}
+
+/** Grafik batang kunjungan harian (SVG murni, animasi tinggi) */
+function VisitorChart({ daily }: { daily: { day: string; count: number; mobile: number }[] }) {
+  const max = Math.max(1, ...daily.map((d) => d.count));
+  const W = 700;
+  const H = 160;
+  const n = daily.length;
+  const gap = 6;
+  const bw = (W - gap * (n - 1)) / n;
+
+  return (
+    <div>
+      <div className="flex items-end gap-1" role="img" aria-label="Grafik kunjungan harian 14 hari terakhir">
+        {daily.map((d, i) => {
+          const h = Math.max(3, (d.count / max) * H);
+          const mh = d.count > 0 ? Math.max(2, (d.mobile / max) * H) : 0;
+          const label = new Date(d.day + "T00:00:00").toLocaleDateString("id-ID", { day: "numeric", month: "short" });
+          return (
+            <div key={d.day} className="group relative flex-1" title={`${label}: ${d.count} kunjungan`}>
+              <div className="relative overflow-hidden rounded-t-md bg-emerald-400/8" style={{ height: H }}>
+                <motion.div
+                  initial={{ height: 0 }}
+                  animate={{ height: h }}
+                  transition={{ delay: 0.3 + i * 0.04, duration: 0.6, ease: "easeOut" }}
+                  className="absolute bottom-0 w-full rounded-t-md bg-gradient-to-t from-emerald-500/50 to-emerald-300/70"
+                />
+                {mh > 0 && (
+                  <motion.div
+                    initial={{ height: 0 }}
+                    animate={{ height: mh }}
+                    transition={{ delay: 0.3 + i * 0.04, duration: 0.6, ease: "easeOut" }}
+                    className="absolute bottom-0 w-full bg-gradient-to-t from-gold/60 to-gold/80"
+                  />
+                )}
+              </div>
+              <p className="mt-1.5 truncate text-center text-[9px] text-emerald-50/35">{i % 2 === 0 ? label.split(" ")[0] : ""}</p>
+            </div>
+          );
+        })}
+      </div>
+      <div className="mt-4 flex flex-wrap items-center gap-4 text-[10px] text-emerald-50/50">
+        <span className="flex items-center gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-sm bg-gradient-to-t from-emerald-500/50 to-emerald-300/70" /> Total kunjungan
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-sm bg-gradient-to-t from-gold/60 to-gold/80" /> Dari ponsel
+        </span>
+        <span className="ml-auto">Maksimum: {max}/hari</span>
+      </div>
     </div>
   );
 }
