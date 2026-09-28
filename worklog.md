@@ -334,3 +334,22 @@ Stage Summary:
 - ZIP lama di history git dibebaskan; .env & db tidak lagi ter-track (praktik aman)
 - Situs tetap hidup normal (200), tidak ada kode yang berubah
 - Bila tombol Download workspace masih gagal, kode aman di download/digiman-source-20260925.zip
+
+---
+Task ID: 13-b
+Agent: Super Z (main)
+Task: Hidupkan lagi tombol Download workspace + pulihkan deliverable setelah restore snapshot platform
+
+Work Log:
+- Terdeteksi platform memulihkan sebagian workspace dari snapshot lama (zip lama kembali, deploy zip terbaru & source zip hilang, .git diganti sistem auto-commit UUID 196M)
+- Situs/kode/db/worklog tetap aman (verifikasi 200 OK)
+- Symlink node_modules dilarang sandbox ("Creating symbolic links is not allowed") — batal
+- Proses dev beku karena cache korup -> bersihkan rantai proses + rm .next/dev .next/cache -> start ulang via .zscripts/dev.sh -> 200 OK
+- Rakit ulang deploy zip dari .next/standalone snapshot (kode tak berubah): digiman-deploy-20260928.zip (79M)
+- Hapus zip lama (0917, 0923) + .next/standalone (506M, bisa dibangun ulang) + PNG verifikasi scripts/
+- Buat digiman-source-20260928.zip (2,7M) + DIGIMAN-FULL-20260928.zip (82M = deploy + source + BACA-DULU-FULL.txt)
+
+Stage Summary:
+- Workspace 2,3G -> 1,9G (node_modules 1,2G wajib runtime; .git 196M dikelola platform, tidak diutak-atik lagi)
+- Semua deliverable terjamin di panel download: FULL 82M, deploy 79M, source 2,7M
+- Pelajaran: jangan lawan sistem snapshot/git platform; andalkan zip deliverable di download/
