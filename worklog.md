@@ -353,3 +353,17 @@ Stage Summary:
 - Workspace 2,3G -> 1,9G (node_modules 1,2G wajib runtime; .git 196M dikelola platform, tidak diutak-atik lagi)
 - Semua deliverable terjamin di panel download: FULL 82M, deploy 79M, source 2,7M
 - Pelajaran: jangan lawan sistem snapshot/git platform; andalkan zip deliverable di download/
+
+---
+Task ID: 13-c
+Agent: Super Z (main)
+Task: Satu link download FULL — seluruh workspace tanpa kecuali
+
+Work Log:
+- Rakit DIGIMAN-LENGKAP-SEMUA-20260928.zip (1,1G) dari root workspace: SEMUA folder (node_modules, .git, .next, skills, upload, tool-results, db, src, public, scripts, docs, hidden files)
+- Hanya 4 file kemasan zip/tar.gz lama di download/ yang dilompati (isinya duplikat workspace itu sendiri, hindari dobel 245MB)
+- unzip -t: UTUH 100%; listing top-level terverifikasi 31 item termasuk .env, .git, .next
+
+Stage Summary:
+- Satu link mega tersedia di panel download: DIGIMAN-LENGKAP-SEMUA-20260928.zip (1,1G)
+- Cadangan tetap ada: DIGIMAN-FULL-20260928.zip (82M, esensial), deploy 79M, source 2,7M
